@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.z-800 {
+    z-index: 800;
+}
+
+.z-1000 {
+    z-index: 1000;
+}
+
+.z-1050 {
+     z-index: 1050;
+}
+
+.spinner-border {
+    border-top-color: transparent;
+}
+
+.range-slider {
+    -webkit-appearance: none;
+}
+.range-slider:focus {
+     outline: none;
+}
+.range-slider::-webkit-slider-runnable-track {
+     @apply bg-slate-100 w-full h-2.5 rounded-sm cursor-pointer;
+}
+.range-slider::-moz-range-track {
+     @apply bg-slate-100 w-full h-2.5 rounded-sm cursor-pointer;
+ }
+.range-slider::-webkit-slider-thumb {
+     @apply h-6 w-6 bg-white border-slate-200 rounded-full cursor-pointer drop-shadow-lg;
+}
+.range-slider::-moz-range-thumb{
+     @apply h-6 w-6 bg-white border-slate-200 rounded-full cursor-pointer border-2 drop-shadow-lg;
+}
+.range-slider::-moz-focus-outer {
+     border: 0;
+}
