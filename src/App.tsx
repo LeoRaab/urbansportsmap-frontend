@@ -16,6 +16,7 @@
  * TODO: Check rerender amount
  * TODO: Check z-indexes
  * TODO: Zoom in when clicking on search result
+ * TODO: Logging system
  */
 
 import React from 'react';
