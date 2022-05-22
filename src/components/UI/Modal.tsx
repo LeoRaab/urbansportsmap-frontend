@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 
 const modalRoot = document.getElementById('modal-root');
 
-console.log(modalRoot);
-
 type ModalProps = {
     children: React.ReactNode,
     position: 'top' | 'center' | 'bottom'
