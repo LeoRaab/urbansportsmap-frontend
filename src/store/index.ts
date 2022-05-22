@@ -7,6 +7,7 @@ import {geocodeApi} from './api/geocodeApi';
 import {favoritesApi} from './api/favoritesApi';
 import {authApi} from './api/authApi';
 import authSlice from './authSlice';
+import { commentsApi } from './api/commentsApi';
 
 const store = configureStore({
     reducer: {
@@ -17,14 +18,18 @@ const store = configureStore({
         [venuesApi.reducerPath]: venuesApi.reducer,
         [authApi.reducerPath]: authApi.reducer,
         [geocodeApi.reducerPath]: geocodeApi.reducer,
-        [favoritesApi.reducerPath]: favoritesApi.reducer
+        [favoritesApi.reducerPath]: favoritesApi.reducer,
+        [commentsApi.reducerPath]: commentsApi.reducer
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(
-            venuesApi.middleware, geocodeApi.middleware, favoritesApi.middleware, authApi.middleware
+            venuesApi.middleware, 
+            geocodeApi.middleware, 
+            favoritesApi.middleware,
+            commentsApi.middleware,
+            authApi.middleware
         )
-})
-
+});
 
 export type RootState = ReturnType<typeof store.getState>
 
