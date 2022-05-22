@@ -4,17 +4,20 @@ import VenueComment from '../../types/VenueComment';
 import {ICONS} from '../../constants/Icons';
 import IconButton from '../UI/buttons/IconButton';
 import CommentForm from '../Forms/CommentForm';
-import {userRepository} from '../../repositories/userRepository';
+import { useSelector } from 'react-redux';
+import { selectUserId } from '../../store/authSlice';
+import { useRemoveCommentMutation, useUpdateCommentMutation } from '../../store/api/commentsApi';
 
 type VenueCommentItemProps = {
-    comment: VenueComment,
-    onEditClick: (comment: string, commentId: number) => void,
-    onDeleteClick: (commentId: number) => void
+    comment: VenueComment
 }
 
-const VenueCommentItem = ({comment, onEditClick, onDeleteClick}: VenueCommentItemProps) => {
-    const userRepo = userRepository();
-    const commentDate = new Date(comment.date).toLocaleDateString('de-DE');
+const VenueCommentItem = ({comment}: VenueCommentItemProps) => {
+    const userId = useSelector(selectUserId);
+    const [updateComment] = useUpdateCommentMutation();
+    const [removeComment] = useRemoveCommentMutation();
+    
+    const commentDate = new Date(comment.updatedAt).toLocaleDateString('de-DE');
     const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
 
     const handleEditClick = () => {
@@ -23,21 +26,25 @@ const VenueCommentItem = ({comment, onEditClick, onDeleteClick}: VenueCommentIte
 
     const handleFormSubmit = (commentText: string) => {
         setShowCommentForm(false);
-        onEditClick(commentText, comment.id);
+        updateComment({commentId: comment.id, comment: commentText});
     }
 
     const handleFormCancel = () => {
         setShowCommentForm(false);
     }
 
+    const handleDeleteCommentClick = () => {
+        removeComment(comment.id);
+    }
+
     return (
         <div className="my-2">
             <Card>
-                <p className="text-sm font-bold mb-4">{comment.author}, {commentDate}</p>
+                <p className="text-sm font-bold mb-4">{comment.author.name}, {commentDate}</p>
                 <p className="whitespace-pre-line">{comment.comment}</p>
-                {userRepo.user && userRepo.user.id === comment.uid &&
+                {(comment.author.id === userId) &&
                     <div className="flex justify-between border-t border-t-slate-200 mt-4">
-                        <IconButton text={'löschen'} icon={ICONS.TRASH} handleOnClick={() => onDeleteClick(comment.id)}/>
+                        <IconButton text={'löschen'} icon={ICONS.TRASH} handleOnClick={handleDeleteCommentClick}/>
                         <IconButton text={'editieren'} icon={ICONS.EDIT} handleOnClick={handleEditClick}/>
                     </div>
                 }
