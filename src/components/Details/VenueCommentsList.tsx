@@ -3,18 +3,14 @@ import VenueComment from '../../types/VenueComment';
 import VenueCommentItem from './VenueCommentItem';
 
 type VenueCommentsListProps = {
-    comments?: VenueComment[];
-    onEditClick: (comment: string, commentId: number) => void,
-    onDeleteClick: (commentId: number) => void,
+    comments?: VenueComment[]
 }
 
-const VenueCommentsList = ({comments, onEditClick, onDeleteClick}: VenueCommentsListProps) => {
+const VenueCommentsList = ({comments}: VenueCommentsListProps) => {
 
     const venueCommentsListItems = comments?.map((comment, key) =>
         <VenueCommentItem key={key}
-                          comment={comment}
-                          onEditClick={onEditClick}
-                          onDeleteClick={onDeleteClick}/>
+                          comment={comment}/>
     );
 
     return (
