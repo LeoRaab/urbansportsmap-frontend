@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {ReactHTMLElement, useCallback, useEffect, useState} from 'react';
 import L from 'leaflet';
 import Map from './Map';
 import FabButton from '../UI/buttons/FabButton';
@@ -11,7 +11,7 @@ const MapWrapper = () => {
     const [map, setMap] = useState<L.Map>();
     const mapState = useSelector(selectMap);
 
-    const mapRef = useCallback(mapElement => {
+    const mapRef = useCallback((mapElement: HTMLDivElement) => {
         if (mapElement !== null && !map) {
 
             setMap(new L.Map(mapElement, {
