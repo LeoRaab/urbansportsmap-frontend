@@ -3,15 +3,11 @@ import React from 'react';
 import UserInfo from '../components/User/UserInfo';
 import IconButton from '../components/UI/buttons/IconButton';
 import {ICONS} from '../constants/Icons';
-import {useUserProfile} from '../hooks/useUserProfile';
 
 const Profile = () => {
 
-    const userProfile = useUserProfile();
-
     const handleResetPassword = () => {
-        userProfile.resetPassword()
-            .then(() => console.log('show Message!'))
+     
     }
 
     const handleDeleteAccount = () => {
@@ -24,7 +20,7 @@ const Profile = () => {
             <PageHeader text={'Profil'}/>
 
             <div className="px-2 mt-6">
-                <UserInfo userProfile={userProfile.userProfile}/>
+                <UserInfo />
             </div>
 
             <div className="flex flex-col px-2 mt-4">
