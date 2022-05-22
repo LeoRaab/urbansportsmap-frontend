@@ -71,9 +71,7 @@ const Markers = ({map}: MarkersProps) => {
     return (
         <>
             {(isLoading || isFetching) &&
-                <Modal>
-                    <LoadingSpinner/>
-                </Modal>
+                <LoadingSpinner/>
             }
         </>
     )

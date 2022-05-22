@@ -54,9 +54,7 @@ const DetailSettings = ({venue, onCommentClick, onEditImagesClick}: DetailSettin
     return (
         <>
             {(isLoading && isFetching) &&
-                <Modal>
-                    <LoadingSpinner/>
-                </Modal>
+                <LoadingSpinner/>
             }
 
             <div className="flex flex-col px-2">
@@ -75,7 +73,7 @@ const DetailSettings = ({venue, onCommentClick, onEditImagesClick}: DetailSettin
             </div>
 
             {showImageModal &&
-                <Modal>
+                <Modal position='center'>
                     <ImagePicker venueId={venue.id} onFinish={handleFinishImagePicking}/>
                 </Modal>
             }

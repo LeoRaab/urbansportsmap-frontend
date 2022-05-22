@@ -39,9 +39,7 @@ const Teaser = ({venueId}: TeaserProps) => {
     return (
         <div className="h-full relative">
             {(isLoading || isFetching) &&
-                <div className="absolute z-1000 h-full w-full flex justify-center items-center">
-                    <LoadingSpinner/>
-                </div>
+                <LoadingSpinner/>
             }
 
             {isSuccess &&
