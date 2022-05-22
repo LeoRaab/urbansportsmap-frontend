@@ -6,7 +6,7 @@ import PrimaryButton from '../UI/buttons/PrimaryButton';
 import {ICONS} from '../../constants/Icons';
 import {useDispatch, useSelector} from 'react-redux';
 import {uiActions} from '../../store/uiSlice';
-import {authActions, selectUserLoggedIn} from '../../store/authSlice';
+import {authActions, selectUserId} from '../../store/authSlice';
 import {removeUserDataFromStorage} from '../../util/userdata-localstorage';
 
 type MenuProps = {
@@ -16,9 +16,7 @@ type MenuProps = {
 const Menu = ({isShowing}: MenuProps) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const isLoggedIn = useSelector(selectUserLoggedIn);
-
-    console.log(isLoggedIn);
+    const userId = useSelector(selectUserId);
 
     let menuClass = '-translate-x-full';
 
@@ -54,7 +52,7 @@ const Menu = ({isShowing}: MenuProps) => {
                               text={'Home'}
                               icon={ICONS.MAP}/>
 
-                    {isLoggedIn &&
+                    {userId &&
                         <>
                             <MenuItem destination={'/favorites'}
                                       text={'Favoriten'}
@@ -74,7 +72,7 @@ const Menu = ({isShowing}: MenuProps) => {
 
 
                 <div className="flex justify-center my-8">
-                    {!isLoggedIn &&
+                    {!userId &&
                         <>
                             <div className="m-2 w-1/2">
                                 <SecondaryButton text={'Log in'} handleOnClick={handleLoginClick}/>
@@ -85,7 +83,7 @@ const Menu = ({isShowing}: MenuProps) => {
                             </div>
                         </>
                     }
-                    {isLoggedIn &&
+                    {userId &&
                         <>
                             <div className="m-2 w-1/2">
                                 <SecondaryButton text={'Log out'} handleOnClick={handleLogoutClick}/>
