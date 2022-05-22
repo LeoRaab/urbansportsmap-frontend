@@ -5,25 +5,34 @@ export const getUserDataFromStorage = (): AuthState => {
 
     if (userDataJSON) {
         try {
-            const userData = JSON.parse(userDataJSON) as AuthState;
+            const userData = JSON.parse(userDataJSON) as AuthState;  
+            
+            if (userData.expirationDate && new Date(userData.expirationDate) <= new Date()) {
+                throw Error();
+            }
+
             console.log(userData);
-            console.log(userData.userId);
+
             return {
                 userId: userData.userId,
-                token: userData.token
+                token: userData.token,
+                expirationDate: userData.expirationDate
             }
         }
         catch (e) {
+            console.log('catched');
             return {
                 userId: null,
-                token: null
+                token: null,
+                expirationDate: null
             }
         }
     }
 
     return {
         userId: null,
-        token: null
+        token: null,
+        expirationDate: null
     }
 
 }
@@ -33,5 +42,13 @@ export const removeUserDataFromStorage = (): void => {
 }
 
 export const setUserDataToStorage = (userData: AuthState): void => {
-    localStorage.setItem('userData', JSON.stringify(userData));
+    localStorage.setItem(
+        'userData', 
+        JSON.stringify(
+            {
+                userId: userData.userId, 
+                token: userData.token,
+                expirationDate: userData.expirationDate
+        })
+    );
 }

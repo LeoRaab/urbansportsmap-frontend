@@ -4,7 +4,8 @@ import {getUserDataFromStorage} from '../util/userdata-localstorage';
 
 export interface AuthState {
     userId: string | null,
-    token: string | null
+    token: string | null,
+    expirationDate: string | null
 }
 
 const initialState = getUserDataFromStorage();
@@ -14,13 +15,16 @@ const slice = createSlice({
     initialState,
     reducers: {
         setCredentials: (state,
-                         {payload: {userId, token}}: PayloadAction<{ userId: string, token: string }>) => {
+                         {payload: {userId, token, expirationDate}}: 
+                         PayloadAction<{ userId: string, token: string, expirationDate: string }>) => {
             state.userId = userId;
             state.token = token;
+            state.expirationDate = expirationDate
         },
         removeCredentials: (state) => {
             state.userId = null;
             state.token = null;
+            state.expirationDate = null;
         }
     },
 })

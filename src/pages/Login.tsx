@@ -1,8 +1,8 @@
 import PageHeader from '../components/UI/PageHeader';
 import LoginForm from '../components/Forms/LoginForm';
-import {useLoginMutation} from '../store/api/authApi';
-import {useDispatch} from 'react-redux';
-import {authActions} from '../store/authSlice';
+import { useLoginMutation } from '../store/api/authApi';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../store/authSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { setUserDataToStorage } from '../util/userdata-localstorage';
 import useRedirectPath from '../components/hooks/useRedirectPath';
@@ -16,7 +16,10 @@ const Login = () => {
 
     const handleFormSubmit = async (email: string, password: string) => {
         try {
-            const userData = await login({email, password}).unwrap();
+            const user = await login({ email, password }).unwrap();
+            const expirationDate = new Date((new Date().getTime() + 1000) * 60 * 60).toISOString();
+            const userData = {...user, expirationDate};
+            
             dispatch(authActions.setCredentials(userData));
             setUserDataToStorage(userData);
             navigate(redirectPath, { replace: true });
@@ -27,9 +30,9 @@ const Login = () => {
 
     return (
         <>
-            <PageHeader text={'Log in'}/>
+            <PageHeader text={'Log in'} />
 
-            <LoginForm onFormSubmit={handleFormSubmit}/>
+            <LoginForm onFormSubmit={handleFormSubmit} />
         </>
     )
 }
