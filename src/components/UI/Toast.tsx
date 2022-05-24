@@ -14,7 +14,7 @@ const Toast = ({ type, text }: ToastProps) => {
     const showTime = 6000;
 
     useEffect(() => {
-        const timeInterval = 100;
+        const timeInterval = 500;
         let remainingTime = showTime;
 
         const toastInterval = setInterval(() => {
@@ -54,7 +54,7 @@ const Toast = ({ type, text }: ToastProps) => {
     return isShown ? (
         <Modal position="bottom">
             <div className="fixed bottom-5 w-screen flex justify-center opacity-90">
-                <div className={'rounded p-4 mb-4 w-1/2 relative ' + bgColor}>
+                <div className={'rounded p-4 mb-4 w-3/4 relative ' + bgColor}>
                     <p className={textColor}>{text}</p>
                     <div className="mt-2 border-b-2 border-white/50" style={{ 'width': currentWidth + '%' }} />
                     <div className="absolute top-0 right-0 z-1050">
