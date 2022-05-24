@@ -86,7 +86,6 @@ const App = () => {
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
     const location = useLocation();
     const userId = useSelector(selectUserId);
-    console.log(userId);
     if (!userId) {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }

@@ -5,13 +5,11 @@ export const getUserDataFromStorage = (): AuthState => {
 
     if (userDataJSON) {
         try {
-            const userData = JSON.parse(userDataJSON) as AuthState;  
+            const userData = JSON.parse(userDataJSON) as AuthState;              
             
             if (userData.expirationDate && new Date(userData.expirationDate) <= new Date()) {
                 throw Error();
             }
-
-            console.log(userData);
 
             return {
                 userId: userData.userId,
