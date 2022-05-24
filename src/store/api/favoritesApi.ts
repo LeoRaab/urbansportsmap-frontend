@@ -21,14 +21,14 @@ export const favoritesApi = createApi({
             transformResponse: (responseData: any) => responseData.favorites,
             providesTags: ['Favorites']
         }),
-        addFavorite: builder.mutation<Venue[], string>({
+        addFavorite: builder.mutation<{message: string}, string>({
             query: (venueId) => ({
                 url: venueId,
                 method: 'POST'
             }),
             invalidatesTags: ['Favorites']
         }),
-        removeFavorite: builder.mutation<Venue[], string>({
+        removeFavorite: builder.mutation<{message: string}, string>({
             query: (venueId) => ({
                 url: venueId,
                 method: 'DELETE'
