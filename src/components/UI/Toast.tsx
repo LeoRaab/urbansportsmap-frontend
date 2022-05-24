@@ -53,7 +53,7 @@ const Toast = ({ type, text }: ToastProps) => {
 
     return isShown ? (
         <Modal position="bottom">
-            <div className="flex justify-center w-screen opacity-90">
+            <div className="fixed bottom-5 w-screen flex justify-center opacity-90">
                 <div className={'rounded p-4 mb-4 w-1/2 relative ' + bgColor}>
                     <p className={textColor}>{text}</p>
                     <div className="mt-2 border-b-2 border-white/50" style={{ 'width': currentWidth + '%' }} />

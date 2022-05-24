@@ -13,23 +13,21 @@ const Modal = ({ children, position }: ModalProps) => {
 
     switch (position) {
         case 'top':
-            positionCss = 'items-start';
+            positionCss = 'top-5';
             break;
         case 'bottom':
-            positionCss = 'items-end';
+            positionCss = 'bottom-5';
             break;
         case 'center':
         default:
-            positionCss = 'items-center';
+            positionCss = 'top-1/2';
             break;
     }
 
 
     return ReactDOM.createPortal(
-        <div className={'relative h-screen w-screen z-1000 flex justify-center ' + positionCss}>
-            <div className="">
-                {children}
-            </div>
+        <div className={'fixed w-screen flex justify-center z-1000 ' + positionCss}>
+            {children}
         </div>
         , modalRoot!
     )
