@@ -17,7 +17,7 @@ const Login = () => {
     const handleFormSubmit = async (email: string, password: string) => {
         try {
             const user = await login({ email, password }).unwrap();
-            const expirationDate = new Date((new Date().getTime() + 1000) * 60 * 60).toISOString();
+            const expirationDate = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();
             const userData = {...user, expirationDate};
             
             dispatch(authActions.setCredentials(userData));
