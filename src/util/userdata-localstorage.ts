@@ -18,7 +18,6 @@ export const getUserDataFromStorage = (): AuthState => {
             }
         }
         catch (e) {
-            console.log('catched');
             return {
                 userId: null,
                 token: null,
