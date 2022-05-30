@@ -16,7 +16,7 @@ const Profile = () => {
         if (userId) {
             getUser(userId);
         }
-    }, [userId])
+    }, [userId, getUser])
 
     const handleResetPassword = () => {
      

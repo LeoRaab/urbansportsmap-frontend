@@ -43,11 +43,6 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
         setShowImageModal(true);
     }
 
-    const handleModalHide = () => {
-        setShowImageModal(false);
-        onEditImagesClick();
-    }
-
     const handleFinishImagePicking = () => {
         setShowImageModal(false);
         onEditImagesClick();

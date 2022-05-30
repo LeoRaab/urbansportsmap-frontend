@@ -20,7 +20,7 @@ const useTimer = ({ duration, interval }: TimerProps): { remainingTime: number }
         return () => {
             clearInterval(timer);
         }
-    }, []);
+    }, [duration, interval]);
 
     return { remainingTime }
 }
