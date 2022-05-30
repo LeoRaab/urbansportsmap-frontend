@@ -12,14 +12,14 @@ import Icon from '../components/UI/Icon';
 import { ICONS } from '../constants/Icons';
 import VenueTitle from '../components/UI/VenueTitle';
 import CommentForm from '../components/Forms/CommentForm';
-import Venue from '../types/Venue';
 import { useLazyGetVenueByIdQuery } from '../store/api/venuesApi';
-import Modal from '../components/UI/Modal';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import VenueCommentsList from '../components/Details/VenueCommentsList';
 import { useAddCommentMutation, useLazyGetCommentsQuery } from '../store/api/commentsApi';
 import { useSelector } from 'react-redux';
 import { selectUserId } from '../store/authSlice';
+import Toast from '../components/UI/Toast';
+import COLOR_SCHEME from '../types/ColorScheme';
 
 const Detail = () => {
 
@@ -27,7 +27,7 @@ const Detail = () => {
     const params = useParams();
     const [loadVenue, { data: venue, isLoading, isFetching }] = useLazyGetVenueByIdQuery();
     const [loadVenueComments, { data: venueComments }] = useLazyGetCommentsQuery();
-    const [addComment] = useAddCommentMutation();
+    const [addComment, { data: addCommentResponse }] = useAddCommentMutation();
     const userId = useSelector(selectUserId);
 
     const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
@@ -35,10 +35,14 @@ const Detail = () => {
     useEffect(() => {
         if (params.venueId) {
             loadVenue(params.venueId);
-            loadVenueComments(params.venueId);
-            console.log(venueComments);
         }
     }, [params.venueId])
+
+    useEffect(() => {
+        if (venue) {
+            loadVenueComments(venue.id);
+        }
+    }, [venue]);
 
     const handleEditImagesClick = () => {
         //venueImages.loadImages();
@@ -59,9 +63,6 @@ const Detail = () => {
 
     return (
         <>
-            {(isLoading || isFetching) &&
-                <LoadingSpinner />
-            }
             <div className="h-screen relative">
 
                 <PageHeader text={'Detail'} />
@@ -104,8 +105,18 @@ const Detail = () => {
                         <VenueCommentsList comments={venueComments} />
                     </div>
                 }
-
             </div>
+
+            {(isLoading || isFetching) &&
+                <LoadingSpinner />
+            }
+
+            <Toast type={COLOR_SCHEME.SUCCESS} text={'haoodsf'} />
+
+
+            {addCommentResponse &&
+                <Toast type={COLOR_SCHEME.SUCCESS} text={addCommentResponse.message} />
+            }
         </>
 
     )
