@@ -17,6 +17,7 @@
  * TODO: Check z-indexes
  * TODO: Zoom in when clicking on search result
  * TODO: Logging system
+ * TODO: Toast is hiding to fast, when deleting comment
  */
 
 import React from 'react';
