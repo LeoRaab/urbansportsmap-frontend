@@ -1,51 +1,29 @@
 import { useEffect, useState } from "react";
 import { ICONS } from "../../constants/Icons";
+import useColorScheme from "../../hooks/useColorScheme";
+import useTimer from "../../hooks/useTimer";
+import COLOR_SCHEME from "../../types/ColorScheme";
 import IconButton from "./buttons/IconButton";
 import Modal from "./Modal";
 
 type ToastProps = {
-    type: 'error' | 'success',
-    text: string
+    text: string,
+    type: COLOR_SCHEME
 }
 
-const Toast = ({ type, text }: ToastProps) => {
+const Toast = ({ text, type }: ToastProps) => {
+    const { bgColor, textColor } = useColorScheme({ type });
     const [isShown, setIsShown] = useState<boolean>(true);
     const [currentWidth, setCurrentWidth] = useState<number>(100);
-    const showTime = 6000;
+    const { remainingTime } = useTimer({ duration: 5000, interval: 100 });
 
     useEffect(() => {
-        const timeInterval = 500;
-        let remainingTime = showTime;
+        setCurrentWidth(prevState => prevState = remainingTime / 5000 * 100);
 
-        const toastInterval = setInterval(() => {
-            remainingTime -= timeInterval;
-            setCurrentWidth(prevState => prevState = remainingTime / showTime * 100);
-        }, timeInterval);
-
-        setTimeout(() => {
-            clearInterval(toastInterval);
+        if (remainingTime === 0) {
             setIsShown(false);
-        }, showTime);
-
-        return () => {
-            clearInterval(toastInterval);
         }
-    }, [])
-
-    let bgColor: string;
-    let textColor: string;
-
-    switch (type) {
-        case 'error':
-            bgColor = 'bg-red-400';
-            textColor = 'text-red-50';
-            break;
-        case 'success':
-        default:
-            bgColor = 'bg-green-400';
-            textColor = 'text-green-50';
-            break;
-    }
+    }, [remainingTime]);
 
     const handleCloseClick = () => {
         setIsShown(false);
@@ -58,7 +36,7 @@ const Toast = ({ type, text }: ToastProps) => {
                     <p className={textColor}>{text}</p>
                     <div className="mt-2 border-b-2 border-white/50" style={{ 'width': currentWidth + '%' }} />
                     <div className="absolute top-0 right-0 z-1050">
-                        <IconButton text={''} icon={ICONS.CLOSE}
+                        <IconButton text={''} icon={ICONS.CLOSE} color="text-white/50"
                             handleOnClick={handleCloseClick} />
                     </div>
                 </div>
