@@ -39,7 +39,7 @@ const Home = () => {
                 <Search />
             </div>
 
-            <div className="fixed bottom-24 right-2 z-800">
+            <div className="fixed bottom-24 lg:top-1/2 right-2 z-800">
                 <FabButton backgroundColor="bg-green-200"
                     onFabButtonClick={() => dispatch(uiActions.filterShown())}>
                     <Icon icon={ICONS.FILTER} />
