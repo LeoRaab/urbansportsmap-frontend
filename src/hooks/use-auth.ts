@@ -29,8 +29,12 @@ const useAuth = () => {
     }
 
     useEffect(() => {
-        if (storedUserData) {
-            dispatch(authActions.setCredentials(storedUserData));
+        if (storedUserData && storedUserData.expirationDate) {
+            if (new Date(storedUserData.expirationDate) >= new Date()) {
+                dispatch(authActions.setCredentials(storedUserData));
+            } else {
+                logout();
+            }
         }
     }, [storedUserData]);
 
@@ -40,7 +44,7 @@ const useAuth = () => {
             const clearSessionIn = expirationDate.getTime() - new Date().getTime();
                         
             setTimeout(() => {
-                dispatch(authActions.removeCredentials);
+                logout();
             }, clearSessionIn)
         }
     }, [sessionExpiration]);
