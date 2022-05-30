@@ -1,26 +1,23 @@
 /**
  * TODO: Button Components --> Styled Components
  * TODO: Check color persistence
- * TODO: Add Toast component to display success and error
  * TODO: Add Dialog component for user actions
  * TODO: How to get fullscreen on browsers, its working when going to favorites and then back to map
  * TODO: Optimize for larger screens
  * TODO: Improve Button Component Structure + disabledVersion
- * TODO: Check if passing objectId as prop to ImagePicker is the best way
  * TODO: Implement Report Image/Comment Feature
- * TODO: Close menu on mapClick
  * TODO: Check userInput @ forms
- * TODO: Check if username & email is already in use
+ * TODO: Check if username is already in use
  * TODO: Check problems with verifymail and resetpassword urls from supabase
  * TODO: At signup save userProfile to db
- * TODO: Check rerender amount
  * TODO: Check z-indexes
  * TODO: Zoom in when clicking on search result
  * TODO: Logging system
  * TODO: Toast is hiding to fast, when deleting comment
+ * TODO: New hooks for auth and local storage have problem with persisting, value gets cleared on dismount
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Home from './pages/Home';
 import { BrowserRouter, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import Detail from './pages/Detail';
@@ -33,12 +30,16 @@ import Signup from './pages/Signup';
 import PageNotFound from './pages/PageNotFound';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUi, uiActions } from './store/uiSlice';
-import { selectUserId } from './store/authSlice';
+import authSlice, { authActions, selectExpirationDate, selectUserId } from './store/authSlice';
+import { userActions } from './store/userSlice';
+import useAuth from './hooks/use-auth';
 
 const App = () => {
 
     const dispatch = useDispatch();
     const ui = useSelector(selectUi);
+    const sessionExpiration = useSelector(selectExpirationDate);
+    const { storedUserData } = useAuth();
 
     const handleMenuButtonClick = () => {
         dispatch(uiActions.menuToggle());
@@ -47,6 +48,17 @@ const App = () => {
     const handleMainClick = () => {
         dispatch(uiActions.menuHidden());
     }
+
+    useEffect(() => {
+        if (sessionExpiration) {
+            const expirationDate = new Date(sessionExpiration);
+            const clearSessionIn = expirationDate.getMilliseconds() - new Date().getMilliseconds()
+            
+            setTimeout(() => {
+                dispatch(authActions.removeCredentials);
+            }, clearSessionIn)
+        }
+    }, [sessionExpiration]);
 
     return (
         <BrowserRouter>

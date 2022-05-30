@@ -1,21 +1,22 @@
 import React from 'react';
 import MenuItem from './MenuItem';
 import SecondaryButton from '../UI/buttons/SecondaryButton';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PrimaryButton from '../UI/buttons/PrimaryButton';
-import {ICONS} from '../../constants/Icons';
-import {useDispatch, useSelector} from 'react-redux';
-import {uiActions} from '../../store/uiSlice';
-import {authActions, selectUserId} from '../../store/authSlice';
-import {removeUserDataFromStorage} from '../../util/userdata-localstorage';
+import { ICONS } from '../../constants/Icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { uiActions } from '../../store/uiSlice';
+import { selectUserId } from '../../store/authSlice';
+import useAuth from '../../hooks/use-auth';
 
 type MenuProps = {
     isShowing: boolean
 }
 
-const Menu = ({isShowing}: MenuProps) => {
+const Menu = ({ isShowing }: MenuProps) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { logout } = useAuth();
     const userId = useSelector(selectUserId);
 
     let menuClass = '-translate-x-full';
@@ -25,20 +26,20 @@ const Menu = ({isShowing}: MenuProps) => {
     }
 
     const handleLoginClick = () => {
-        navigate('/login');
         dispatch(uiActions.menuHidden());
+        navigate('/login');
     }
 
     const handleSignupClick = () => {
-        navigate('/signup');
         dispatch(uiActions.menuHidden());
+        navigate('/signup');
     }
 
     const handleLogoutClick = () => {
-        dispatch(authActions.removeCredentials());
-        removeUserDataFromStorage();
+        logout();
         dispatch(uiActions.menuHidden());
         navigate('/');
+
     }
 
     return (
@@ -49,22 +50,22 @@ const Menu = ({isShowing}: MenuProps) => {
                 <div className="flex flex-col w-full">
 
                     <MenuItem destination={'/'}
-                              text={'Home'}
-                              icon={ICONS.MAP}/>
+                        text={'Home'}
+                        icon={ICONS.MAP} />
 
                     {userId &&
                         <>
                             <MenuItem destination={'/favorites'}
-                                      text={'Favoriten'}
-                                      icon={ICONS.HEART_FILLED}/>
+                                text={'Favoriten'}
+                                icon={ICONS.HEART_FILLED} />
 
                             <MenuItem destination={'/profile'}
-                                      text={'Profile'}
-                                      icon={ICONS.USER}/>
+                                text={'Profile'}
+                                icon={ICONS.USER} />
 
                             <MenuItem destination={'/settings'}
-                                      text={'Settings'}
-                                      icon={ICONS.SETTINGS}/>
+                                text={'Settings'}
+                                icon={ICONS.SETTINGS} />
                         </>
                     }
 
@@ -75,18 +76,18 @@ const Menu = ({isShowing}: MenuProps) => {
                     {!userId &&
                         <>
                             <div className="m-2 w-1/2">
-                                <SecondaryButton text={'Log in'} handleOnClick={handleLoginClick}/>
+                                <SecondaryButton text={'Log in'} handleOnClick={handleLoginClick} />
                             </div>
 
                             <div className="m-2 w-1/2">
-                                <PrimaryButton text={'Sign up'} handleOnClick={handleSignupClick}/>
+                                <PrimaryButton text={'Sign up'} handleOnClick={handleSignupClick} />
                             </div>
                         </>
                     }
                     {userId &&
                         <>
                             <div className="m-2 w-1/2">
-                                <SecondaryButton text={'Log out'} handleOnClick={handleLogoutClick}/>
+                                <SecondaryButton text={'Log out'} handleOnClick={handleLogoutClick} />
                             </div>
                         </>
                     }
