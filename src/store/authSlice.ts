@@ -1,6 +1,5 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {RootState} from './index';
-import {getUserDataFromStorage} from '../util/userdata-localstorage';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from './index';
 
 export interface AuthState {
     userId: string | null,
@@ -8,15 +7,17 @@ export interface AuthState {
     expirationDate: string | null
 }
 
-const initialState = getUserDataFromStorage();
+const initialState: AuthState = {
+    userId: null,
+    token: null,
+    expirationDate: null
+}
 
 const slice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setCredentials: (state,
-                         {payload: {userId, token, expirationDate}}: 
-                         PayloadAction<{ userId: string, token: string, expirationDate: string }>) => {
+        setCredentials: (state, { payload: { userId, token, expirationDate } }: PayloadAction<AuthState>) => {
             state.userId = userId;
             state.token = token;
             state.expirationDate = expirationDate
@@ -34,3 +35,4 @@ export const authActions = slice.actions
 export default slice.reducer
 
 export const selectUserId = (state: RootState) => state.auth.userId;
+export const selectExpirationDate = (state: RootState) => state.auth.expirationDate;

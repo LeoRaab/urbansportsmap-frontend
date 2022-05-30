@@ -1,32 +1,27 @@
 import PageHeader from '../components/UI/PageHeader';
 import LoginForm from '../components/Forms/LoginForm';
-import { useLoginMutation } from '../store/api/authApi';
-import { useDispatch } from 'react-redux';
-import { authActions } from '../store/authSlice';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { setUserDataToStorage } from '../util/userdata-localstorage';
-import useRedirectPath from '../components/hooks/useRedirectPath';
+import useAuth from '../hooks/use-auth';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useRedirectPath from '../hooks/use-redirect-path';
+import { useSelector } from 'react-redux';
+import { selectUserId } from '../store/authSlice';
 
 const Login = () => {
-
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [login, { isLoading }] = useLoginMutation();
     const redirectPath = useRedirectPath();
+    const { login } = useAuth();
+    const userId = useSelector(selectUserId);
 
     const handleFormSubmit = async (email: string, password: string) => {
-        try {
-            const user = await login({ email, password }).unwrap();
-            const expirationDate = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();
-            const userData = {...user, expirationDate};
-            
-            dispatch(authActions.setCredentials(userData));
-            setUserDataToStorage(userData);
-            navigate(redirectPath, { replace: true });
-        } catch (e) {
-            console.log(e);
-        }
+        login(email, password);
     }
+
+    useEffect(() => {
+        if (userId) {
+            navigate(redirectPath, { replace: true });
+        }
+    }, [userId]);
 
     return (
         <>
