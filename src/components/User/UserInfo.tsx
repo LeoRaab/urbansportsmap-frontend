@@ -1,15 +1,15 @@
-import {UserProfile} from '../../types/UserProfile';
+import { User } from '../../types/User';
 
 type UserInfoProps = {
-    userProfile?: UserProfile
+    user?: User
 }
 
-const UserInfo = ({userProfile}: UserInfoProps) => {
+const UserInfo = ({user}: UserInfoProps) => {
 
     return (
         <div className="flex flex-col w-full">
-            <h1 className="text-2xl mb-2">{userProfile?.name}</h1>
-            <h2 className="text-xl mb-4">{userProfile?.email}</h2>
+            <h1 className="text-2xl mb-2">{user?.name}</h1>
+            <h2 className="text-xl mb-4">{user?.email}</h2>
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { User } from '../../types/User';
 import {RootState} from '../index';
 
 export interface UserResponse {
@@ -30,8 +31,12 @@ export const authApi = createApi({
                 method: 'POST',
                 body: credentials,
             })
-        })
+        }),
+        getUser: builder.query<User, string>({
+            query: (userId) => userId,
+            transformResponse: (responseData: any) => responseData.user
+        }),
     }),
 })
 
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation, useLazyGetUserQuery } = authApi;

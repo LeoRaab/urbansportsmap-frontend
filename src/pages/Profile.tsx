@@ -1,10 +1,22 @@
 import PageHeader from '../components/UI/PageHeader';
-import React from 'react';
+import React, { useEffect } from 'react';
 import UserInfo from '../components/User/UserInfo';
 import IconButton from '../components/UI/buttons/IconButton';
 import {ICONS} from '../constants/Icons';
+import { useSelector } from 'react-redux';
+import { selectUserId } from '../store/authSlice';
+import { useLazyGetUserQuery } from '../store/api/authApi';
+import LoadingSpinner from '../components/UI/LoadingSpinner';
 
 const Profile = () => {
+    const [getUser, {data: user, isLoading, isFetching}] = useLazyGetUserQuery();
+    const userId = useSelector(selectUserId);
+
+    useEffect(() => {
+        if (userId) {
+            getUser(userId);
+        }
+    }, [userId])
 
     const handleResetPassword = () => {
      
@@ -20,7 +32,7 @@ const Profile = () => {
             <PageHeader text={'Profil'}/>
 
             <div className="px-2 mt-6">
-                <UserInfo />
+                <UserInfo user={user}/>
             </div>
 
             <div className="flex flex-col px-2 mt-4">
@@ -29,6 +41,10 @@ const Profile = () => {
                     <IconButton icon={ICONS.TRASH} text={'Profil löschen'} handleOnClick={handleDeleteAccount}/>
                 </div>
             </div>
+
+            {(isLoading || isFetching) && 
+                <LoadingSpinner/>
+            }
         </>
     )
 }
