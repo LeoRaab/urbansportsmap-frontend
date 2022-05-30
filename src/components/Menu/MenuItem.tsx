@@ -16,7 +16,7 @@ const MenuItem = ({destination, text, icon}: MenuItemProps) => {
 
     return (
         <NavLink to={destination} onClick={() => dispatch(uiActions.menuHidden())}>
-            <div className="flex items-center w-full border-slate-200 border-b px-4 py-8">
+            <div className="flex items-center w-full border-slate-100 border-b px-4 py-8">
                 <Icon icon={icon}/>
                 <p className="text-xl ml-8">{text}</p>
             </div>

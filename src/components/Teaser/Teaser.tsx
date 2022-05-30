@@ -44,11 +44,11 @@ const Teaser = ({venueId}: TeaserProps) => {
 
             {isSuccess &&
                 <>
-                    <div className="flex items-center">
+                    <div className="flex flex-col justify-center px-4 lg:px-8">
                         <VenueTitle venue={venue}/>
                     </div>
 
-                    <div className="my-8 px-2">
+                    <div className="my-8 px-4 lg:px-8">
                         <SportTypesList sportTypes={venue?.sportTypes}/>
                     </div>
 

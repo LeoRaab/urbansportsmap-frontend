@@ -12,7 +12,7 @@ const Filter = () => {
 
     return (
         <>
-            <div className="flex flex-wrap gap-x-2 gap-y-4 justify-start w-full">
+            <div className="flex flex-wrap gap-x-2 gap-y-4 px-4 justify-start w-full">
 
                 {filters.selectedFilters.length > 0 &&
                     filters.selectedFilters.map((filter, key) =>

@@ -29,7 +29,7 @@ const Search = () => {
 
     return (
         <>
-            <div className="w-3/4">
+            <div className="w-3/4 lg:w-2/5">
 
                 <SearchBar onSearchBarChange={handleSearchBarChange} isLoading={isLoading} isFetching={isFetching}/>
                 {ui.isSearchResultsShowing && <SearchResults searchResults={foundGeocodes}/>}

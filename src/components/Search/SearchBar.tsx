@@ -53,7 +53,7 @@ const SearchBar = ({onSearchBarChange, isLoading, isFetching}: SearchBarProps) =
 
             <input
                 onChange={handleChange}
-                className="focus:ring-2 focus:text-black focus:ring-slate-400 focus:outline-none appearance-none w-full leading-6 placeholder-slate-400 text-slate-400 rounded py-4 pl-10 ring-1 ring-slate-200 shadow-sm"
+                className="focus:ring-2 focus:text-black focus:ring-slate-400 focus:outline-none appearance-none w-full leading-6 placeholder-slate-400 text-slate-400 bg-white/95 rounded py-4 pl-10 ring-1 ring-slate-200 shadow-sm"
                 type="text" aria-label="Filter projects" placeholder="Suche nach Straßen, Pl&auml;tzen ..."
                 value={searchTerm}/>
         </form>

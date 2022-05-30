@@ -45,7 +45,7 @@ const Menu = ({ isShowing }: MenuProps) => {
     return (
         <aside className="relative">
             <div
-                className={'fixed h-screen flex flex-col w-3/4 lg:w-1/4 bg-white z-1050 shadow border-slate-200 border-r-8 transition duration-500 ' + menuClass}>
+                className={'fixed h-screen flex flex-col w-3/4 lg:w-1/4 bg-white/95 z-1050 shadow-2xl border-slate-200 border-r transition duration-500 ' + menuClass}>
 
                 <div className="flex flex-col w-full">
 

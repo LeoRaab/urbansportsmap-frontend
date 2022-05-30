@@ -17,7 +17,7 @@ const RangeSlider = ({onRangeChange}: RangeSliderProp) => {
     }
 
     return (
-        <div className="mt-4">
+        <div className="mt-4 px-4">
             <label className="block w-full text-right text-sm text-slate-400">
                 Suchradius: {new Intl.NumberFormat().format(rangeValue)} m
             </label>

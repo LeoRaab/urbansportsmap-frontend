@@ -29,7 +29,7 @@ const VenueTitle = ({venue}: VenueTitleProps) => {
 
 
     return (
-        <div className="px-2">
+        <>
             <h2 className="text-2xl">{venue?.name}</h2>
             <div className="mt-1">
                 {(isLoading || isFetching) &&
@@ -41,7 +41,7 @@ const VenueTitle = ({venue}: VenueTitleProps) => {
                     </p>
                 }
             </div>
-        </div>
+        </>
     )
 
 }
