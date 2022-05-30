@@ -22,7 +22,7 @@ export const commentsApi = createApi({
             transformResponse: (responseData: any) => responseData.comments,
             providesTags: ['Comments']
         }),
-        addComment: builder.mutation<VenueComment[], { venueId: string, comment: string }>({
+        addComment: builder.mutation<{ message: string }, { venueId: string, comment: string }>({
             query: ({ venueId, comment }) => ({
                 url: venueId,
                 method: 'POST',
@@ -30,7 +30,7 @@ export const commentsApi = createApi({
             }),
             invalidatesTags: ['Comments']
         }),
-        updateComment: builder.mutation<VenueComment[], { commentId: string, comment: string }>({
+        updateComment: builder.mutation<{ message: string }, { commentId: string, comment: string }>({
             query: ({ commentId, comment }) => ({
                 url: commentId,
                 method: 'PATCH',
@@ -38,7 +38,7 @@ export const commentsApi = createApi({
             }),
             invalidatesTags: ['Comments']
         }),
-        removeComment: builder.mutation<VenueComment[], string>({
+        removeComment: builder.mutation<{ message: string }, string>({
             query: (commentId) => ({
                 url: commentId,
                 method: 'DELETE'
