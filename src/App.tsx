@@ -14,7 +14,9 @@
  * TODO: Zoom in when clicking on search result
  * TODO: Logging system
  * TODO: Toast is hiding to fast, when deleting comment
- * TODO: Venue map link feature
+ * TODO: Venue map link feature: Warning: Cannot update a component (`Circle`) while rendering a different component (`Home`). To locate the bad setState() call inside `Home`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render
+ * TODO: Image Picker Slice
+ * TODO: Show Error Messages
  */
 
 import React, { useEffect } from 'react';
