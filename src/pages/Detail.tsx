@@ -32,13 +32,13 @@ const Detail = () => {
         if (params.venueId) {
             loadVenue(params.venueId);
         }
-    }, [params.venueId])
+    }, [params.venueId, loadVenue])
 
     useEffect(() => {
         if (venue) {
             loadVenueComments(venue.id);
         }
-    }, [venue]);
+    }, [venue, loadVenueComments]);
 
     const handleEditImagesClick = () => {
         //venueImages.loadImages();
@@ -106,9 +106,6 @@ const Detail = () => {
             {(isLoading || isFetching) &&
                 <LoadingSpinner />
             }
-
-            <Toast type={COLOR_SCHEME.SUCCESS} text={'haoodsf'} />
-
 
             {addCommentResponse &&
                 <Toast type={COLOR_SCHEME.SUCCESS} text={addCommentResponse.message} />
