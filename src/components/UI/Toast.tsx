@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ICONS } from "../../constants/Icons";
-import useColorScheme from "../../hooks/useColorScheme";
-import useTimer from "../../hooks/useTimer";
+import useColorScheme from "../../hooks/use-color-scheme";
+import useTimer from "../../hooks/use-timer";
 import COLOR_SCHEME from "../../types/ColorScheme";
 import IconButton from "./buttons/IconButton";
 import Modal from "./Modal";
