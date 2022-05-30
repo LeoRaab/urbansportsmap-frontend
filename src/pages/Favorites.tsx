@@ -19,8 +19,6 @@ const Favorites = () => {
     const filters = useSelector(selectFilters);
     const [filteredVenues, setFilteredVenues] = useState<Venue[]>();
 
-    console.log(favoriteVenues);
-
     useEffect(() => {
         if (favoriteVenues) {
             setFilteredVenues(favoriteVenues.filter(favoriteVenue => {
