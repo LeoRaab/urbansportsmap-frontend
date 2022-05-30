@@ -1,14 +1,13 @@
-import { useCallback, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation } from "../store/api/authApi";
-import { authActions, AuthState } from "../store/authSlice";
+import { authActions, AuthState, selectExpirationDate } from "../store/authSlice";
 import useLocalStorage from "./use-local-storage";
-import useRedirectPath from "./use-redirect-path";
 
 const useAuth = () => {
     const dispatch = useDispatch();
     const [loginUser] = useLoginMutation();
+    const sessionExpiration = useSelector(selectExpirationDate);
 
     const { value: storedUserData, setValue: setStoredUserData, removeFromStorage: removeUserData } = useLocalStorage<AuthState>({ key: 'userData' });
 
@@ -33,7 +32,18 @@ const useAuth = () => {
         if (storedUserData) {
             dispatch(authActions.setCredentials(storedUserData));
         }
-    }, [storedUserData])
+    }, [storedUserData]);
+
+    useEffect(() => {
+        if (sessionExpiration) {
+            const expirationDate = new Date(sessionExpiration);
+            const clearSessionIn = expirationDate.getTime() - new Date().getTime();
+                        
+            setTimeout(() => {
+                dispatch(authActions.removeCredentials);
+            }, clearSessionIn)
+        }
+    }, [sessionExpiration]);
 
     return { storedUserData, login, logout }
 }

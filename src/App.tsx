@@ -14,7 +14,7 @@
  * TODO: Zoom in when clicking on search result
  * TODO: Logging system
  * TODO: Toast is hiding to fast, when deleting comment
- * TODO: New hooks for auth and local storage have problem with persisting, value gets cleared on dismount
+ * TODO: Venue map link feature
  */
 
 import React, { useEffect } from 'react';
@@ -30,16 +30,15 @@ import Signup from './pages/Signup';
 import PageNotFound from './pages/PageNotFound';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUi, uiActions } from './store/uiSlice';
-import authSlice, { authActions, selectExpirationDate, selectUserId } from './store/authSlice';
-import { userActions } from './store/userSlice';
+import { selectUserId } from './store/authSlice';
 import useAuth from './hooks/use-auth';
 
 const App = () => {
 
     const dispatch = useDispatch();
     const ui = useSelector(selectUi);
-    const sessionExpiration = useSelector(selectExpirationDate);
-    const { storedUserData } = useAuth();
+    
+    useAuth();
 
     const handleMenuButtonClick = () => {
         dispatch(uiActions.menuToggle());
@@ -48,17 +47,6 @@ const App = () => {
     const handleMainClick = () => {
         dispatch(uiActions.menuHidden());
     }
-
-    useEffect(() => {
-        if (sessionExpiration) {
-            const expirationDate = new Date(sessionExpiration);
-            const clearSessionIn = expirationDate.getMilliseconds() - new Date().getMilliseconds()
-            
-            setTimeout(() => {
-                dispatch(authActions.removeCredentials);
-            }, clearSessionIn)
-        }
-    }, [sessionExpiration]);
 
     return (
         <BrowserRouter>
