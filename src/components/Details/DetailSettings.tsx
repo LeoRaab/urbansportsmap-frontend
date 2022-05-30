@@ -10,6 +10,7 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 import Modal from '../UI/Modal';
 import Venue from '../../types/Venue';
 import Toast from '../UI/Toast';
+import COLOR_SCHEME from '../../types/ColorScheme';
 
 type DetailSettingsProps = {
     venue: Venue,
@@ -59,11 +60,11 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
             }
             
             {addResponse &&
-                <Toast type='success' text={addResponse.message} />
+                <Toast type={COLOR_SCHEME.SUCCESS} text={addResponse.message} />
             }
 
             {removeResponse &&
-                <Toast type='success' text={removeResponse.message} />
+                <Toast type={COLOR_SCHEME.SUCCESS} text={removeResponse.message} />
             }
 
             <div className="flex flex-col px-2">
