@@ -1,8 +1,4 @@
-/**
- * TODO: Show detail settings only when logged in
- */
-
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageHeader from '../components/UI/PageHeader';
 import SportTypesList from '../components/SportTypesList/SportTypesList';
 import { useNavigate, useParams } from 'react-router-dom';
