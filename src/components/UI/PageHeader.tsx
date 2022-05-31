@@ -16,7 +16,7 @@ const PageHeader = ({text}: PageHeaderProps) => {
 
     return (
         <>
-            <div className={'flex items-center gap-x-6 border-b-8 px-4 py-8 border-b-slate-200'}>
+            <div className={'flex items-center gap-x-6 px-4 py-8 border-b border-b-slate-200'}>
                 <BackButton handleOnClick={handleBackButtonClick}/>
                 <h2 className="text-2xl">{text}</h2>
             </div>
