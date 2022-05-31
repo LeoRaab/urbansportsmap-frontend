@@ -12,7 +12,7 @@ const PageWrapper = ({ title, children }: PageWrapperProps) => {
         <>
             <PageHeader text={title} />
 
-            <div className="px-4">
+            <div className="px-4 lg:px-16">
                 { children }
             </div>
         </>

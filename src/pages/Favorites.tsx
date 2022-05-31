@@ -12,6 +12,7 @@ import LoadingSpinner from '../components/UI/LoadingSpinner';
 import { useGetFavoritesQuery } from '../store/api/favoritesApi';
 import Venue from '../types/Venue';
 import { hasVenueSportType } from '../util/has-venue-sport-type';
+import PageWrapper from '../components/UI/page-wrapper';
 
 const Favorites = () => {
 
@@ -32,18 +33,7 @@ const Favorites = () => {
     }, [favoriteVenues, filters])
 
     return (
-        <>
-            {(isLoading && isFetching) &&
-                <LoadingSpinner/>
-            }
-
-            <PageHeader text={'Favoriten'} />
-
-            {(!isLoading && favoriteVenues && favoriteVenues.length === 0) &&
-                <GraphicMessage illustration={ILLUSTRATIONS.NOT_FOUND}
-                    title={'Keine Favoriten gefunden'}
-                    text={'Du hast noch keine Favoriten gespeichert.'} />
-            }
+        <PageWrapper title='Favoriten'>
 
             {favoriteVenues && favoriteVenues.length > 0 &&
                 <>
@@ -56,7 +46,18 @@ const Favorites = () => {
                     </div>
                 </>
             }
-        </>
+
+            {(isLoading && isFetching) &&
+                <LoadingSpinner />
+            }
+
+            {(!isLoading && favoriteVenues && favoriteVenues.length === 0) &&
+                <GraphicMessage illustration={ILLUSTRATIONS.NOT_FOUND}
+                    title={'Keine Favoriten gefunden'}
+                    text={'Du hast noch keine Favoriten gespeichert.'} />
+            }
+
+        </PageWrapper>
     )
 }
 

@@ -3,6 +3,7 @@ import SignupForm from '../components/Forms/SignupForm';
 import { useState } from 'react';
 import GraphicMessage from '../components/UI/GraphicMessage';
 import { ILLUSTRATIONS } from '../constants/Illustrations';
+import PageWrapper from '../components/UI/page-wrapper';
 
 const Signup = () => {
     const [isMailSent, setIsMailSent] = useState<boolean>(false);
@@ -12,10 +13,8 @@ const Signup = () => {
     }
 
     return (
-        <>
-            <PageHeader text={'Sign up'} />
-
-            <div className="px-2">
+        <PageWrapper title='Sign up'>
+            <>
                 {!isMailSent &&
                     <SignupForm onFormSubmit={handleFormSubmit} />
                 }
@@ -25,8 +24,8 @@ const Signup = () => {
                         title={'Bestätige deine E-Mail Adresse'}
                         text={'Du hast eine Mail bekommen, folge dem Link, um deine E-Mail Adresse zu bestätigen'} />
                 }
-            </div>
-        </>
+            </>
+        </PageWrapper>
     )
 }
 

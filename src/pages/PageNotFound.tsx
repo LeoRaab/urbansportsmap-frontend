@@ -1,10 +1,11 @@
 import GraphicMessage from '../components/UI/GraphicMessage';
+import PageWrapper from '../components/UI/page-wrapper';
 import {ILLUSTRATIONS} from '../constants/Illustrations';
 
 const PageNotFound = () => {
 
     return (
-        <div className="mt-32">
+        <PageWrapper title='Not found'>
             <GraphicMessage illustration={ILLUSTRATIONS.PAGE_NOT_FOUND}
                             title={'Seite nicht gefunden!'}
                             text={'Uuups... Wir konnten die gesuchte Seite nicht finden!'}
@@ -12,7 +13,7 @@ const PageNotFound = () => {
                                 path: '/',
                                 text: 'Hier kommst du zurück.'
                             }}/>
-        </div>
+        </PageWrapper>
 
     )
 }

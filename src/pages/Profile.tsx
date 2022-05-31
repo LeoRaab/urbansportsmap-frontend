@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { selectUserId } from '../store/authSlice';
 import { useLazyGetUserQuery } from '../store/api/authApi';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
+import PageWrapper from '../components/UI/page-wrapper';
 
 const Profile = () => {
     const [getUser, {data: user, isLoading, isFetching}] = useLazyGetUserQuery();
@@ -28,9 +29,8 @@ const Profile = () => {
 
 
     return (
-        <>
-            <PageHeader text={'Profil'}/>
-
+        <PageWrapper title='Profil'>
+            
             <div className="mt-6">
                 <UserInfo user={user}/>
             </div>
@@ -45,7 +45,7 @@ const Profile = () => {
             {(isLoading || isFetching) && 
                 <LoadingSpinner/>
             }
-        </>
+        </PageWrapper>
     )
 }
 

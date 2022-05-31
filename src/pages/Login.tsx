@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import useRedirectPath from '../hooks/use-redirect-path';
 import { useSelector } from 'react-redux';
 import { selectUserId } from '../store/authSlice';
+import PageWrapper from '../components/UI/page-wrapper';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -24,11 +25,9 @@ const Login = () => {
     }, [userId]);
 
     return (
-        <>
-            <PageHeader text={'Log in'} />
-
+        <PageWrapper title='Login'>
             <LoginForm onFormSubmit={handleFormSubmit} />
-        </>
+        </PageWrapper>
     )
 }
 

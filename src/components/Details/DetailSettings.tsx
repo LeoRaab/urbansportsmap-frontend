@@ -62,7 +62,7 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
                 <Toast type={COLOR_SCHEME.SUCCESS} text={removeResponse.message} />
             }
 
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-y-4 mt-8">
                 {isFavorite &&
                     <IconButton text={'von Favoriten entfernen'} icon={ICONS.HEART_FILLED}
                         handleOnClick={handleFavoriteClick} />

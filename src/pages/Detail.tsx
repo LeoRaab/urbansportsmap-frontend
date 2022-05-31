@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 import { selectUserId } from '../store/authSlice';
 import Toast from '../components/UI/Toast';
 import COLOR_SCHEME from '../types/ColorScheme';
-import PageWrapper from '../components/UI/PageWrapper';
+import PageWrapper from '../components/UI/page-wrapper';
 
 const Detail = () => {
 
@@ -94,7 +94,7 @@ const Detail = () => {
             </div>
 
             {(venueComments && venueComments.length > 0) &&
-                <div className="px-2 mt-4 mb-4">
+                <div className="mt-8">
                     <h2 className="text-2xl mb-4">Kommentare</h2>
                     <VenueCommentsList comments={venueComments} />
                 </div>
