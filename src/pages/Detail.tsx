@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import { selectUserId } from '../store/authSlice';
 import Toast from '../components/UI/Toast';
 import COLOR_SCHEME from '../types/ColorScheme';
+import PageWrapper from '../components/UI/PageWrapper';
 
 const Detail = () => {
 
@@ -58,50 +59,46 @@ const Detail = () => {
     }
 
     return (
-        <>
-            <div className="h-screen relative">
+        <PageWrapper title={'Detail'}>
 
-                <PageHeader text={'Detail'} />
+            <div className="mt-6">
+                <VenueTitle venue={venue} />
+            </div>
 
-                <div className="mt-6">
-                    <VenueTitle venue={venue} />
-                </div>
+            <div className="mt-6 mb-2">
+                <SportTypesList sportTypes={venue?.sportTypes} />
+            </div>
 
-                <div className="px-2 mt-6 mb-2">
-                    <SportTypesList sportTypes={venue?.sportTypes} />
-                </div>
+            {(userId && venue?.id) &&
+                <DetailSettings venue={venue}
+                    onEditImagesClick={handleEditImagesClick}
+                    onCommentClick={handleAddCommentClick} />
+            }
 
-                {(userId && venue?.id) &&
-                    <DetailSettings venue={venue}
-                        onEditImagesClick={handleEditImagesClick}
-                        onCommentClick={handleAddCommentClick} />
-                }
+            {showCommentForm &&
+                <CommentForm onFormSubmit={handleFormSubmit} onFormCancel={handleFormCancel} />
+            }
 
-                {showCommentForm &&
-                    <CommentForm onFormSubmit={handleFormSubmit} onFormCancel={handleFormCancel} />
-                }
-
-                {/*
+            {/*
     <div className="h-1/3 my-4">
         <ImageSwiper images={venueImages.images}/>
     </div>
 */}
 
 
-                <div className="fixed bottom-6 right-2 z-800">
-                    <FabButton backgroundColor="bg-green-200"
-                        onFabButtonClick={() => navigate('/' + venue?.location.lat + ',' + venue?.location.lng)}>
-                        <Icon icon={ICONS.MAP} />
-                    </FabButton>
-                </div>
-
-                {(venueComments && venueComments.length > 0) &&
-                    <div className="px-2 mt-4 mb-4">
-                        <h2 className="text-2xl mb-4">Kommentare</h2>
-                        <VenueCommentsList comments={venueComments} />
-                    </div>
-                }
+            <div className="fixed bottom-6 right-2 z-800">
+                <FabButton backgroundColor="bg-green-200"
+                    onFabButtonClick={() => navigate('/' + venue?.location.lat + ',' + venue?.location.lng)}>
+                    <Icon icon={ICONS.MAP} />
+                </FabButton>
             </div>
+
+            {(venueComments && venueComments.length > 0) &&
+                <div className="px-2 mt-4 mb-4">
+                    <h2 className="text-2xl mb-4">Kommentare</h2>
+                    <VenueCommentsList comments={venueComments} />
+                </div>
+            }
 
             {(isLoading || isFetching) &&
                 <LoadingSpinner />
@@ -110,8 +107,8 @@ const Detail = () => {
             {addCommentResponse &&
                 <Toast type={COLOR_SCHEME.SUCCESS} text={addCommentResponse.message} />
             }
-        </>
 
+        </PageWrapper>
     )
 }
 

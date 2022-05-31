@@ -1,40 +1,22 @@
-import React, { useState } from 'react';
-import Search from '../components/Search/Search';
-import FabButton from '../components/UI/buttons/FabButton';
-import Teaser from '../components/Teaser/Teaser';
-import Filter from '../components/Filter/Filter';
-import { useParams } from "react-router-dom";
-import L from 'leaflet';
-import Icon from '../components/UI/Icon';
-import MapOverlay from '../components/Map/MapOverlay';
-import MapWrapper from '../components/Map/MapWrapper';
-import RangeSlider from '../components/UI/RangeSlider';
-import { ICONS } from '../constants/Icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUi, uiActions } from '../store/uiSlice';
-import { mapCenterChanged, venueRadiusChanged } from '../store/mapSlice';
+import { useDispatch, useSelector } from "react-redux";
+import Filter from "../components/Filter/Filter";
+import MapOverlay from "../components/Map/MapOverlay";
+import Search from "../components/Search/Search";
+import Teaser from "../components/Teaser/Teaser";
+import FabButton from "../components/UI/buttons/FabButton";
+import Icon from "../components/UI/Icon";
+import RangeSlider from "../components/UI/RangeSlider";
+import { ICONS } from "../constants/Icons";
+import { venueRadiusChanged } from "../store/mapSlice";
+import { selectUi, uiActions } from "../store/uiSlice";
 
 const Home = () => {
 
     const dispatch = useDispatch();
     const ui = useSelector(selectUi);
 
-    const params = useParams();
-
-    if (params.latLng) {
-        const latLng: string[] = params.latLng.split(',');
-        const lat = parseFloat(latLng[0]);
-        const lng = parseFloat(latLng[1]);
-
-        dispatch(mapCenterChanged({ lat, lng }));
-    }
-
     return (
-
-        <div className="relative">
-
-            <MapWrapper />
-
+        <div className="w-2/5 h-full">
             <div className="fixed top-5 flex justify-center w-full z-800">
                 <Search />
             </div>
@@ -61,7 +43,6 @@ const Home = () => {
                 </div>
             </MapOverlay>
         </div>
-
     )
 }
 

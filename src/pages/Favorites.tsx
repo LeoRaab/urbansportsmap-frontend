@@ -47,11 +47,11 @@ const Favorites = () => {
 
             {favoriteVenues && favoriteVenues.length > 0 &&
                 <>
-                    <div className="px-2 my-6">
+                    <div className="my-6">
                         <Filter />
                     </div>
 
-                    <div className="flex flex-col gap-y-2 mt-4 px-2">
+                    <div className="flex flex-col gap-y-2 mt-4">
                         <FavoritesList favoriteVenues={filteredVenues} />
                     </div>
                 </>

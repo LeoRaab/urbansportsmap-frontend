@@ -20,7 +20,6 @@
  */
 
 import React, { useEffect } from 'react';
-import Home from './pages/Home';
 import { BrowserRouter, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import Detail from './pages/Detail';
 import Favorites from './pages/Favorites';
@@ -34,12 +33,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUi, uiActions } from './store/uiSlice';
 import { selectUserId } from './store/authSlice';
 import useAuth from './hooks/use-auth';
+import Home from './pages/Home';
+import MainLayout from './pages/main-layout';
+import PageLayout from './pages/page-layout';
 
 const App = () => {
 
     const dispatch = useDispatch();
     const ui = useSelector(selectUi);
-    
+
     useAuth();
 
     const handleMenuButtonClick = () => {
@@ -50,10 +52,14 @@ const App = () => {
         dispatch(uiActions.menuHidden());
     }
 
+    //<Route path="/" element={<Home />}>
+    //                        <Route path="/location/:latLng" element={<Home />} />
+    //                    </Route>
+
     return (
         <BrowserRouter>
 
-            <div className="fixed top-7 right-0 z-1000">
+            <div className="fixed top-7 right-0 z-1080">
                 <MenuButton isShowing={ui.isMenuShowing} onMenuButtonClick={handleMenuButtonClick} />
             </div>
 
@@ -61,25 +67,26 @@ const App = () => {
 
             <main className="h-screen" onClick={handleMainClick}>
                 <Routes>
-                    <Route path="/" element={<Home />}>
-                        <Route path="/location/:latLng" element={<Home />} />
+                    <Route element={<MainLayout />}>
+                        <Route index element={<Home />} />
+
+                        <Route element={<PageLayout />}>
+                            <Route path="/detail/:venueId" element={<Detail />} />
+                            <Route path="/favorites" element={
+                                <RequireAuth>
+                                    <Favorites />
+                                </RequireAuth>
+                            } />
+                            <Route path="/profile" element={
+                                <RequireAuth>
+                                    <Profile />
+                                </RequireAuth>
+                            } />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/signup" element={<Signup />} />
+                            <Route path="/*" element={<PageNotFound />} />
+                        </Route>
                     </Route>
-                    <Route path="/detail" element={<Detail />}>
-                        <Route path=":venueId" element={<Detail />} />
-                    </Route>
-                    <Route path="/favorites" element={
-                        <RequireAuth>
-                            <Favorites />
-                        </RequireAuth>
-                    } />
-                    <Route path="/profile" element={
-                        <RequireAuth>
-                            <Profile />
-                        </RequireAuth>
-                    } />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/*" element={<PageNotFound />} />
                 </Routes>
             </main>
         </BrowserRouter>

@@ -31,11 +31,11 @@ const Profile = () => {
         <>
             <PageHeader text={'Profil'}/>
 
-            <div className="px-2 mt-6">
+            <div className="mt-6">
                 <UserInfo user={user}/>
             </div>
 
-            <div className="flex flex-col px-2 mt-4">
+            <div className="flex flex-col mt-4">
                 <IconButton text={'Passwort zurücksetzen'} icon={ICONS.REFRESH} handleOnClick={handleResetPassword}/>
                 <div className="text-red-400">
                     <IconButton icon={ICONS.TRASH} text={'Profil löschen'} handleOnClick={handleDeleteAccount}/>
