@@ -34,7 +34,7 @@ const Toast = ({colorScheme, text}: ToastProps) => {
                 <div className={'rounded shadow p-4 mb-4 w-3/4 relative bg-opacity-90 ' + bgColor}>
                     <div className="flex">
                         <p className={'font-semibold ' + textColor}>{text}</p>
-                        <div className="absolute flex justify-center right-0 z-1100">
+                        <div className="absolute flex justify-center right-2 z-1100">
                             <IconButton text={''} icon={ICONS.CLOSE} color="text-white"
                                 handleOnClick={handleCloseClick} />
                         </div>
