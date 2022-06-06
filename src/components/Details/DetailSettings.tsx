@@ -50,18 +50,6 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
 
     return (
         <>
-            {(isLoading && isFetching) &&
-                <LoadingSpinner />
-            }
-            
-            {addResponse &&
-                <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={addResponse.message} />
-            }
-
-            {removeResponse &&
-                <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={removeResponse.message} />
-            }
-
             <div className="flex flex-col gap-y-4 mt-8">
                 {isFavorite &&
                     <IconButton text={'von Favoriten entfernen'} icon={ICONS.HEART_FILLED}
@@ -81,6 +69,18 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
                 <Modal position='bottom'>
                     <ImagePicker venueId={venue.id} onFinish={handleFinishImagePicking} />
                 </Modal>
+            }
+
+            {(isLoading && isFetching) &&
+                <LoadingSpinner />
+            }
+
+            {addResponse &&
+                <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={addResponse.message} />
+            }
+
+            {removeResponse &&
+                <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={removeResponse.message} />
             }
         </>
     )
