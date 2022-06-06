@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PageHeader from '../components/UI/PageHeader';
 import SportTypesList from '../components/SportTypesList/SportTypesList';
 import { useNavigate, useParams } from 'react-router-dom';
 import DetailSettings from '../components/Details/DetailSettings';
