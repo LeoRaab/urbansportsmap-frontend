@@ -105,7 +105,7 @@ const Detail = () => {
             }
 
             {addCommentResponse &&
-                <Toast type={COLOR_SCHEME.SUCCESS} text={addCommentResponse.message} />
+                <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={addCommentResponse.message} />
             }
 
         </PageWrapper>

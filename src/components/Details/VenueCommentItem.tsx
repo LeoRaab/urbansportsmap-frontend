@@ -57,9 +57,9 @@ const VenueCommentItem = ({ comment }: VenueCommentItemProps) => {
                 }
             </div>
 
-            {updateCommentResponse && <Toast type={COLOR_SCHEME.SUCCESS} text={updateCommentResponse.message} />}
+            {updateCommentResponse && <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={updateCommentResponse.message} />}
 
-            {removeCommentResponse && <Toast type={COLOR_SCHEME.SUCCESS} text={removeCommentResponse.message} />}
+            {removeCommentResponse && <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={removeCommentResponse.message} />}
         </>
     )
 }

@@ -55,11 +55,11 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
             }
             
             {addResponse &&
-                <Toast type={COLOR_SCHEME.SUCCESS} text={addResponse.message} />
+                <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={addResponse.message} />
             }
 
             {removeResponse &&
-                <Toast type={COLOR_SCHEME.SUCCESS} text={removeResponse.message} />
+                <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={removeResponse.message} />
             }
 
             <div className="flex flex-col gap-y-4 mt-8">

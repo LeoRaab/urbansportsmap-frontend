@@ -7,38 +7,39 @@ import IconButton from "./buttons/IconButton";
 import Modal from "./Modal";
 
 type ToastProps = {
-    text: string,
-    type: COLOR_SCHEME
+    colorScheme: COLOR_SCHEME,
+    text: string
 }
 
-const Toast = ({ text, type }: ToastProps) => {
-    const { bgColor, textColor } = useColorScheme({ type });
-    const [isShown, setIsShown] = useState<boolean>(true);
+const Toast = ({colorScheme, text}: ToastProps) => {
+    const [isVisible, setIsVisible] = useState<boolean>(true);
+    const { bgColor, textColor } = useColorScheme({ colorScheme });
     const [currentWidth, setCurrentWidth] = useState<number>(100);
     const { remainingTime } = useTimer({ duration: 5000, interval: 100 });
 
     useEffect(() => {
         setCurrentWidth(prevState => prevState = remainingTime / 5000 * 100);
-
         if (remainingTime === 0) {
-            setIsShown(false);
+            setIsVisible(false);
         }
     }, [remainingTime]);
 
     const handleCloseClick = () => {
-        setIsShown(false);
+        setIsVisible(false);
     }
 
-    return isShown ? (
+    return isVisible ? (
         <Modal position="bottom">
-            <div className="fixed bottom-5 w-screen flex justify-center opacity-90">
-                <div className={'rounded p-4 mb-4 w-3/4 relative ' + bgColor}>
-                    <p className={textColor}>{text}</p>
-                    <div className="mt-2 border-b-2 border-white/50" style={{ 'width': currentWidth + '%' }} />
-                    <div className="absolute top-0 right-0 z-1050">
-                        <IconButton text={''} icon={ICONS.CLOSE} color="text-white/50"
-                            handleOnClick={handleCloseClick} />
+            <div className="fixed bottom-5 w-full lg:w-2/5 flex justify-center">
+                <div className={'rounded shadow p-4 mb-4 w-3/4 relative bg-opacity-90 ' + bgColor}>
+                    <div className="flex">
+                        <p className={'font-semibold ' + textColor}>{text}</p>
+                        <div className="absolute flex justify-center right-0 z-1100">
+                            <IconButton text={''} icon={ICONS.CLOSE} color="text-white"
+                                handleOnClick={handleCloseClick} />
+                        </div>
                     </div>
+                    <div className="rounded mt-2 border-b-8 border-white/10" style={{ 'width': currentWidth + '%' }} />
                 </div>
             </div>
 
