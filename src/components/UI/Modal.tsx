@@ -26,7 +26,7 @@ const Modal = ({ children, position }: ModalProps) => {
 
 
     return ReactDOM.createPortal(
-        <div className={'fixed w-screen flex justify-center z-1000 ' + positionCss}>
+        <div className={'fixed w-screen flex justify-center z-1100 ' + positionCss}>
             {children}
         </div>
         , modalRoot!
