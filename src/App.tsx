@@ -17,6 +17,7 @@
  * TODO: Venue map link feature: Warning: Cannot update a component (`Circle`) while rendering a different component (`Home`). To locate the bad setState() call inside `Home`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render
  * TODO: Image Picker Slice
  * TODO: Show Error Messages
+ * TODO: Timeout bei Ladevorgängen
  */
 
 import React, { useEffect } from 'react';
