@@ -19,6 +19,7 @@
  * TODO: Show Error Messages
  * TODO: Timeout bei Ladevorgängen
  * TODO: Check if auto-login works correctly
+ * TODO: Convert Utils to Hooks
  */
 
 import React, { useEffect } from 'react';
@@ -44,6 +45,10 @@ const App = () => {
     //<Route path="/" element={<Home />}>
     //                        <Route path="/location/:latLng" element={<Home />} />
     //                    </Route>
+
+
+    //is this really neccessary 
+    useAuth();
 
     return (
         <BrowserRouter>
