@@ -7,7 +7,6 @@ import {
     useRemoveFavoriteMutation
 } from '../../store/api/favoritesApi';
 import LoadingSpinner from '../UI/LoadingSpinner';
-import Modal from '../UI/Modal';
 import Venue from '../../types/Venue';
 import Toast from '../UI/Toast';
 import COLOR_SCHEME from '../../types/ColorScheme';
