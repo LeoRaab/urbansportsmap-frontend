@@ -9,7 +9,7 @@ const Modal = ({ children }: ModalProps) => {
 
     return (
         <Portal>
-            <div className={'absolute top-0 h-screen w-screen flex flex-col justify-center items-center z-1100'}>
+            <div className={'absolute top-0 h-screen w-screen flex flex-col justify-center items-center bg-black/60 z-1100'}>
                 {children}
             </div>
         </Portal>
