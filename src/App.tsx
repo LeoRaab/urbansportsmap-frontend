@@ -18,6 +18,7 @@
  * TODO: Image Picker Slice
  * TODO: Show Error Messages
  * TODO: Timeout bei Ladevorgängen
+ * TODO: Check if auto-login works correctly
  */
 
 import React, { useEffect } from 'react';
@@ -40,33 +41,13 @@ import PageLayout from './pages/page-layout';
 
 const App = () => {
 
-    const dispatch = useDispatch();
-    const ui = useSelector(selectUi);
-
-    useAuth();
-
-    const handleMenuButtonClick = () => {
-        dispatch(uiActions.menuToggle());
-    }
-
-    const handleMainClick = () => {
-        dispatch(uiActions.menuHidden());
-    }
-
     //<Route path="/" element={<Home />}>
     //                        <Route path="/location/:latLng" element={<Home />} />
     //                    </Route>
 
     return (
         <BrowserRouter>
-
-            <div className="fixed top-7 right-0 z-1080">
-                <MenuButton isShowing={ui.isMenuShowing} onMenuButtonClick={handleMenuButtonClick} />
-            </div>
-
-            <Menu isShowing={ui.isMenuShowing} />
-
-            <main className="h-screen" onClick={handleMainClick}>
+            <main className="h-screen">
                 <Routes>
                     <Route element={<MainLayout />}>
                         <Route index element={<Home />} />
