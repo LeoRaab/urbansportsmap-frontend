@@ -4,16 +4,16 @@ import ImageList from './ImageList';
 import PrimaryButton from '../UI/buttons/PrimaryButton';
 import SecondaryButton from '../UI/buttons/SecondaryButton';
 import Modal from '../UI/Modal';
+import { useDispatch } from 'react-redux';
+import { uiActions } from '../../store/uiSlice';
 
 type ImagePickerProps = {
-    venueId?: string,
-    onFinish: () => void;
+    venueId: string
 }
 
-const ImagePicker = ({ venueId, onFinish }: ImagePickerProps) => {
+const ImagePicker = ({ venueId }: ImagePickerProps) => {
 
-
-    const dontShow = true;
+    const dispatch = useDispatch();
 
     const handleSelectImagesClick = () => {
 
@@ -41,7 +41,13 @@ const ImagePicker = ({ venueId, onFinish }: ImagePickerProps) => {
 
     return (
         <Modal>
-            <div className="px-2 bg-green-400">
+            <div className="p-4 w-11/12 bg-white rounded relative">
+
+                <div className="absolute flex justify-center right-4 top-4 z-1100">
+                    <IconButton text={''} icon={ICONS.CLOSE}
+                        handleOnClick={() => dispatch(uiActions.hideImagePicker())} />
+                </div>
+
 
                 <h2 className="mt-2 text-xl">Bilder hinzufügen</h2>
 
@@ -50,24 +56,22 @@ const ImagePicker = ({ venueId, onFinish }: ImagePickerProps) => {
                     <IconButton text={'Photo aufnehmen'} icon={ICONS.CAMERA} handleOnClick={handleTakePictureClick} />
                 </div>
 
-                {dontShow &&
-                    <div className="mt-8">
-                        <h2 className="mt-2 text-xl">Von dir hochgeladene Bilder</h2>
-                        <ImageList onThumbnailClick={handleUploadedThumbnailClick} />
-                    </div>
-                }
-
                 <div className="mt-8">
                     <h2 className="mt-2 text-xl">Ausgew&auml;hlte Bilder</h2>
                     <ImageList onThumbnailClick={handleSelectedThumbnailClick} />
                 </div>
 
-                <div className="flex justify-evenly mt-8">
+                <div className="mt-8">
+                    <h2 className="mt-2 text-xl">Hochgeladene Bilder</h2>
+                    <ImageList onThumbnailClick={handleUploadedThumbnailClick} />
+                </div>
+
+                <div className="flex justify-evenly my-8">
                     <div className="w-5/12">
-                        <SecondaryButton text={'zurücksetzen'} handleOnClick={handleClearImagesClick} />
+                        <SecondaryButton text={'abbrechen'} handleOnClick={handleClearImagesClick} />
                     </div>
                     <div className="w-5/12">
-                        <PrimaryButton text={'hochladen'} handleOnClick={handleUploadImagesClick} />
+                        <PrimaryButton text={'speichern'} handleOnClick={handleUploadImagesClick} />
                     </div>
                 </div>
 
