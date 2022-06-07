@@ -8,16 +8,16 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import store from './store';
 import { Provider } from 'react-redux';
 
-let appRootNode = document.getElementById("app-root");
+let appRoot = document.getElementById("app-root");
 
-if (!appRootNode) {
-    appRootNode = document.createElement('div');
-    appRootNode.id = 'app-root';
-    document.body.append(appRootNode);
+if (!appRoot) {
+    appRoot = document.createElement('div');
+    appRoot.id = 'app-root';
+    document.body.append(appRoot);
 }
 
 
-const root = ReactDOM.createRoot(appRootNode);
+const root = ReactDOM.createRoot(appRoot);
 root.render(
     <React.StrictMode>
         <Provider store={store}>

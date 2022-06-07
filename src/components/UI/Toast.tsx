@@ -4,14 +4,14 @@ import useColorScheme from "../../hooks/use-color-scheme";
 import useTimer from "../../hooks/use-timer";
 import COLOR_SCHEME from "../../types/ColorScheme";
 import IconButton from "./buttons/IconButton";
-import Modal from "./Modal";
+import Portal from "./Portal";
 
 type ToastProps = {
     colorScheme: COLOR_SCHEME,
     text: string
 }
 
-const Toast = ({colorScheme, text}: ToastProps) => {
+const Toast = ({ colorScheme, text }: ToastProps) => {
     const [isVisible, setIsVisible] = useState<boolean>(true);
     const { bgColor, textColor } = useColorScheme({ colorScheme });
     const [currentWidth, setCurrentWidth] = useState<number>(100);
@@ -29,8 +29,8 @@ const Toast = ({colorScheme, text}: ToastProps) => {
     }
 
     return isVisible ? (
-        <Modal position="bottom">
-            <div className="fixed bottom-5 w-full lg:w-2/5 flex justify-center">
+        <Portal>
+            <div className="flex justify-center z-1100 absolute bottom-5 w-full lg:w-2/5">
                 <div className={'rounded shadow p-4 mb-4 w-3/4 relative bg-opacity-90 ' + bgColor}>
                     <div className="flex">
                         <p className={'font-semibold ' + textColor}>{text}</p>
@@ -42,8 +42,7 @@ const Toast = ({colorScheme, text}: ToastProps) => {
                     <div className="rounded mt-2 border-b-8 border-white/10" style={{ 'width': currentWidth + '%' }} />
                 </div>
             </div>
-
-        </Modal>
+        </Portal>
     ) : null
 }
 

@@ -1,36 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
-const modalRoot = document.getElementById('modal-root');
+import Portal from './Portal';
 
 type ModalProps = {
-    children: React.ReactNode,
-    position: 'top' | 'center' | 'bottom'
+    children: React.ReactNode
 }
 
-const Modal = ({ children, position }: ModalProps) => {
-    let positionCss: string;
+const Modal = ({ children }: ModalProps) => {
 
-    switch (position) {
-        case 'top':
-            positionCss = 'top-5';
-            break;
-        case 'bottom':
-            positionCss = 'bottom-5';
-            break;
-        case 'center':
-        default:
-            positionCss = 'top-1/2';
-            break;
-    }
-
-
-    return ReactDOM.createPortal(
-        <div className={'fixed w-screen flex justify-center z-1100 ' + positionCss}>
-            {children}
-        </div>
-        , modalRoot!
+    return (
+        <Portal>
+            <div className={'absolute top-0 h-screen w-screen flex flex-col justify-center items-center z-1100'}>
+                {children}
+            </div>
+        </Portal>
     )
-} 
+}
 
 export default Modal;

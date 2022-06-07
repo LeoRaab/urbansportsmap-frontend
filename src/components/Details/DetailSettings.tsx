@@ -66,9 +66,7 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
             </div>
 
             {showImageModal &&
-                <Modal position='bottom'>
-                    <ImagePicker venueId={venue.id} onFinish={handleFinishImagePicking} />
-                </Modal>
+                <ImagePicker venueId={venue.id} onFinish={handleFinishImagePicking} />
             }
 
             {(isLoading && isFetching) &&
@@ -78,6 +76,9 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
             {addResponse &&
                 <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={addResponse.message} />
             }
+
+            <Toast colorScheme={COLOR_SCHEME.SUCCESS} text="{addResponse.message}" />
+
 
             {removeResponse &&
                 <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={removeResponse.message} />
