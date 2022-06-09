@@ -8,6 +8,7 @@ import {favoritesApi} from './api/favoritesApi';
 import {authApi} from './api/authApi';
 import authSlice from './authSlice';
 import { commentsApi } from './api/commentsApi';
+import { imagesApi } from './api/imagesApi';
 
 const store = configureStore({
     reducer: {
@@ -19,7 +20,8 @@ const store = configureStore({
         [authApi.reducerPath]: authApi.reducer,
         [geocodeApi.reducerPath]: geocodeApi.reducer,
         [favoritesApi.reducerPath]: favoritesApi.reducer,
-        [commentsApi.reducerPath]: commentsApi.reducer
+        [commentsApi.reducerPath]: commentsApi.reducer,
+        [imagesApi.reducerPath]: imagesApi.reducer,
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(
@@ -27,7 +29,8 @@ const store = configureStore({
             geocodeApi.middleware, 
             favoritesApi.middleware,
             commentsApi.middleware,
-            authApi.middleware
+            authApi.middleware,
+            imagesApi.middleware
         )
 });
 
