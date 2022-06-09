@@ -2,12 +2,15 @@ import React from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import VenueImage from '../../types/VenueImage';
+import { useGetImagesByVenueQuery } from '../../store/api/imagesApi';
 
 type ImageSwiperProps = {
-    images: VenueImage[]
+    venueId: string   
 }
 
-const ImageSwiper = ({images}: ImageSwiperProps) => {
+const ImageSwiper = ({venueId}: ImageSwiperProps) => {
+
+    const { data: images } = useGetImagesByVenueQuery(venueId);
 
     return (
         <Swiper
@@ -15,9 +18,9 @@ const ImageSwiper = ({images}: ImageSwiperProps) => {
             slidesPerView={1}
             className="h-full w-full"
         >
-            {images.map((image, key) =>
+            {images && images.map((image, key) =>
                 <SwiperSlide className="flex justify-center" key={key}>
-                    <img src={image.filename} alt={image.altText}/>
+                    <img src={'http://localhost:5000/uploads/images/venues/' + venueId + '/' +image.filename} alt={image.altText}/>
                 </SwiperSlide>
             )}
         </Swiper>
