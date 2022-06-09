@@ -16,6 +16,7 @@ import { selectUserId } from '../store/authSlice';
 import Toast from '../components/UI/Toast';
 import COLOR_SCHEME from '../types/ColorScheme';
 import PageWrapper from '../components/UI/page-wrapper';
+import ImageSwiper from '../components/UI/ImageSwiper';
 
 const Detail = () => {
 
@@ -38,7 +39,7 @@ const Detail = () => {
         if (venue) {
             loadVenueComments(venue.id);
         }
-    }, [venue, loadVenueComments]);
+    }, [venue, loadVenueComments, loadVenueComments]);
 
     const handleEditImagesClick = () => {
         //venueImages.loadImages();
@@ -78,12 +79,11 @@ const Detail = () => {
                 <CommentForm onFormSubmit={handleFormSubmit} onFormCancel={handleFormCancel} />
             }
 
-            {/*
-    <div className="h-1/3 my-4">
-        <ImageSwiper images={venueImages.images}/>
-    </div>
-*/}
-
+            {venue &&
+                <div className="h-1/3 my-4">
+                    <ImageSwiper venueId={venue.id} />
+                </div>
+            }
 
             <div className="fixed bottom-6 right-2 z-800">
                 <FabButton backgroundColor="bg-green-200"
