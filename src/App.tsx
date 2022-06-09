@@ -8,7 +8,6 @@
  * TODO: Implement Report Image/Comment Feature
  * TODO: Check userInput @ forms
  * TODO: Check if username is already in use
- * TODO: Check problems with verifymail and resetpassword urls from supabase
  * TODO: At signup save userProfile to db
  * TODO: Check z-indexes
  * TODO: Zoom in when clicking on search result
@@ -20,6 +19,14 @@
  * TODO: Timeout bei Ladevorgängen
  * TODO: Check if auto-login works correctly
  * TODO: Convert Utils to Hooks
+ * TODO: Move Visibility states to featureSlice? e.g. isFilterVisible => filterSlice
+ * TODO: Slice for imagePicker needed, or is useCamera with its own state better?
+ * TODO: useEffect in useCamera
+ * TODO: Improve Types!!! ---> most of all image types
+ * TODO: Not possible to upload same picture multiple times
+ * TODO: Upload image immedeatly after selecting?
+ * TODO: Naming in general && especially imageUpload vs imagePicker
+ * TODO: useForm hook
  */
 
 import React, { useEffect } from 'react';
