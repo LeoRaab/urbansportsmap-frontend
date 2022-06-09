@@ -1,9 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { RootState } from '../index';
-import Venue from '../../types/Venue';
-import VenueComment from '../../types/VenueComment';
 import VenueImage from '../../types/VenueImage';
-import { UploadImage } from '../../types/Images';
 
 export const imagesApi = createApi({
     reducerPath: 'imagesApi',
