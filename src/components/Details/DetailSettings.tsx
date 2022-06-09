@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ICONS } from '../../constants/Icons';
 import IconButton from '../UI/buttons/IconButton';
-import ImagePicker from '../ImagePicker/ImagePicker';
+import ImageUpload from '../ImageUpload/ImageUpload';
 import {
     useAddFavoriteMutation, useGetFavoritesQuery,
     useRemoveFavoriteMutation
@@ -59,7 +59,7 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
             </div>
 
             {ui.isImagePickerVisible &&
-                <ImagePicker venueId={venue.id} />
+                <ImageUpload venueId={venue.id} />
             }
 
             {(isLoading && isFetching) &&
