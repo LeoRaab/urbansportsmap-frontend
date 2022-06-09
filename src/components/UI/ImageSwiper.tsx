@@ -1,7 +1,7 @@
 import React from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
-import {VenueImage} from '../../types/Images';
+import VenueImage from '../../types/VenueImage';
 
 type ImageSwiperProps = {
     images: VenueImage[]
@@ -17,7 +17,7 @@ const ImageSwiper = ({images}: ImageSwiperProps) => {
         >
             {images.map((image, key) =>
                 <SwiperSlide className="flex justify-center" key={key}>
-                    <img src={image.path} alt={image.path}/>
+                    <img src={image.filename} alt={image.altText}/>
                 </SwiperSlide>
             )}
         </Swiper>

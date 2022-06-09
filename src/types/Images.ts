@@ -7,12 +7,3 @@ export class UploadImage implements ImageInterface {
                 public format: string) {
     }
 }
-
-export class VenueImage implements ImageInterface {
-    constructor(public objectId: number,
-                public uid: string,
-                public path: string,
-                public altText: string,
-                public id: number = 0) {
-    }
-}
