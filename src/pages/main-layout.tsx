@@ -8,7 +8,6 @@ import MenuButton from "../components/UI/buttons/MenuButton";
 import { selectUi, uiActions } from "../store/uiSlice";
 
 const MainLayout = () => {
-
     const ui = useSelector(selectUi);
     const dispatch = useDispatch();
     const params = useParams();
