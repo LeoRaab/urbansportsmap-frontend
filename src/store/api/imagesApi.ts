@@ -17,7 +17,7 @@ export const imagesApi = createApi({
     tagTypes: ['Images'],
     endpoints: builder => ({
         getImagesByVenue: builder.query<VenueImage[], string>({
-            query: (venueId) => ({ url: `/${venueId}` }),
+            query: (venueId) => ({ url: `/venue/${venueId}` }),
             transformResponse: (responseData: any) => responseData.images,
             providesTags: ['Images']
         }),
