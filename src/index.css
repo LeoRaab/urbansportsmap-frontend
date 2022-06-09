@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+pwa-camera-modal-instance {
+     z-index: 2000;
+}
+
 .z-800 {
     z-index: 800;
 }
