@@ -18,7 +18,7 @@ const PageHeader = ({ text }: PageHeaderProps) => {
 
     return (
         <>
-            <div className={'flex relative items-center w-full gap-x-6 px-4 py-8 border-b border-b-slate-200'}>
+            <div className={'sticky top-0 flex items-center w-full gap-x-6 px-4 py-8 bg-white border-b border-b-slate-200'}>
                 <BackButton handleOnClick={handleBackButtonClick} />
                 <h2 className="text-2xl">{text}</h2>
                 <div className="absolute flex justify-center right-0">
