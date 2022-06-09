@@ -55,5 +55,6 @@ export const imagesApi = createApi({
 })
 
 export const {
+    useGetImagesByVenueQuery,
     useAddImagesMutation
 } = imagesApi;
