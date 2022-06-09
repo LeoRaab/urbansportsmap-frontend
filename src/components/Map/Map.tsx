@@ -17,7 +17,7 @@ const Map = ({map}: MapProps) => {
 
     useEffect(() => {
 
-        if (map) {
+        if (map) {                
             const locationMarkerLayer = new L.LayerGroup();
 
             //have to set mapCenter manually instead of using getCenter()

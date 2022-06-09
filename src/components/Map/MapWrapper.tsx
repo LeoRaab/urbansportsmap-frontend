@@ -13,7 +13,7 @@ const MapWrapper = () => {
 
     const mapRef = useCallback((mapElement: HTMLDivElement) => {
         if (mapElement !== null && !map) {
-
+            
             setMap(new L.Map(mapElement, {
                 center: mapState.mapCenter,
                 zoom: mapState.mapSettings.initZoom,
