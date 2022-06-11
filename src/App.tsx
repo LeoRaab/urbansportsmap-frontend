@@ -14,7 +14,6 @@
  * TODO: Logging system
  * TODO: Toast is hiding to fast, when deleting comment
  * TODO: Venue map link feature: Warning: Cannot update a component (`Circle`) while rendering a different component (`Home`). To locate the bad setState() call inside `Home`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render
- * TODO: Image Picker Slice
  * TODO: Show Error Messages
  * TODO: Timeout bei Ladevorgängen
  * TODO: Check if auto-login works correctly
@@ -24,23 +23,20 @@
  * TODO: useEffect in useCamera
  * TODO: Improve Types!!! ---> most of all image types
  * TODO: Not possible to upload same picture multiple times
- * TODO: Upload image immedeatly after selecting?
  * TODO: Naming in general && especially imageUpload vs imagePicker
  * TODO: useForm hook
+ * TODO: Put urls in .env
+ * TODO: Check z-index swiper
  */
 
-import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import Detail from './pages/Detail';
 import Favorites from './pages/Favorites';
-import MenuButton from './components/UI/buttons/MenuButton';
-import Menu from './components/Menu/Menu';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import PageNotFound from './pages/PageNotFound';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUi, uiActions } from './store/uiSlice';
+import { useSelector } from 'react-redux';
 import { selectUserId } from './store/authSlice';
 import useAuth from './hooks/use-auth';
 import Home from './pages/Home';
