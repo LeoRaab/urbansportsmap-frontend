@@ -1,24 +1,28 @@
 import Thumbnail from './Thumbnail';
-import {ImageInterface} from '../../types/Images';
+import VenueImage from '../../types/VenueImage';
 
 type ImageListProps = {
-    images?: ImageInterface[],
-    onThumbnailClick: (id: number) => void
+    title: string,
+    images: VenueImage[],
+    onThumbnailClick?: (id: number) => void
 }
 
-const ImageList = ({images, onThumbnailClick}: ImageListProps) => {
+const ImageList = ({ title, images, onThumbnailClick }: ImageListProps) => {
 
     if (!images) {
         return null;
     }
 
     const imageList = images.map((image, key) =>
-        <Thumbnail image={image.path} id={key} onThumbnailClick={onThumbnailClick} key={key}/>
+        <Thumbnail image={image} id={key} onThumbnailClick={onThumbnailClick} key={key} />
     );
 
     return (
-        <div className="flex flex-wrap mt-2">
-            {imageList}
+        <div className="mt-8">
+            <h2 className="mt-2 text-lg">{ title }</h2>
+            <div className="flex flex-wrap mt-2">
+                {imageList}
+            </div>
         </div>
     )
 }
