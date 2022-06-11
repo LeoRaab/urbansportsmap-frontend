@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import IconButton from '../UI/buttons/IconButton';
 import { ICONS } from '../../constants/Icons';
@@ -8,10 +8,11 @@ import SecondaryButton from '../UI/buttons/SecondaryButton';
 import Modal from '../UI/Modal';
 import { uiActions } from '../../store/uiSlice';
 import useCamera from '../../hooks/use-camera';
-import { useAddImagesMutation } from '../../store/api/imagesApi';
+import { useUploadImagesMutation, useGetImagesByVenueAndUserQuery, useDeleteImageMutation } from '../../store/api/imagesApi';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import Toast from '../UI/Toast';
 import COLOR_SCHEME from '../../types/ColorScheme';
+import VenueImage from '../../types/VenueImage';
 
 type ImageUploadProps = {
     venueId: string
@@ -19,19 +20,36 @@ type ImageUploadProps = {
 
 const ImageUpload = ({ venueId }: ImageUploadProps) => {
     const dispatch = useDispatch();
-    const [addImages, { data: addImageResponse, isLoading, isSuccess, isError, error }] = useAddImagesMutation();
     const filePickerRef = useRef<HTMLInputElement>(null);
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
+    const [selectedPreviewImages, setSelectedPreviewImages] = useState<VenueImage[]>([]);
+    const [uploadImages, { data: uploadImageResponse, isLoading, isSuccess, isError, error }] = useUploadImagesMutation();
+    const { data: userImages } = useGetImagesByVenueAndUserQuery(venueId);
+    const [deleteImage, { data: deleteImageResponse }] = useDeleteImageMutation();
     const camera = useCamera();
 
-    const selectImagesHandler = () => {
+    useEffect(() => {
+        setSelectedPreviewImages(selectedImages.map(image => {
+            return {
+                url: URL.createObjectURL(image)
+            }
+        }));
+    }, [selectedImages]);
+
+    const handleSelectImagesClick = () => {
         filePickerRef.current?.click();
     }
 
-    const imagesSelectedHandler: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const handleImagesSelected: React.ChangeEventHandler<HTMLInputElement> = (event) => {
         if (event.target.files !== null && event.target.files.length > 0) {
-            const images = Array.from(event.target.files);
-            setSelectedImages(prevState => [...prevState, ...images])
+
+            const pickedImages = [...event.target.files];
+
+            setSelectedImages(prevState => [
+                ...prevState,
+                ...pickedImages
+                    .filter(pickedImage => !selectedImages.find(prevState => prevState.name === pickedImage.name))
+            ]);
         }
     }
 
@@ -39,39 +57,32 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
         camera.takePicture();
     }
 
-    const handleUploadedThumbnailClick = async (id: number) => {
-
+    const handleSelectedThumbnailClick = (id: number) => {
+        setSelectedImages(prevState => [...prevState.filter((selectedImage, index) => index !== id)]);
     }
 
-    const handleSelectedThumbnailClick = (id: number) => {
-        camera.removeImage(id);
+    const handleUploadedThumbnailClick = (id: number) => {
+        if (!userImages) {
+            return;
+        }
+
+        const imageId = userImages[id].id;
+
+        if (imageId) {
+            deleteImage(imageId);
+        }
     }
 
     const handleUploadImagesClick = async () => {
-        console.log(filePickerRef.current?.value);
-        const formData = new FormData();
-        formData.append('image', filePickerRef.current!.files![0]);
-        formData.append('altText', 'uploading');
-
-        addImages({ venueId, uploadImages: formData })
-
-        /*
-
-        if (filePickerRef.current?.files) {
-            const files = [...filePickerRef.current.files];
+        if (selectedImages.length > 0) {
             const formData = new FormData();
 
-            for (const image of files) {
+            for (const image of selectedImages) {
                 formData.append("images", image);
-            }    
+            }
 
-            addImages({ venueId, uploadImages: formData });
+            uploadImages({ venueId, uploadImages: formData });
         }
-        */
-    }
-
-    const handleClearImagesClick = () => {
-
     }
 
     return (
@@ -87,24 +98,23 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
                     <h2 className="mt-2 text-xl">Bilder hinzufügen</h2>
 
                     <div className="mt-2">
-                        <input ref={filePickerRef} id="images" type="file" className="hidden" accept=".jpg,.jpeg,.png" onChange={imagesSelectedHandler} multiple />
-                        <IconButton text={'Bilder auswählen'} icon={ICONS.UPLOAD} handleOnClick={selectImagesHandler} />
+                        <input ref={filePickerRef} id="images" type="file" className="hidden" accept=".jpg,.jpeg,.png" onChange={handleImagesSelected} multiple />                        
+                        <IconButton text={'Bilder auswählen'} icon={ICONS.UPLOAD} handleOnClick={handleSelectImagesClick} />
+                        <div className="my-2"></div>
                         <IconButton text={'Photo aufnehmen'} icon={ICONS.CAMERA} handleOnClick={handleTakePictureClick} />
                     </div>
 
-                    <div className="mt-8">
-                        <h2 className="mt-2 text-xl">Ausgew&auml;hlte Bilder</h2>
-                        <ImageList images={camera.images} onThumbnailClick={handleSelectedThumbnailClick} />
-                    </div>
+                    {(selectedImages.length > 0) &&
+                        <ImageList title="Ausgewählte Bilder" images={selectedPreviewImages} onThumbnailClick={handleSelectedThumbnailClick} />
+                    }
 
-                    <div className="mt-8">
-                        <h2 className="mt-2 text-xl">Hochgeladene Bilder</h2>
-                        <ImageList onThumbnailClick={handleUploadedThumbnailClick} />
-                    </div>
+                    {(userImages && userImages.length > 0) &&
+                        <ImageList title="Hochgeladene Bilder" images={userImages} onThumbnailClick={handleUploadedThumbnailClick} />
+                    }
 
                     <div className="flex justify-between my-8">
                         <div className="w-5/12">
-                            <SecondaryButton text={'abbrechen'} handleOnClick={handleClearImagesClick} />
+                            <SecondaryButton text={'abbrechen'} handleOnClick={() => dispatch(uiActions.hideImagePicker())} />
                         </div>
                         <div className="w-5/12">
                             <PrimaryButton text={'speichern'} handleOnClick={handleUploadImagesClick} />
@@ -116,9 +126,11 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
 
             {(isLoading && !isError && !isSuccess) && <LoadingSpinner />}
 
-            {(isSuccess && addImageResponse) && <Toast text={addImageResponse.message} colorScheme={COLOR_SCHEME.SUCCESS} />}
+            {(isSuccess && uploadImageResponse) && <Toast text={uploadImageResponse.message} colorScheme={COLOR_SCHEME.SUCCESS} />}
 
-            {(isError && addImageResponse) && <Toast text={addImageResponse.message} colorScheme={COLOR_SCHEME.ERROR} />}
+            {deleteImageResponse && <Toast text={deleteImageResponse.message} colorScheme={COLOR_SCHEME.SUCCESS} />}
+
+            {(isError && uploadImageResponse) && <Toast text={uploadImageResponse.message} colorScheme={COLOR_SCHEME.ERROR} />}
         </>
     )
 }
