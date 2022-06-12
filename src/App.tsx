@@ -16,17 +16,18 @@
  * TODO: Venue map link feature: Warning: Cannot update a component (`Circle`) while rendering a different component (`Home`). To locate the bad setState() call inside `Home`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render
  * TODO: Show Error Messages
  * TODO: Timeout bei Ladevorgängen
- * TODO: Check if auto-login works correctly
  * TODO: Convert Utils to Hooks
  * TODO: Move Visibility states to featureSlice? e.g. isFilterVisible => filterSlice
- * TODO: Slice for imagePicker needed, or is useCamera with its own state better?
- * TODO: useEffect in useCamera
  * TODO: Improve Types!!! ---> most of all image types
  * TODO: Not possible to upload same picture multiple times
  * TODO: Naming in general && especially imageUpload vs imagePicker
  * TODO: useForm hook
  * TODO: Put urls in .env
- * TODO: Check z-index swiper
+ * TODO: Take Picture
+ * TODO: Message constant
+ * TODO: Think about button design in general
+ * TODO: Use heroicons package
+ * TODO: ImageUpload closes only when uploaded...
  */
 
 import { BrowserRouter, Route, Routes, useLocation, Navigate } from 'react-router-dom';
@@ -40,8 +41,8 @@ import { useSelector } from 'react-redux';
 import { selectUserId } from './store/authSlice';
 import useAuth from './hooks/use-auth';
 import Home from './pages/Home';
-import MainLayout from './pages/main-layout';
-import PageLayout from './pages/page-layout';
+import MainLayout from './pages/MainLayout';
+import PageLayout from './pages/PageLayout';
 
 const App = () => {
 
