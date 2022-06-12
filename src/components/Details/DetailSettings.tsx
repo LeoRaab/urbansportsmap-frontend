@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ICONS } from '../../constants/Icons';
 import IconButton from '../UI/buttons/IconButton';
-import ImageUpload from '../ImageUpload/ImageUpload';
+
 import {
     useAddFavoriteMutation, useGetFavoritesQuery,
     useRemoveFavoriteMutation
@@ -12,6 +12,8 @@ import Toast from '../UI/Toast';
 import COLOR_SCHEME from '../../types/ColorScheme';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUi, uiActions } from '../../store/uiSlice';
+import ImageManager from '../../features/ImageManger/ImageManager';
+import { imageManagerActions, selectImageManager } from '../../store/imageManagerSlice';
 
 type DetailSettingsProps = {
     venue: Venue,
@@ -20,11 +22,11 @@ type DetailSettingsProps = {
 }
 
 const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSettingsProps) => {
+    const dispatch = useDispatch();
     const { data: favorites, isLoading, isFetching } = useGetFavoritesQuery();
     const [addFavorite, { data: addResponse }] = useAddFavoriteMutation();
     const [removeFavorite, { data: removeResponse }] = useRemoveFavoriteMutation();
-    const dispatch = useDispatch();
-    const ui = useSelector(selectUi);
+    const imageManager = useSelector(selectImageManager);
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
     useEffect(() => {
@@ -54,12 +56,12 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
                         handleOnClick={handleFavoriteClick} />
                 }
 
-                <IconButton text={'Bilder bearbeiten'} icon={ICONS.GALLERY} handleOnClick={() => dispatch(uiActions.showImagePicker())} />
+                <IconButton text={'Bilder bearbeiten'} icon={ICONS.GALLERY} handleOnClick={() => dispatch(imageManagerActions.show())} />
                 <IconButton text={'Kommentar schreiben'} icon={ICONS.COMMENT} handleOnClick={onCommentClick} />
             </div>
 
-            {ui.isImagePickerVisible &&
-                <ImageUpload venueId={venue.id} />
+            {imageManager.isVisible &&
+                <ImageManager venueId={venue.id} />
             }
 
             {(isLoading && isFetching) &&
