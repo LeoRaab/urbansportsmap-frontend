@@ -6,6 +6,7 @@ import { mapCenterChanged } from '../store/mapSlice';
 import Menu from "../components/Menu/Menu";
 import MenuButton from "../components/UI/buttons/MenuButton";
 import { selectUi, uiActions } from "../store/uiSlice";
+import Dialog from "../components/UI/Dialog/Dialog";
 
 const MainLayout = () => {
     const ui = useSelector(selectUi);
@@ -29,21 +30,23 @@ const MainLayout = () => {
     }
 
     return (
-        <div className="relative">
+        <>
+            <div className="relative">
+                <div className="fixed top-7 right-0 z-1080">
+                    <MenuButton isShowing={ui.isMenuShowing} onMenuButtonClick={handleMenuButtonClick} />
+                </div>
 
-            <div className="fixed top-7 right-0 z-1080">
-                <MenuButton isShowing={ui.isMenuShowing} onMenuButtonClick={handleMenuButtonClick} />
+                <Menu isShowing={ui.isMenuShowing} />
+
+                <div onClick={handleMainClick}>
+                    <Outlet />
+
+                    <MapWrapper />
+                </div>
             </div>
 
-            <Menu isShowing={ui.isMenuShowing} />
-
-            <div onClick={handleMainClick}>
-                <Outlet />
-
-                <MapWrapper />
-            </div>
-
-        </div>
+            <Dialog />
+        </>
     )
 }
 

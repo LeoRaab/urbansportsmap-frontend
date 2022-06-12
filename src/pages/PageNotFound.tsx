@@ -1,5 +1,5 @@
 import GraphicMessage from '../components/UI/GraphicMessage';
-import PageWrapper from '../components/UI/page-wrapper';
+import PageWrapper from '../components/UI/PageWrapper';
 import {ILLUSTRATIONS} from '../constants/Illustrations';
 
 const PageNotFound = () => {

@@ -3,7 +3,7 @@ import SignupForm from '../components/Forms/SignupForm';
 import { useState } from 'react';
 import GraphicMessage from '../components/UI/GraphicMessage';
 import { ILLUSTRATIONS } from '../constants/Illustrations';
-import PageWrapper from '../components/UI/page-wrapper';
+import PageWrapper from '../components/UI/PageWrapper';
 
 const Signup = () => {
     const [isMailSent, setIsMailSent] = useState<boolean>(false);

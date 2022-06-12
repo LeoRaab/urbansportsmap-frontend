@@ -12,7 +12,7 @@ import LoadingSpinner from '../components/UI/LoadingSpinner';
 import { useGetFavoritesQuery } from '../store/api/favoritesApi';
 import Venue from '../types/Venue';
 import { hasVenueSportType } from '../util/has-venue-sport-type';
-import PageWrapper from '../components/UI/page-wrapper';
+import PageWrapper from '../components/UI/PageWrapper';
 
 const Favorites = () => {
 

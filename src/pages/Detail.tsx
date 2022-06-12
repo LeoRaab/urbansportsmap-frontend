@@ -15,8 +15,9 @@ import { useSelector } from 'react-redux';
 import { selectUserId } from '../store/authSlice';
 import Toast from '../components/UI/Toast';
 import COLOR_SCHEME from '../types/ColorScheme';
-import PageWrapper from '../components/UI/page-wrapper';
+import PageWrapper from '../components/UI/PageWrapper';
 import ImageSwiper from '../components/UI/ImageSwiper';
+import Dialog from '../components/UI/Dialog/Dialog';
 
 const Detail = () => {
 
@@ -58,9 +59,12 @@ const Detail = () => {
         setShowCommentForm(false);
     }
 
+    const handleTest = () => {
+        console.log('clicked');
+    }
+
     return (
         <PageWrapper title={'Detail'}>
-
             <div className="mt-6">
                 <VenueTitle venue={venue} />
             </div>
