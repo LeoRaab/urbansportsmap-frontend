@@ -34,7 +34,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
 
     useEffect(() => {
         if (isSuccess) {
-            dispatch(uiActions.hideImageManager());
+            dispatch(imageManagerActions.show());
         }
     }, [isSuccess]);
 
