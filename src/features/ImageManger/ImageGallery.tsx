@@ -1,8 +1,8 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import PrimaryButton from "../../components/UI/buttons/PrimaryButton";
 import SecondaryButton from "../../components/UI/buttons/SecondaryButton";
-import Toast from "../../components/UI/Toast/Toast";
 import useDialog from "../../hooks/use-dialog";
+import useToast from "../../hooks/use-toast";
 import { useDeleteImageMutation, useGetImagesByVenueAndUserQuery } from "../../store/api/imagesApi";
 import { imageManagerActions } from "../../store/imageManagerSlice";
 import COLOR_SCHEME from "../../types/ColorScheme";
@@ -16,8 +16,15 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
 
     const dispatch = useDispatch();
     const { data: userImages } = useGetImagesByVenueAndUserQuery(venueId);
-    const [deleteImage, { data: deleteImageResponse }] = useDeleteImageMutation();
+    const [deleteImage, { data: deleteResponse }] = useDeleteImageMutation();
+    const toast = useToast();
     const dialog = useDialog();
+
+    useEffect(() => {
+        if (deleteResponse) {
+            toast.show(deleteResponse.message, COLOR_SCHEME.SUCCESS);
+        }
+    }, [deleteResponse]);
 
     const handleUploadedThumbnailClick = async (id: number) => {
         const isAccepted = await dialog.open('Willst du das Bild wirklich löschen?');
@@ -56,8 +63,6 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
                     <SecondaryButton text={'zurück'} handleOnClick={() => dispatch(imageManagerActions.show())} />
                 </div>
             </div>
-
-            {deleteImageResponse && <Toast text={deleteImageResponse.message} colorScheme={COLOR_SCHEME.SUCCESS} />}
         </>
     )
 }

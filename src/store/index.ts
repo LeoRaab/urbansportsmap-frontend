@@ -11,6 +11,7 @@ import { commentsApi } from './api/commentsApi';
 import { imagesApi } from './api/imagesApi';
 import imageManagerSlice from './imageManagerSlice';
 import dialogSlice from '../components/UI/Dialog/dialogSlice';
+import toastSlice from '../components/UI/Toast/toastSlice';
 
 const store = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
         auth: authSlice,
         imageManager: imageManagerSlice,
         dialog: dialogSlice,
+        toast: toastSlice,
         [venuesApi.reducerPath]: venuesApi.reducer,
         [authApi.reducerPath]: authApi.reducer,
         [geocodeApi.reducerPath]: geocodeApi.reducer,

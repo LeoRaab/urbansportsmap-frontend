@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../UI/Card';
 import VenueComment from '../../types/VenueComment';
 import { ICONS } from '../../constants/Icons';
@@ -7,8 +7,8 @@ import CommentForm from '../Forms/CommentForm';
 import { useSelector } from 'react-redux';
 import { selectUserId } from '../../store/authSlice';
 import { useRemoveCommentMutation, useUpdateCommentMutation } from '../../store/api/commentsApi';
-import Toast from '../UI/Toast/Toast';
 import COLOR_SCHEME from '../../types/ColorScheme';
+import useToast from '../../hooks/use-toast';
 
 type VenueCommentItemProps = {
     comment: VenueComment
@@ -16,11 +16,23 @@ type VenueCommentItemProps = {
 
 const VenueCommentItem = ({ comment }: VenueCommentItemProps) => {
     const userId = useSelector(selectUserId);
-    const [updateComment, { data: updateCommentResponse }] = useUpdateCommentMutation();
-    const [removeComment, { data: removeCommentResponse }] = useRemoveCommentMutation();
-
+    const [updateComment, { data: updateResponse }] = useUpdateCommentMutation();
+    const [removeComment, { data: removeResponse }] = useRemoveCommentMutation();
+    const toast = useToast();
     const commentDate = new Date(comment.updatedAt).toLocaleDateString('de-DE');
     const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (updateResponse) {
+            toast.show(updateResponse.message, COLOR_SCHEME.SUCCESS);
+        }
+    }, [updateResponse]);
+
+    useEffect(() => {
+        if (removeResponse) {
+            toast.show(removeResponse.message, COLOR_SCHEME.SUCCESS);
+        }
+    }, [removeResponse]);
 
     const handleEditClick = () => {
         setShowCommentForm(true);
@@ -56,10 +68,6 @@ const VenueCommentItem = ({ comment }: VenueCommentItemProps) => {
                     <CommentForm onFormSubmit={handleFormSubmit} onFormCancel={handleFormCancel} commentValue={comment.comment} />
                 }
             </div>
-
-            {updateCommentResponse && <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={updateCommentResponse.message} />}
-
-            {removeCommentResponse && <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={removeCommentResponse.message} />}
         </>
     )
 }

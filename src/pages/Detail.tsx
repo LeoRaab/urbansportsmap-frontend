@@ -13,11 +13,10 @@ import VenueCommentsList from '../components/Details/VenueCommentsList';
 import { useAddCommentMutation, useLazyGetCommentsQuery } from '../store/api/commentsApi';
 import { useSelector } from 'react-redux';
 import { selectUserId } from '../store/authSlice';
-import Toast from '../components/UI/Toast/Toast';
 import COLOR_SCHEME from '../types/ColorScheme';
 import PageWrapper from '../components/UI/PageWrapper';
 import ImageSwiper from '../components/UI/ImageSwiper';
-import Dialog from '../components/UI/Dialog/Dialog';
+import useToast from '../hooks/use-toast';
 
 const Detail = () => {
 
@@ -26,6 +25,7 @@ const Detail = () => {
     const [loadVenue, { data: venue, isLoading, isFetching }] = useLazyGetVenueByIdQuery();
     const [loadVenueComments, { data: venueComments }] = useLazyGetCommentsQuery();
     const [addComment, { data: addCommentResponse }] = useAddCommentMutation();
+    const toast = useToast();
     const userId = useSelector(selectUserId);
 
     const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
@@ -42,6 +42,12 @@ const Detail = () => {
         }
     }, [venue, loadVenueComments, loadVenueComments]);
 
+    useEffect(() => {
+        if (addCommentResponse) {
+            toast.show(addCommentResponse.message, COLOR_SCHEME.SUCCESS)
+        }
+    }, [addCommentResponse]);
+
     const handleEditImagesClick = () => {
         //venueImages.loadImages();
     }
@@ -57,10 +63,6 @@ const Detail = () => {
 
     const handleFormCancel = () => {
         setShowCommentForm(false);
-    }
-
-    const handleTest = () => {
-        console.log('clicked');
     }
 
     return (
@@ -105,10 +107,6 @@ const Detail = () => {
 
             {(isLoading || isFetching) &&
                 <LoadingSpinner />
-            }
-
-            {addCommentResponse &&
-                <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={addCommentResponse.message} />
             }
 
         </PageWrapper>

@@ -12,6 +12,7 @@ import VenueImage from '../../types/VenueImage';
 import PrimaryButton from '../../components/UI/buttons/PrimaryButton';
 import { imageManagerActions } from '../../store/imageManagerSlice';
 import SecondaryButton from '../../components/UI/buttons/SecondaryButton';
+import useToast from '../../hooks/use-toast';
 
 type ImageUploadProps = {
     venueId: string
@@ -23,6 +24,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
     const [selectedPreviewImages, setSelectedPreviewImages] = useState<VenueImage[]>([]);
     const [uploadImages, { data: uploadImageResponse, isLoading, isSuccess, isError, error }] = useUploadImagesMutation();
+    const toast = useToast();
 
     useEffect(() => {
         setSelectedPreviewImages(selectedImages.map(image => {
@@ -37,6 +39,12 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
             dispatch(imageManagerActions.show());
         }
     }, [isSuccess]);
+
+    useEffect(() => {
+        if (uploadImageResponse) {
+            toast.show(uploadImageResponse.message, COLOR_SCHEME.SUCCESS)
+        }
+    }, [uploadImageResponse]);
 
     const handleSelectImagesClick = () => {
         filePickerRef.current?.click();
@@ -99,10 +107,6 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
 
 
             {(isLoading && !isError && !isSuccess) && <LoadingSpinner />}
-
-            {(isSuccess && uploadImageResponse) && <Toast text={uploadImageResponse.message} colorScheme={COLOR_SCHEME.SUCCESS} />}
-
-            {(isError && uploadImageResponse) && <Toast text={uploadImageResponse.message} colorScheme={COLOR_SCHEME.ERROR} />}
         </>
     )
 }

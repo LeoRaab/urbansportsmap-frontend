@@ -27,7 +27,7 @@
  * TODO: Message constant
  * TODO: Think about button design in general
  * TODO: Use heroicons package
- * TODO: ImageUpload closes only when uploaded...
+ * TODO: CONSISTENT NAMING!!!
  */
 
 import { BrowserRouter, Route, Routes, useLocation, Navigate } from 'react-router-dom';

@@ -7,6 +7,7 @@ import Menu from "../components/Menu/Menu";
 import MenuButton from "../components/UI/buttons/MenuButton";
 import { selectUi, uiActions } from "../store/uiSlice";
 import Dialog from "../components/UI/Dialog/Dialog";
+import Toast from "../components/UI/Toast/Toast";
 
 const MainLayout = () => {
     const ui = useSelector(selectUi);
@@ -45,6 +46,8 @@ const MainLayout = () => {
                 </div>
             </div>
 
+            <Toast />
+            
             <Dialog />
         </>
     )

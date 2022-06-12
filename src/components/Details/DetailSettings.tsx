@@ -8,12 +8,11 @@ import {
 } from '../../store/api/favoritesApi';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import Venue from '../../types/Venue';
-import Toast from '../UI/Toast/Toast';
 import COLOR_SCHEME from '../../types/ColorScheme';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUi, uiActions } from '../../store/uiSlice';
 import ImageManager from '../../features/ImageManger/ImageManager';
 import { imageManagerActions, selectImageManager } from '../../store/imageManagerSlice';
+import useToast from '../../hooks/use-toast';
 
 type DetailSettingsProps = {
     venue: Venue,
@@ -27,6 +26,7 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
     const [addFavorite, { data: addResponse }] = useAddFavoriteMutation();
     const [removeFavorite, { data: removeResponse }] = useRemoveFavoriteMutation();
     const imageManager = useSelector(selectImageManager);
+    const toast = useToast();
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
     useEffect(() => {
@@ -34,6 +34,18 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
             setIsFavorite(!!favorites.find(favorite => favorite.id === venue.id));
         }
     }, [favorites, venue]);
+
+    useEffect(() => {
+        if (addResponse) {
+            toast.show(addResponse.message, COLOR_SCHEME.SUCCESS);
+        }
+    }, [addResponse]);
+
+    useEffect(() => {
+        if (removeResponse) {
+            toast.show(removeResponse.message, COLOR_SCHEME.SUCCESS);
+        }
+    }, [removeResponse])
 
     const handleFavoriteClick = () => {
         if (!isFavorite) {
@@ -66,14 +78,6 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
 
             {(isLoading && isFetching) &&
                 <LoadingSpinner />
-            }
-
-            {addResponse &&
-                <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={addResponse.message} />
-            }
-
-            {removeResponse &&
-                <Toast colorScheme={COLOR_SCHEME.SUCCESS} text={removeResponse.message} />
             }
         </>
     )
