@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import PrimaryButton from "../../components/UI/buttons/PrimaryButton";
 import SecondaryButton from "../../components/UI/buttons/SecondaryButton";
-import Toast from "../../components/UI/Toast";
+import Toast from "../../components/UI/Toast/Toast";
 import useDialog from "../../hooks/use-dialog";
 import { useDeleteImageMutation, useGetImagesByVenueAndUserQuery } from "../../store/api/imagesApi";
 import { imageManagerActions } from "../../store/imageManagerSlice";

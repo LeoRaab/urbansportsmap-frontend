@@ -8,7 +8,7 @@ import {
 } from '../../store/api/favoritesApi';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import Venue from '../../types/Venue';
-import Toast from '../UI/Toast';
+import Toast from '../UI/Toast/Toast';
 import COLOR_SCHEME from '../../types/ColorScheme';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUi, uiActions } from '../../store/uiSlice';

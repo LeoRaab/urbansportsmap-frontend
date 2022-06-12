@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { ICONS } from "../../constants/Icons";
-import useColorScheme from "../../hooks/use-color-scheme";
-import useTimer from "../../hooks/use-timer";
-import COLOR_SCHEME from "../../types/ColorScheme";
-import IconButton from "./buttons/IconButton";
-import Portal from "./Portal";
+import { ICONS } from "../../../constants/Icons";
+import useColorScheme from "../../../hooks/use-color-scheme";
+import useTimer from "../../../hooks/use-timer";
+import COLOR_SCHEME from "../../../types/ColorScheme";
+import IconButton from "../buttons/IconButton";
+import Portal from "../Portal";
 
 type ToastProps = {
     colorScheme: COLOR_SCHEME,

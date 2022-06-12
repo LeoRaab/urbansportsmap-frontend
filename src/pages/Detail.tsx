@@ -13,7 +13,7 @@ import VenueCommentsList from '../components/Details/VenueCommentsList';
 import { useAddCommentMutation, useLazyGetCommentsQuery } from '../store/api/commentsApi';
 import { useSelector } from 'react-redux';
 import { selectUserId } from '../store/authSlice';
-import Toast from '../components/UI/Toast';
+import Toast from '../components/UI/Toast/Toast';
 import COLOR_SCHEME from '../types/ColorScheme';
 import PageWrapper from '../components/UI/PageWrapper';
 import ImageSwiper from '../components/UI/ImageSwiper';

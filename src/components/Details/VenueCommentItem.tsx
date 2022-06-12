@@ -7,7 +7,7 @@ import CommentForm from '../Forms/CommentForm';
 import { useSelector } from 'react-redux';
 import { selectUserId } from '../../store/authSlice';
 import { useRemoveCommentMutation, useUpdateCommentMutation } from '../../store/api/commentsApi';
-import Toast from '../UI/Toast';
+import Toast from '../UI/Toast/Toast';
 import COLOR_SCHEME from '../../types/ColorScheme';
 
 type VenueCommentItemProps = {

@@ -6,7 +6,7 @@ import ImageList from './ImageList';
 import { uiActions } from '../../store/uiSlice';
 import { useUploadImagesMutation } from '../../store/api/imagesApi';
 import LoadingSpinner from '../../components/UI/LoadingSpinner';
-import Toast from '../../components/UI/Toast';
+import Toast from '../../components/UI/Toast/Toast';
 import COLOR_SCHEME from '../../types/ColorScheme';
 import VenueImage from '../../types/VenueImage';
 import PrimaryButton from '../../components/UI/buttons/PrimaryButton';
