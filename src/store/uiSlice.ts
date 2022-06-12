@@ -11,7 +11,6 @@ interface UiState {
     isFilterShowing: boolean,
     isSearchResultsShowing: boolean,
     isTeaserShowing: boolean,
-    isImagePickerVisible: boolean
 }
 
 const initialState: UiState = {
@@ -20,7 +19,6 @@ const initialState: UiState = {
     isFilterShowing: false,
     isSearchResultsShowing: false,
     isTeaserShowing: false,
-    isImagePickerVisible: false
 }
 
 export const uiSlice = createSlice({
@@ -54,12 +52,6 @@ export const uiSlice = createSlice({
         },
         teaserHidden: state => {
             state.isTeaserShowing = false;
-        },
-        showImagePicker: state => {
-            state.isImagePickerVisible = true;
-        },
-        hideImagePicker: state => {
-            state.isImagePickerVisible = false;
         },
         allHidden: state => {
             state.isFilterShowing = false;
