@@ -9,6 +9,8 @@ import {authApi} from './api/authApi';
 import authSlice from './authSlice';
 import { commentsApi } from './api/commentsApi';
 import { imagesApi } from './api/imagesApi';
+import imageManagerSlice from './imageManagerSlice';
+import dialogSlice from '../components/UI/Dialog/dialogSlice';
 
 const store = configureStore({
     reducer: {
@@ -16,6 +18,8 @@ const store = configureStore({
         map: mapSlice,
         ui: uiSlice,
         auth: authSlice,
+        imageManager: imageManagerSlice,
+        dialog: dialogSlice,
         [venuesApi.reducerPath]: venuesApi.reducer,
         [authApi.reducerPath]: authApi.reducer,
         [geocodeApi.reducerPath]: geocodeApi.reducer,
