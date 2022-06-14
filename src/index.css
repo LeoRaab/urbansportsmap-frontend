@@ -51,3 +51,19 @@ pwa-camera-modal-instance {
 .range-slider::-moz-focus-outer {
      border: 0;
 }
+
+input, textarea {
+     @apply placeholder-slate-400 rounded-sm p-4 ring-1 ring-slate-200 shadow-sm appearance-none focus:ring-4 focus:text-black focus:ring-slate-200 focus:outline-none 
+}
+
+.error {
+     @apply ring-red-400 focus:ring-red-400 text-red-400
+}
+
+button.primary {
+     @apply bg-green-200 rounded-sm shadow hover:bg-green-100 p-3 w-full font-bold;
+}
+
+button.secondary {
+     @apply bg-slate-100 rounded-sm shadow hover:bg-slate-200 p-3 w-full font-bold;
+}
