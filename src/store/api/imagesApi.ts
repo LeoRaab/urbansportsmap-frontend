@@ -47,7 +47,7 @@ export const imagesApi = createApi({
             providesTags: ['Images']
         }),
         getImagesByVenueAndUser: builder.query<VenueImage[], string>({
-            query: (venueId) => ({ url: `/venue/${venueId}` }),
+            query: (venueId) => ({ url: `/venue/${venueId}/user` }),
             transformResponse: (responseData: { images: DBVenueImage[] }) => venueImagesFactory(responseData.images),
             providesTags: ['Images']
         }),
