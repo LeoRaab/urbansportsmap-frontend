@@ -20,7 +20,7 @@ const Toast = () => {
                         <p className={'font-semibold ' + textColor}>{toastState.message}</p>
                         <div className="absolute flex justify-center right-2 z-1100">
                             <IconButton text={''} icon={ICONS.CLOSE} color="text-white"
-                                handleOnClick={toast.onClose} />
+                                handleOnClick={toast.close} />
                         </div>
                     </div>
                     <div className="rounded mt-2 border-b-8 border-white/10" style={{ 'width': toastState.currentWidth + '%' }} />
