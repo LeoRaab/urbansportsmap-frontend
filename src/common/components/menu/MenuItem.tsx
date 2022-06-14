@@ -2,8 +2,8 @@ import {NavLink} from 'react-router-dom';
 import React from 'react';
 import Icon from '../UI/Icon';
 import {CustomIcon} from '../../types/CustomIcon';
-import {uiActions} from '../../store/uiSlice';
 import {useDispatch} from 'react-redux';
+import { uiActions } from '../../../features/map/uiSlice';
 
 type MenuItemProps = {
     destination: string,

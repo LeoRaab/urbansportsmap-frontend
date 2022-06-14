@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { toastActions } from "../components/UI/Toast/toastSlice";
+import { toastActions } from "../components/UI/toast/toastSlice";
 import COLOR_SCHEME from "../types/ColorScheme";
 import useTimer from "./use-timer";
 

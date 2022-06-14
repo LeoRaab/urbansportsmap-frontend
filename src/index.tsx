@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'leaflet/dist/leaflet.css'
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
-import store from './store';
 import { Provider } from 'react-redux';
+import store from './app/store';
+import App from './app/App';
 
 let appRoot = document.getElementById("app-root");
 

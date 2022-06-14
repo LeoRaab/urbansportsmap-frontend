@@ -1,8 +1,7 @@
 import React from 'react';
 import {GeocodeWebEntity} from '../../types/WebEntities';
 import {useDispatch} from 'react-redux';
-import {mapCenterChanged} from '../../store/mapSlice';
-import {uiActions} from '../../store/uiSlice';
+import { uiActions } from '../../../features/map/uiSlice';
 
 type SearchResultsProps = {
     searchResults?: GeocodeWebEntity[]
@@ -48,3 +47,7 @@ const SearchResults = ({searchResults}: SearchResultsProps) => {
 }
 
 export default SearchResults;
+
+function mapCenterChanged(arg0: { lat: number; lng: number; }): any {
+    throw new Error('Function not implemented.');
+}

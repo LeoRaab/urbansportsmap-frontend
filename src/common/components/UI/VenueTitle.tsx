@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import { useLazyGetReverseGeocodeQuery } from '../../../features/map/geocodeApi';
 import Venue from '../../types/Venue';
 import InlineLoadingSpinner from './InlineLoadingSpinner';
-import {useLazyGetReverseGeocodeQuery} from '../../store/api/geocodeApi';
 
 type VenueTitleProps = {
     venue?: Venue

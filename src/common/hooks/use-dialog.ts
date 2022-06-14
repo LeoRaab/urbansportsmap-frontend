@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { dialogActions } from "../components/UI/Dialog/dialogSlice";
+import { dialogActions } from "../components/UI/dialog/dialogSlice";
 
 let resolveDialog: (isAccepted: boolean) => void;
 

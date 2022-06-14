@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
-import {selectMap} from '../../store/mapSlice';
+import { selectMap } from '../../../features/map/mapSlice';
 
 type RangeSliderProp = {
     onRangeChange: (rangeValue: number) => void,

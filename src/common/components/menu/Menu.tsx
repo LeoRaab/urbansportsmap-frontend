@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import PrimaryButton from '../UI/buttons/PrimaryButton';
 import { ICONS } from '../../constants/Icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { uiActions } from '../../store/uiSlice';
-import { selectUserId } from '../../store/authSlice';
 import useAuth from '../../hooks/use-auth';
+import { uiActions } from '../../../features/map/uiSlice';
+import { selectUserId } from '../../../features/user/authSlice';
 
 type MenuProps = {
     isShowing: boolean

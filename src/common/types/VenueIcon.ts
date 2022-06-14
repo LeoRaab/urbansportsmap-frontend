@@ -1,6 +1,6 @@
 import L from 'leaflet';
-import markerShadowImage from '../assets/images/marker/marker_shadow.png';
-import allSportsMarkerImage from '../assets/images/marker/all_sports_marker.png';
+import markerShadowImage from '../../assets/images/marker/marker_shadow.png';
+import allSportsMarkerImage from '../../assets/images/marker/all_sports_marker.png';
 
 export class VenueIcon extends L.Icon {
     constructor(private iconUrl: string = allSportsMarkerImage) {

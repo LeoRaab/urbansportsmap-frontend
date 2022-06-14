@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import SearchResults from './SearchResults';
 import SearchBar from './SearchBar';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectUi, uiActions} from '../../store/uiSlice';
-import {useLazyGetGeocodeQuery} from '../../store/api/geocodeApi';
+import { useLazyGetGeocodeQuery } from '../../../features/map/geocodeApi';
+import { selectUi, uiActions } from '../../../features/map/uiSlice';
 
 const Search = () => {
     const dispatch = useDispatch();

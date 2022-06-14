@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLoginMutation } from "../store/api/authApi";
-import { authActions, AuthState, selectExpirationDate } from "../store/authSlice";
+import { useLoginMutation } from "../../features/user/authApi";
+import { selectExpirationDate, AuthState, authActions } from "../../features/user/authSlice";
 import useLocalStorage from "./use-local-storage";
 
 const useAuth = () => {

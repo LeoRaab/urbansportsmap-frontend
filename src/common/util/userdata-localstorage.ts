@@ -1,4 +1,4 @@
-import {AuthState} from '../store/authSlice';
+import { AuthState } from "../../features/user/authSlice";
 
 export const getUserDataFromStorage = (): AuthState => {
     const userDataJSON = localStorage.getItem('userData');
