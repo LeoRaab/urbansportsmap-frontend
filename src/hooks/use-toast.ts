@@ -17,16 +17,22 @@ const useToast = () => {
         }
     }, [timer.remainingTime]);
 
+    useEffect(() => {
+        return () => {
+            close();
+        }
+    }, []);
+
     const show = (message: string, colorScheme: COLOR_SCHEME) => {
         dispatch(toastActions.show({ message, colorScheme }));
         timer.start(5000, 100);
     }
 
-    const onClose = () => {
+    const close = () => {
         dispatch(toastActions.hide());
     }
 
-    return { show, onClose }
+    return { show, close }
 
 }
 
