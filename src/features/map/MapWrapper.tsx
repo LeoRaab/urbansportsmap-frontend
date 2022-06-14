@@ -1,4 +1,4 @@
-import React, {ReactHTMLElement, useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import L from 'leaflet';
 import Map from './Map';
 import { useSelector } from 'react-redux';

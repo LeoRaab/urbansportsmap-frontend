@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { ICONS } from "../../../constants/Icons";
 import useColorScheme from "../../../hooks/use-color-scheme";

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import VenueImage from '../../types/VenueImage';
 import { useGetImagesByVenueQuery } from '../../../features/image-manager/imagesApi';
 
 type ImageSwiperProps = {
