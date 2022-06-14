@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { ILLUSTRATIONS } from "../constants/Illustrations";
-import { useLazyVerifyQuery } from "../store/api/authApi";
-import GraphicMessage from "./UI/GraphicMessage";
-import LoadingSpinner from "./UI/LoadingSpinner";
-import PageWrapper from "./UI/PageWrapper";
+import GraphicMessage from "../../common/components/UI/GraphicMessage";
+import LoadingSpinner from "../../common/components/UI/LoadingSpinner";
+import PageWrapper from "../../common/components/UI/PageWrapper";
+import { ILLUSTRATIONS } from "../../common/constants/Illustrations";
+import { useLazyVerifyQuery } from "./authApi";
 
 const VerifyUser = () => {
     const params = useParams();

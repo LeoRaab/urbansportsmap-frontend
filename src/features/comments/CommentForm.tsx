@@ -1,10 +1,10 @@
-import SubmitButton from "../UI/buttons/SubmitButton";
+import SubmitButton from "../../common/components/UI/buttons/SubmitButton";
 import React, { useState } from "react";
-import SecondaryButton from "../UI/buttons/SecondaryButton";
-import Button from "./Button";
-import { useForm } from "../../hooks/use-form";
-import { VALIDATOR_MINLENGTH } from "../../util/form-validators";
-import Input from "./Input";
+import SecondaryButton from "../../common/components/UI/buttons/SecondaryButton";
+import Button from "../../common/components/form-elements/Button";
+import { useForm } from "../../common/hooks/use-form";
+import { VALIDATOR_MINLENGTH } from "../../common/util/form-validators";
+import Input from "../../common/components/form-elements/Input";
 
 type CommentFormProps = {
     onFormSubmit: (comment: string) => void;

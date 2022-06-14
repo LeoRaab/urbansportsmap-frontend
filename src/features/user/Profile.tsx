@@ -1,13 +1,12 @@
-import PageHeader from '../components/UI/PageHeader';
-import React, { useEffect } from 'react';
-import UserInfo from '../components/User/UserInfo';
-import IconButton from '../components/UI/buttons/IconButton';
-import {ICONS} from '../constants/Icons';
-import { useSelector } from 'react-redux';
-import { selectUserId } from '../store/authSlice';
-import { useLazyGetUserQuery } from '../store/api/authApi';
-import LoadingSpinner from '../components/UI/LoadingSpinner';
-import PageWrapper from '../components/UI/PageWrapper';
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import IconButton from "../../common/components/UI/buttons/IconButton";
+import LoadingSpinner from "../../common/components/UI/LoadingSpinner";
+import PageWrapper from "../../common/components/UI/PageWrapper";
+import { ICONS } from "../../common/constants/Icons";
+import { useLazyGetUserQuery } from "./authApi";
+import { selectUserId } from "./authSlice";
+import UserInfo from "./UserInfo";
 
 const Profile = () => {
     const [getUser, {data: user, isLoading, isFetching}] = useLazyGetUserQuery();

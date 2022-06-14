@@ -1,15 +1,15 @@
 import React from 'react';
-import VenueComment from '../../types/VenueComment';
-import VenueCommentItem from './VenueCommentItem';
+import VenueComment from '../../common/types/VenueComment';
+import CommentItem from './CommentItem';
 
-type VenueCommentsListProps = {
+type CommentsListProps = {
     comments?: VenueComment[]
 }
 
-const VenueCommentsList = ({comments}: VenueCommentsListProps) => {
+const CommentsList = ({comments}: CommentsListProps) => {
 
     const venueCommentsListItems = comments?.map((comment, key) =>
-        <VenueCommentItem key={key}
+        <CommentItem key={key}
                           comment={comment}/>
     );
 
@@ -20,4 +20,4 @@ const VenueCommentsList = ({comments}: VenueCommentsListProps) => {
     )
 }
 
-export default VenueCommentsList;
+export default CommentsList;

@@ -1,13 +1,13 @@
 import React from "react";
-import { Outlet, useParams } from "react-router-dom";
-import MapWrapper from '../components/Map/MapWrapper';
-import { useDispatch, useSelector } from 'react-redux';
-import { mapCenterChanged } from '../store/mapSlice';
-import Menu from "../components/Menu/Menu";
-import MenuButton from "../components/UI/buttons/MenuButton";
-import { selectUi, uiActions } from "../store/uiSlice";
-import Dialog from "../components/UI/Dialog/Dialog";
-import Toast from "../components/UI/Toast/Toast";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams, Outlet } from "react-router-dom";
+import Menu from "../common/components/menu/Menu";
+import MenuButton from "../common/components/UI/buttons/MenuButton";
+import Dialog from "../common/components/UI/dialog/Dialog";
+import Toast from "../common/components/UI/toast/Toast";
+import { mapCenterChanged } from "../features/map/mapSlice";
+import MapWrapper from "../features/map/MapWrapper";
+import { selectUi, uiActions } from "../features/map/uiSlice";
 
 const MainLayout = () => {
     const ui = useSelector(selectUi);

@@ -1,5 +1,5 @@
+import Venue from '../../common/types/Venue';
 import FavoriteItem from './FavoriteItem';
-import Venue from '../../types/Venue';
 
 type FavoritesListProps = {
     favoriteVenues?: Venue[]

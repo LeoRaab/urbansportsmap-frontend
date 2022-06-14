@@ -1,6 +1,6 @@
-import Icon from '../../components/UI/Icon';
-import { ICONS } from '../../constants/Icons';
-import VenueImage from '../../types/VenueImage';
+import Icon from "../../common/components/UI/Icon";
+import { ICONS } from "../../common/constants/Icons";
+import VenueImage from "../../common/types/VenueImage";
 
 type ThumbnailProps = {
     image: VenueImage,

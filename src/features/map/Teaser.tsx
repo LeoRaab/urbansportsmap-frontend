@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import FabButton from '../UI/buttons/FabButton';
 import { useNavigate } from 'react-router-dom';
-import SportTypesList from '../SportTypesList/SportTypesList';
-import Icon from '../UI/Icon';
-import { ICONS } from '../../constants/Icons';
-import VenueTitle from '../UI/VenueTitle';
-import { useLazyGetVenueByIdQuery } from '../../store/api/venuesApi';
-import LoadingSpinner from '../UI/LoadingSpinner';
-import ImageSwiper from '../UI/ImageSwiper';
+import SportTypesList from '../../common/components/sportstypes-list/SportTypesList';
+import FabButton from '../../common/components/UI/buttons/FabButton';
+import Icon from '../../common/components/UI/Icon';
+import ImageSwiper from '../../common/components/UI/ImageSwiper';
+import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
+import VenueTitle from '../../common/components/UI/VenueTitle';
+import { ICONS } from '../../common/constants/Icons';
+import { useLazyGetVenueByIdQuery } from './venuesApi';
 
 type TeaserProps = {
     venueId: string;

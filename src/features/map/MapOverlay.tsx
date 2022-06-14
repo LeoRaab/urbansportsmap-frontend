@@ -1,5 +1,5 @@
-import CloseButton from '../UI/buttons/CloseButton';
 import React from 'react';
+import CloseButton from '../../common/components/UI/buttons/CloseButton';
 
 type MapOverlayProps = {
     isShowing: boolean,

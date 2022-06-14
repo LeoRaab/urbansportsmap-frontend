@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react';
-import Venue from '../../types/Venue';
+import Venue from '../../common/types/Venue';
 
 export const venuesApi = createApi({
     reducerPath: 'venuesApi',

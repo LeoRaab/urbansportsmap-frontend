@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { RootState } from '../index';
-import Venue from '../../types/Venue';
-import VenueComment from '../../types/VenueComment';
+import { RootState } from '../../app/store';
+import VenueComment from '../../common/types/VenueComment';
 
 export const commentsApi = createApi({
     reducerPath: 'commentsApi',

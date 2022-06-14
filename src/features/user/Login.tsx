@@ -1,18 +1,14 @@
-import useAuth from "../hooks/use-auth";
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import useRedirectPath from "../hooks/use-redirect-path";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectUserId } from "../store/authSlice";
-import PageWrapper from "../components/UI/PageWrapper";
-import Input from "../components/FormElements/Input";
-import {
-    VALIDATOR_EMAIL,
-    VALIDATOR_MINLENGTH,
-    VALIDATOR_REQUIRE,
-} from "../util/form-validators";
-import { useForm } from "../hooks/use-form";
-import Button from "../components/FormElements/Button";
+import { useNavigate } from "react-router-dom";
+import Button from "../../common/components/form-elements/Button";
+import Input from "../../common/components/form-elements/Input";
+import PageWrapper from "../../common/components/UI/PageWrapper";
+import useAuth from "../../common/hooks/use-auth";
+import { useForm } from "../../common/hooks/use-form";
+import useRedirectPath from "../../common/hooks/use-redirect-path";
+import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "../../common/util/form-validators";
+import { selectUserId } from "./authSlice";
 
 const Login = () => {
     const navigate = useNavigate();

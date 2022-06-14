@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import Filter from "../components/Filter/Filter";
-import MapOverlay from "../components/Map/MapOverlay";
-import Search from "../components/Search/Search";
-import Teaser from "../components/Teaser/Teaser";
-import FabButton from "../components/UI/buttons/FabButton";
-import Icon from "../components/UI/Icon";
-import RangeSlider from "../components/UI/RangeSlider";
-import { ICONS } from "../constants/Icons";
-import { venueRadiusChanged } from "../store/mapSlice";
-import { selectUi, uiActions } from "../store/uiSlice";
+import Search from "../../common/components/search/Search";
+import FabButton from "../../common/components/UI/buttons/FabButton";
+import Icon from "../../common/components/UI/Icon";
+import RangeSlider from "../../common/components/UI/RangeSlider";
+import { ICONS } from "../../common/constants/Icons";
+import Filter from "../filter/Filter";
+import MapOverlay from "./MapOverlay";
+import { venueRadiusChanged } from "./mapSlice";
+import Teaser from "./Teaser";
+import { selectUi, uiActions } from "./uiSlice";
 
 const Home = () => {
 

@@ -1,17 +1,11 @@
-import PageHeader from "../components/UI/PageHeader";
-import SignupForm from "../components/FormElements/SignupForm";
-import React, { useEffect, useState } from "react";
-import GraphicMessage from "../components/UI/GraphicMessage";
-import { ILLUSTRATIONS } from "../constants/Illustrations";
-import PageWrapper from "../components/UI/PageWrapper";
-import { useSignupMutation } from "../store/api/authApi";
-import { useForm } from "../hooks/use-form";
-import Input from "../components/FormElements/Input";
-import {
-    VALIDATOR_EMAIL,
-    VALIDATOR_MAXLENGTH,
-    VALIDATOR_MINLENGTH,
-} from "../util/form-validators";
+import { useState, useEffect } from "react";
+import Input from "../../common/components/form-elements/Input";
+import GraphicMessage from "../../common/components/UI/GraphicMessage";
+import PageWrapper from "../../common/components/UI/PageWrapper";
+import { ILLUSTRATIONS } from "../../common/constants/Illustrations";
+import { useForm } from "../../common/hooks/use-form";
+import { VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_EMAIL } from "../../common/util/form-validators";
+import { useSignupMutation } from "./authApi";
 
 const Signup = () => {
     const [signup, { isSuccess, error }] = useSignupMutation();

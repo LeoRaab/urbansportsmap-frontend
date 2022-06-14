@@ -1,16 +1,15 @@
 import React, {useEffect, useRef} from 'react';
 import L, {LeafletMouseEvent} from 'leaflet';
-import {VenueMarker} from '../../types/VenueMarker';
-import Venue from '../../types/Venue';
-import {useDispatch, useSelector} from 'react-redux';
-import {selectFilters} from '../../store/filterSlice';
-import {uiActions} from '../../store/uiSlice';
-import {selectMap} from '../../store/mapSlice';
-import {useGetVenuesQuery} from '../../store/api/venuesApi';
-import {markerIconFactory} from '../../util/marker-icon-factory';
-import LoadingSpinner from '../UI/LoadingSpinner';
-import {hasVenueSportType} from '../../util/has-venue-sport-type';
-import Modal from '../UI/Modal';
+import { useSelector, useDispatch } from 'react-redux';
+import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
+import Venue from '../../common/types/Venue';
+import { VenueMarker } from '../../common/types/VenueMarker';
+import { hasVenueSportType } from '../../common/util/has-venue-sport-type';
+import { markerIconFactory } from '../../common/util/marker-icon-factory';
+import { selectFilters } from '../filter/filterSlice';
+import { selectMap } from './mapSlice';
+import { uiActions } from './uiSlice';
+import { useGetVenuesQuery } from './venuesApi';
 
 type MarkersProps = {
     map?: L.Map

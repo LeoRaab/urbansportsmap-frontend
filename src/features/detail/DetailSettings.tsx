@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { ICONS } from '../../constants/Icons';
-import IconButton from '../UI/buttons/IconButton';
-
-import {
-    useAddFavoriteMutation, useGetFavoritesQuery,
-    useRemoveFavoriteMutation
-} from '../../store/api/favoritesApi';
-import LoadingSpinner from '../UI/LoadingSpinner';
-import Venue from '../../types/Venue';
-import COLOR_SCHEME from '../../types/ColorScheme';
 import { useDispatch, useSelector } from 'react-redux';
-import ImageManager from '../../features/ImageManger/ImageManager';
-import { imageManagerActions, selectImageManager } from '../../store/imageManagerSlice';
-import useToast from '../../hooks/use-toast';
+import IconButton from '../../common/components/UI/buttons/IconButton';
+import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
+import { ICONS } from '../../common/constants/Icons';
+import useToast from '../../common/hooks/use-toast';
+import COLOR_SCHEME from '../../common/types/ColorScheme';
+import Venue from '../../common/types/Venue';
+import { useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } from '../favorites/favoritesApi';
+import ImageManager from '../image-manager/ImageManager';
+import { selectImageManager, imageManagerActions } from '../image-manager/imageManagerSlice';
 
 type DetailSettingsProps = {
     venue: Venue,

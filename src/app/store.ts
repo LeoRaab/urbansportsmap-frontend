@@ -1,17 +1,17 @@
 import {configureStore} from '@reduxjs/toolkit';
-import uiSlice from './uiSlice';
-import filterSlice from './filterSlice';
-import mapSlice from './mapSlice';
-import {venuesApi} from './api/venuesApi';
-import {geocodeApi} from './api/geocodeApi';
-import {favoritesApi} from './api/favoritesApi';
-import {authApi} from './api/authApi';
-import authSlice from './authSlice';
-import { commentsApi } from './api/commentsApi';
-import { imagesApi } from './api/imagesApi';
-import imageManagerSlice from './imageManagerSlice';
-import dialogSlice from '../components/UI/Dialog/dialogSlice';
-import toastSlice from '../components/UI/Toast/toastSlice';
+import dialogSlice from '../common/components/UI/dialog/dialogSlice';
+import toastSlice from '../common/components/UI/toast/toastSlice';
+import { commentsApi } from '../features/comments/commentsApi';
+import { favoritesApi } from '../features/favorites/favoritesApi';
+import filterSlice from '../features/filter/filterSlice';
+import imageManagerSlice from '../features/image-manager/imageManagerSlice';
+import { imagesApi } from '../features/image-manager/imagesApi';
+import { geocodeApi } from '../features/map/geocodeApi';
+import mapSlice from '../features/map/mapSlice';
+import uiSlice from '../features/map/uiSlice';
+import { venuesApi } from '../features/map/venuesApi';
+import { authApi } from '../features/user/authApi';
+import authSlice from '../features/user/authSlice';
 
 const store = configureStore({
     reducer: {

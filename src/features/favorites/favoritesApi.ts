@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react';
-import {RootState} from '../index';
-import Venue from '../../types/Venue';
+import { RootState } from '../../app/store';
+import Venue from '../../common/types/Venue';
 
 export const favoritesApi = createApi({
     reducerPath: 'favoritesApi',

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import SecondaryButton from "../../components/UI/buttons/SecondaryButton";
-import useDialog from "../../hooks/use-dialog";
-import useToast from "../../hooks/use-toast";
-import { useDeleteImageMutation, useGetImagesByVenueAndUserQuery } from "../../store/api/imagesApi";
-import { imageManagerActions } from "../../store/imageManagerSlice";
-import COLOR_SCHEME from "../../types/ColorScheme";
+import SecondaryButton from "../../common/components/UI/buttons/SecondaryButton";
+import useDialog from "../../common/hooks/use-dialog";
+import useToast from "../../common/hooks/use-toast";
+import COLOR_SCHEME from "../../common/types/ColorScheme";
 import ImageList from "./ImageList";
+import { imageManagerActions } from "./imageManagerSlice";
+import { useGetImagesByVenueAndUserQuery, useDeleteImageMutation } from "./imagesApi";
 
 type ImageGalleryProps = {
     venueId: string

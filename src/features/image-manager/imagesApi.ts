@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import VenueImage from '../../types/VenueImage';
-import { RootState } from '../index';
+import { RootState } from '../../app/store';
+import VenueImage from '../../common/types/VenueImage';
 
 interface DBVenueImage {
     id: string,

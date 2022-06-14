@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import Card from '../UI/Card';
-import VenueComment from '../../types/VenueComment';
-import { ICONS } from '../../constants/Icons';
-import IconButton from '../UI/buttons/IconButton';
-import CommentForm from '../FormElements/CommentForm';
 import { useSelector } from 'react-redux';
-import { selectUserId } from '../../store/authSlice';
-import { useRemoveCommentMutation, useUpdateCommentMutation } from '../../store/api/commentsApi';
-import COLOR_SCHEME from '../../types/ColorScheme';
-import useToast from '../../hooks/use-toast';
+import IconButton from '../../common/components/UI/buttons/IconButton';
+import Card from '../../common/components/UI/Card';
+import { ICONS } from '../../common/constants/Icons';
+import useToast from '../../common/hooks/use-toast';
+import COLOR_SCHEME from '../../common/types/ColorScheme';
+import VenueComment from '../../common/types/VenueComment';
+import { selectUserId } from '../user/authSlice';
+import CommentForm from './CommentForm';
+import { useUpdateCommentMutation, useRemoveCommentMutation } from './commentsApi';
 
-type VenueCommentItemProps = {
+
+type CommentItemProps = {
     comment: VenueComment
 }
 
-const VenueCommentItem = ({ comment }: VenueCommentItemProps) => {
+const CommentItem = ({ comment }: CommentItemProps) => {
     const userId = useSelector(selectUserId);
     const [updateComment, { data: updateResponse }] = useUpdateCommentMutation();
     const [removeComment, { data: removeResponse }] = useRemoveCommentMutation();
@@ -72,4 +73,4 @@ const VenueCommentItem = ({ comment }: VenueCommentItemProps) => {
     )
 }
 
-export default VenueCommentItem;
+export default CommentItem;

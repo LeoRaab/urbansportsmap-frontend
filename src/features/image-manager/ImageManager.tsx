@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import IconButton from "../../components/UI/buttons/IconButton";
-import PrimaryButton from "../../components/UI/buttons/PrimaryButton";
-import Modal from "../../components/UI/Modal";
-import { ICONS } from "../../constants/Icons";
-import { imageManagerActions, selectImageManager } from "../../store/imageManagerSlice";
+import IconButton from "../../common/components/UI/buttons/IconButton";
+import PrimaryButton from "../../common/components/UI/buttons/PrimaryButton";
+import Modal from "../../common/components/UI/Modal";
+import { ICONS } from "../../common/constants/Icons";
 import ImageGallery from "./ImageGallery";
+import { selectImageManager, imageManagerActions } from "./imageManagerSlice";
 import ImageUpload from "./ImageUpload";
 
 type ImageManagerProps = {

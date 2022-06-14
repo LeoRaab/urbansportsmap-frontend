@@ -1,10 +1,10 @@
 import React from 'react';
-import SportTypesList from '../SportTypesList/SportTypesList';
-import Card from '../UI/Card';
-import Icon from '../UI/Icon';
-import {useNavigate} from 'react-router-dom';
-import {ICONS} from '../../constants/Icons';
-import Venue from '../../types/Venue';
+import { useNavigate } from 'react-router-dom';
+import SportTypesList from '../../common/components/sportstypes-list/SportTypesList';
+import Card from '../../common/components/UI/Card';
+import Icon from '../../common/components/UI/Icon';
+import { ICONS } from '../../common/constants/Icons';
+import Venue from '../../common/types/Venue';
 
 type FavoriteItemProps = {
     venue?: Venue;

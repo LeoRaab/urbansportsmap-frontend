@@ -1,11 +1,11 @@
 import React, {ReactHTMLElement, useCallback, useEffect, useState} from 'react';
 import L from 'leaflet';
 import Map from './Map';
-import FabButton from '../UI/buttons/FabButton';
-import Icon from '../UI/Icon';
-import {ICONS} from '../../constants/Icons';
-import {useSelector} from 'react-redux';
-import {selectMap} from '../../store/mapSlice';
+import { useSelector } from 'react-redux';
+import FabButton from '../../common/components/UI/buttons/FabButton';
+import { ICONS } from '../../common/constants/Icons';
+import { selectMap } from './mapSlice';
+import Icon from '../../common/components/UI/Icon';
 
 const MapWrapper = () => {
     const [map, setMap] = useState<L.Map>();

@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-
-import Filter from '../components/Filter/Filter';
-import PageHeader from '../components/UI/PageHeader';
-import FavoritesList from '../components/Favorites/FavoritesList';
-import Modal from '../components/UI/Modal';
-import GraphicMessage from '../components/UI/GraphicMessage';
-import { ILLUSTRATIONS } from '../constants/Illustrations';
-import { selectFilters } from '../store/filterSlice';
-import LoadingSpinner from '../components/UI/LoadingSpinner';
-import { useGetFavoritesQuery } from '../store/api/favoritesApi';
-import Venue from '../types/Venue';
-import { hasVenueSportType } from '../util/has-venue-sport-type';
-import PageWrapper from '../components/UI/PageWrapper';
+import GraphicMessage from '../../common/components/UI/GraphicMessage';
+import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
+import PageWrapper from '../../common/components/UI/PageWrapper';
+import { ILLUSTRATIONS } from '../../common/constants/Illustrations';
+import Venue from '../../common/types/Venue';
+import { hasVenueSportType } from '../../common/util/has-venue-sport-type';
+import Filter from '../filter/Filter';
+import { selectFilters } from '../filter/filterSlice';
+import { useGetFavoritesQuery } from './favoritesApi';
+import FavoritesList from './FavoritesList';
 
 const Favorites = () => {
 

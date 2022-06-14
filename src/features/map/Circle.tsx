@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import L from 'leaflet';
 import {useSelector} from 'react-redux';
-import {selectMap} from '../../store/mapSlice';
+import { selectMap } from './mapSlice';
 
 type MarkerProps = {
     map?: L.Map

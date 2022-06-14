@@ -3,9 +3,9 @@ import React, {useEffect} from 'react';
 import Markers from './Markers';
 import Circle from './Circle';
 import {useDispatch, useSelector} from 'react-redux';
-import {uiActions} from '../../store/uiSlice';
-import {mapCenterChanged, selectMap} from '../../store/mapSlice';
-import {LocationMarker} from '../../constants/marker-icon-images';
+import { LocationMarker } from '../../common/constants/marker-icon-images';
+import { selectMap, mapCenterChanged } from './mapSlice';
+import { uiActions } from './uiSlice';
 
 type MapProps = {
     map?: L.Map

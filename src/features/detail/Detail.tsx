@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import SportTypesList from '../components/SportTypesList/SportTypesList';
-import { useNavigate, useParams } from 'react-router-dom';
-import DetailSettings from '../components/Details/DetailSettings';
-import FabButton from '../components/UI/buttons/FabButton';
-import Icon from '../components/UI/Icon';
-import { ICONS } from '../constants/Icons';
-import VenueTitle from '../components/UI/VenueTitle';
-import CommentForm from '../components/FormElements/CommentForm';
-import { useLazyGetVenueByIdQuery } from '../store/api/venuesApi';
-import LoadingSpinner from '../components/UI/LoadingSpinner';
-import VenueCommentsList from '../components/Details/VenueCommentsList';
-import { useAddCommentMutation, useLazyGetCommentsQuery } from '../store/api/commentsApi';
 import { useSelector } from 'react-redux';
-import { selectUserId } from '../store/authSlice';
-import COLOR_SCHEME from '../types/ColorScheme';
-import PageWrapper from '../components/UI/PageWrapper';
-import ImageSwiper from '../components/UI/ImageSwiper';
-import useToast from '../hooks/use-toast';
+import { useNavigate, useParams } from 'react-router-dom';
+import SportTypesList from '../../common/components/sportstypes-list/SportTypesList';
+import FabButton from '../../common/components/UI/buttons/FabButton';
+import Icon from '../../common/components/UI/Icon';
+import ImageSwiper from '../../common/components/UI/ImageSwiper';
+import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
+import PageWrapper from '../../common/components/UI/PageWrapper';
+import VenueTitle from '../../common/components/UI/VenueTitle';
+import { ICONS } from '../../common/constants/Icons';
+import useToast from '../../common/hooks/use-toast';
+import COLOR_SCHEME from '../../common/types/ColorScheme';
+import CommentForm from '../comments/CommentForm';
+import { useLazyGetCommentsQuery, useAddCommentMutation } from '../comments/commentsApi';
+import CommentsList from '../comments/CommentsList';
+import { useLazyGetVenueByIdQuery } from '../map/venuesApi';
+import { selectUserId } from '../user/authSlice';
+import DetailSettings from './DetailSettings';
 
 const Detail = () => {
 
@@ -101,7 +101,7 @@ const Detail = () => {
             {(venueComments && venueComments.length > 0) &&
                 <div className="mt-8">
                     <h2 className="text-2xl mb-4">Kommentare</h2>
-                    <VenueCommentsList comments={venueComments} />
+                    <CommentsList comments={venueComments} />
                 </div>
             }
 

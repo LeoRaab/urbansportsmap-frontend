@@ -1,18 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import IconButton from '../../components/UI/buttons/IconButton';
-import { ICONS } from '../../constants/Icons';
+import IconButton from '../../common/components/UI/buttons/IconButton';
+import PrimaryButton from '../../common/components/UI/buttons/PrimaryButton';
+import SecondaryButton from '../../common/components/UI/buttons/SecondaryButton';
+import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
+import { ICONS } from '../../common/constants/Icons';
+import useToast from '../../common/hooks/use-toast';
+import COLOR_SCHEME from '../../common/types/ColorScheme';
+import VenueImage from '../../common/types/VenueImage';
 import ImageList from './ImageList';
-import { uiActions } from '../../store/uiSlice';
-import { useUploadImagesMutation } from '../../store/api/imagesApi';
-import LoadingSpinner from '../../components/UI/LoadingSpinner';
-import Toast from '../../components/UI/Toast/Toast';
-import COLOR_SCHEME from '../../types/ColorScheme';
-import VenueImage from '../../types/VenueImage';
-import PrimaryButton from '../../components/UI/buttons/PrimaryButton';
-import { imageManagerActions } from '../../store/imageManagerSlice';
-import SecondaryButton from '../../components/UI/buttons/SecondaryButton';
-import useToast from '../../hooks/use-toast';
+import { imageManagerActions } from './imageManagerSlice';
+import { useUploadImagesMutation } from './imagesApi';
 
 type ImageUploadProps = {
     venueId: string

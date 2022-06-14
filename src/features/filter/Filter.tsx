@@ -1,9 +1,9 @@
 import React from 'react';
-import Chip from '../UI/Chip';
-import DeleteButton from '../UI/buttons/DeleteButton';
-import {useDispatch, useSelector} from 'react-redux';
-import {filtersCleared, filterSelected, filterUnselected, selectFilters} from '../../store/filterSlice';
-import {getSportTypeColor} from '../../util/get-sport-type-color';
+import { useDispatch, useSelector } from 'react-redux';
+import DeleteButton from '../../common/components/UI/buttons/DeleteButton';
+import Chip from '../../common/components/UI/Chip';
+import { getSportTypeColor } from '../../common/util/get-sport-type-color';
+import { selectFilters, filterUnselected, filterSelected, filtersCleared } from './filterSlice';
 
 const Filter = () => {
 

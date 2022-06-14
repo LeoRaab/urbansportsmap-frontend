@@ -1,6 +1,5 @@
-import {createSlice} from '@reduxjs/toolkit'
-import {ALLOWED_SPORT_TYPES, SPORT_TYPE} from '../types/SportType';
-import Venue from '../types/Venue';
+import {createSlice} from '@reduxjs/toolkit';
+import { SPORT_TYPE, ALLOWED_SPORT_TYPES } from '../../common/types/SportType';
 
 interface FilterState {
     filters: SPORT_TYPE[],

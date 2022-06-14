@@ -30,20 +30,21 @@
  * TODO: Move RequireAuth & VerifyUser components to folders
  */
 
-import { BrowserRouter, Route, Routes, useLocation, Navigate, useParams } from 'react-router-dom';
-import Detail from './pages/Detail';
-import Favorites from './pages/Favorites';
-import Profile from './pages/Profile';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import PageNotFound from './pages/PageNotFound';
 import { useSelector } from 'react-redux';
-import { selectUserId } from './store/authSlice';
-import useAuth from './hooks/use-auth';
-import Home from './pages/Home';
-import MainLayout from './pages/MainLayout';
-import PageLayout from './pages/PageLayout';
-import VerifyUser from './components/VerifyUser';
+import { BrowserRouter, Route, Routes, useLocation, Navigate } from 'react-router-dom';
+import PageNotFound from '../common/components/PageNotFound';
+import useAuth from '../common/hooks/use-auth';
+import Detail from '../features/detail/Detail';
+import Favorites from '../features/favorites/Favorites';
+import Home from '../features/map/Home';
+import { selectUserId } from '../features/user/authSlice';
+import Login from '../features/user/Login';
+import Profile from '../features/user/Profile';
+import Signup from '../features/user/Signup';
+import VerifyUser from '../features/user/VerifyUser';
+import MainLayout from './MainLayout';
+import PageLayout from './PageLayout';
+
 
 const App = () => {
 

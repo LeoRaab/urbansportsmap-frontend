@@ -1,5 +1,5 @@
+import VenueImage from '../../common/types/VenueImage';
 import Thumbnail from './Thumbnail';
-import VenueImage from '../../types/VenueImage';
 
 type ImageListProps = {
     images: VenueImage[],
