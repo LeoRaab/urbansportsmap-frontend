@@ -6,7 +6,7 @@ import FabButton from '../components/UI/buttons/FabButton';
 import Icon from '../components/UI/Icon';
 import { ICONS } from '../constants/Icons';
 import VenueTitle from '../components/UI/VenueTitle';
-import CommentForm from '../components/Forms/CommentForm';
+import CommentForm from '../components/FormElements/CommentForm';
 import { useLazyGetVenueByIdQuery } from '../store/api/venuesApi';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import VenueCommentsList from '../components/Details/VenueCommentsList';
