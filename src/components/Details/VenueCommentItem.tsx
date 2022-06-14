@@ -3,7 +3,7 @@ import Card from '../UI/Card';
 import VenueComment from '../../types/VenueComment';
 import { ICONS } from '../../constants/Icons';
 import IconButton from '../UI/buttons/IconButton';
-import CommentForm from '../Forms/CommentForm';
+import CommentForm from '../FormElements/CommentForm';
 import { useSelector } from 'react-redux';
 import { selectUserId } from '../../store/authSlice';
 import { useRemoveCommentMutation, useUpdateCommentMutation } from '../../store/api/commentsApi';
