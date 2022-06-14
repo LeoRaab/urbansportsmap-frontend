@@ -12,25 +12,25 @@
  * TODO: Check z-indexes
  * TODO: Zoom in when clicking on search result
  * TODO: Logging system
- * TODO: Toast is hiding to fast, when deleting comment
+ * TODO: Toast is hiding to fast, when useToast destroys
  * TODO: Venue map link feature: Warning: Cannot update a component (`Circle`) while rendering a different component (`Home`). To locate the bad setState() call inside `Home`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render
  * TODO: Show Error Messages
  * TODO: Timeout bei Ladevorgängen
  * TODO: Convert Utils to Hooks
  * TODO: Move Visibility states to featureSlice? e.g. isFilterVisible => filterSlice
  * TODO: Improve Types!!! ---> most of all image types
- * TODO: Not possible to upload same picture multiple times
- * TODO: Naming in general && especially imageUpload vs imagePicker
- * TODO: useForm hook
+ * TODO: useForm hook --> initial value & valid to be able to edit
  * TODO: Put urls in .env
  * TODO: Take Picture
  * TODO: Message constant
  * TODO: Think about button design in general
  * TODO: Use heroicons package
  * TODO: CONSISTENT NAMING!!!
+ * TODO: Put LoadingSpinner in hook & reducer
+ * TODO: Move RequireAuth & VerifyUser components to folders
  */
 
-import { BrowserRouter, Route, Routes, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation, Navigate, useParams } from 'react-router-dom';
 import Detail from './pages/Detail';
 import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
@@ -43,6 +43,7 @@ import useAuth from './hooks/use-auth';
 import Home from './pages/Home';
 import MainLayout from './pages/MainLayout';
 import PageLayout from './pages/PageLayout';
+import VerifyUser from './components/VerifyUser';
 
 const App = () => {
 
@@ -75,8 +76,10 @@ const App = () => {
                             } />
                             <Route path="/login" element={<Login />} />
                             <Route path="/signup" element={<Signup />} />
+                            <Route path="/verify/:verifyString" element={<VerifyUser />} />
                             <Route path="/*" element={<PageNotFound />} />
                         </Route>
+
                     </Route>
                 </Routes>
             </main>
