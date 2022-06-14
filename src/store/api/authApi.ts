@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { User } from '../../types/User';
-import {RootState} from '../index';
+import { SignupUser, User } from '../../types/User';
+import { RootState } from '../index';
 
 export interface UserResponse {
     userId: string,
-    token: string
+    token: string,
+    message?: string
 }
 
 export interface LoginRequest {
@@ -36,7 +37,17 @@ export const authApi = createApi({
             query: (userId) => userId,
             transformResponse: (responseData: any) => responseData.user
         }),
+        signup: builder.mutation<{ message: string }, SignupUser>({
+            query: (signupUser) => ({
+                url: 'signup',
+                method: 'POST',
+                body: signupUser
+            })
+        }),
+        verify: builder.query<{ message: string }, string>({
+            query: (verifyString) => 'verify/' + verifyString
+        }),
     }),
 })
 
-export const { useLoginMutation, useLazyGetUserQuery } = authApi;
+export const { useLoginMutation, useLazyGetUserQuery, useSignupMutation, useLazyVerifyQuery } = authApi;
