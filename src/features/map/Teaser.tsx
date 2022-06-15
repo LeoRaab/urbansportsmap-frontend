@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SportTypesList from '../../common/components/sportstypes-list/SportTypesList';
 import FabButton from '../../common/components/UI/buttons/FabButton';
-import Icon from '../../common/components/UI/Icon';
 import ImageSwiper from '../../common/components/UI/ImageSwiper';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import VenueTitle from '../../common/components/UI/VenueTitle';
-import { ICONS } from '../../common/constants/Icons';
 import { useLazyGetVenueByIdQuery } from './venuesApi';
 import { InformationCircleIcon } from '@heroicons/react/outline';
 
