@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import IconButton from '../../common/components/UI/buttons/IconButton';
 import Card from '../../common/components/UI/Card';
-import { ICONS } from '../../common/constants/Icons';
 import useToast from '../../common/hooks/use-toast';
 import COLOR_SCHEME from '../../common/types/ColorScheme';
 import VenueComment from '../../common/types/VenueComment';

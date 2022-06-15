@@ -1,6 +1,4 @@
 import React from 'react';
-import Icon from '../Icon';
-import { CustomIcon } from '../../../types/CustomIcon';
 import Button from '../../form-elements/Button';
 
 type PrimaryButtonProps = {

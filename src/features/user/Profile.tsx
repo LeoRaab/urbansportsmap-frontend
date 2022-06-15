@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import LoadingSpinner from "../../common/components/UI/LoadingSpinner";
 import PageWrapper from "../../common/components/UI/PageWrapper";
-import { ICONS } from "../../common/constants/Icons";
 import { useLazyGetUserQuery } from "./authApi";
 import { selectUserId } from "./authSlice";
 import UserInfo from "./UserInfo";

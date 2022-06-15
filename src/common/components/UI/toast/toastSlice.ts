@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import COLOR_SCHEME from '../../../types/ColorScheme';
 
 interface ToastState {
     isVisible: boolean,

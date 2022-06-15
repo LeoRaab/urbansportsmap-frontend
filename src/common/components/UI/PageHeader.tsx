@@ -1,6 +1,5 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { ICONS } from '../../constants/Icons';
 import IconButton from './buttons/IconButton';
 import { ChevronLeftIcon, XIcon } from '@heroicons/react/outline';
 
