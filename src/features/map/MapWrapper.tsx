@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import L from 'leaflet';
 import Map from './Map';
 import { useSelector } from 'react-redux';
-import FabButton from '../../common/components/UI/buttons/FabButton';
+import FabButton from '../../common/components/form-elements/buttons/FabButton';
 import { ICONS } from '../../common/constants/Icons';
 import { selectMap } from './mapSlice';
 import Icon from '../../common/components/UI/Icon';
