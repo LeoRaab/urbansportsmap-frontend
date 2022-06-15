@@ -23,8 +23,8 @@ const useToast = () => {
         }
     }, []);
 
-    const show = (message: string, colorScheme: COLOR_SCHEME) => {
-        dispatch(toastActions.show({ message, colorScheme }));
+    const show = (message: string, type: 'success' | 'error') => {
+        dispatch(toastActions.show({ message, type }));
         timer.start(5000, 100);
     }
 

@@ -4,14 +4,14 @@ import COLOR_SCHEME from '../../../types/ColorScheme';
 interface ToastState {
     isVisible: boolean,
     message: string,
-    colorScheme: COLOR_SCHEME,
+    type: 'success' | 'error'
     currentWidth: number
 }
 
 const initialState: ToastState = {
     isVisible: false,
     message: '',
-    colorScheme: COLOR_SCHEME.SUCCESS,
+    type: 'success',
     currentWidth: 0
 }
 
@@ -19,7 +19,7 @@ export const toastSlice = createSlice({
     name: 'toast',
     initialState,
     reducers: {
-        show: (state, { payload: { message } }: PayloadAction<{ message: string, colorScheme: COLOR_SCHEME }>) => {
+        show: (state, { payload: { message } }: PayloadAction<{ message: string, type: 'success' | 'error' }>) => {
             state.isVisible = true;
             state.message = message;
             state.currentWidth = 100;

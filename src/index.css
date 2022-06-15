@@ -2,6 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+     --primary-bg-color: bg-green-200;
+}
+
+.success {
+     @apply bg-green-400;
+}
+
+.error {
+     @apply bg-red-400;
+}
+
+input, textarea {
+     @apply placeholder-slate-400 rounded-sm p-4 ring-1 ring-slate-200 shadow-sm appearance-none focus:ring-4 focus:text-black focus:ring-slate-200 focus:outline-none 
+}
+
+input.error {
+     @apply ring-red-400 focus:ring-red-400 text-red-400
+}
+
+button {
+     @apply rounded-sm shadow p-3 w-full font-bold;
+}
+
+button.primary {
+     @apply var(--primary-bg-color) hover:bg-green-100;
+}
+
+button.secondary {
+     @apply bg-slate-100 hover:bg-slate-200;
+}
+
+button.transparent {
+     @apply bg-transparent;
+}
+
+button.white {
+     @apply bg-white;
+}
+
 pwa-camera-modal-instance {
      z-index: 2000;
 }
@@ -50,20 +90,4 @@ pwa-camera-modal-instance {
 }
 .range-slider::-moz-focus-outer {
      border: 0;
-}
-
-input, textarea {
-     @apply placeholder-slate-400 rounded-sm p-4 ring-1 ring-slate-200 shadow-sm appearance-none focus:ring-4 focus:text-black focus:ring-slate-200 focus:outline-none 
-}
-
-.error {
-     @apply ring-red-400 focus:ring-red-400 text-red-400
-}
-
-button.primary {
-     @apply bg-green-200 rounded-sm shadow hover:bg-green-100 p-3 w-full font-bold;
-}
-
-button.secondary {
-     @apply bg-slate-100 rounded-sm shadow hover:bg-slate-200 p-3 w-full font-bold;
 }
