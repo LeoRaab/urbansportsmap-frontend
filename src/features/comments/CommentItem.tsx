@@ -26,13 +26,13 @@ const CommentItem = ({ comment }: CommentItemProps) => {
         if (updateResponse) {
             toast.show(updateResponse.message, COLOR_SCHEME.SUCCESS);
         }
-    }, [updateResponse]);
+    }, [updateResponse, toast]);
 
     useEffect(() => {
         if (removeResponse) {
             toast.show(removeResponse.message, COLOR_SCHEME.SUCCESS);
         }
-    }, [removeResponse]);
+    }, [removeResponse, toast]);
 
     const handleEditClick = () => {
         setShowCommentForm(true);

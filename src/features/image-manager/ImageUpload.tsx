@@ -34,13 +34,13 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
         if (isSuccess) {
             dispatch(imageManagerActions.show());
         }
-    }, [isSuccess]);
+    }, [isSuccess, dispatch]);
 
     useEffect(() => {
         if (uploadImageResponse) {
             toast.show(uploadImageResponse.message, COLOR_SCHEME.SUCCESS)
         }
-    }, [uploadImageResponse]);
+    }, [uploadImageResponse, toast]);
 
     const handleSelectImagesClick = () => {
         filePickerRef.current?.click();

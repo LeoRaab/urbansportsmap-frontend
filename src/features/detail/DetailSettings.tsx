@@ -36,13 +36,13 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
         if (addResponse) {
             toast.show(addResponse.message, COLOR_SCHEME.SUCCESS);
         }
-    }, [addResponse]);
+    }, [addResponse, toast]);
 
     useEffect(() => {
         if (removeResponse) {
             toast.show(removeResponse.message, COLOR_SCHEME.SUCCESS);
         }
-    }, [removeResponse])
+    }, [removeResponse, toast])
 
     const handleFavoriteClick = () => {
         if (!isFavorite) {
