@@ -34,7 +34,7 @@ const Login = () => {
         if (userId) {
             navigate(redirectPath, { replace: true });
         }
-    }, [userId]);
+    }, [userId, navigate, redirectPath]);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();

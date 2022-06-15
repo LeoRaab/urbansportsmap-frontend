@@ -10,7 +10,6 @@ import PageWrapper from '../../common/components/UI/PageWrapper';
 import VenueTitle from '../../common/components/UI/VenueTitle';
 import { ICONS } from '../../common/constants/Icons';
 import useToast from '../../common/hooks/use-toast';
-import COLOR_SCHEME from '../../common/types/ColorScheme';
 import CommentForm from '../comments/CommentForm';
 import { useLazyGetCommentsQuery, useAddCommentMutation } from '../comments/commentsApi';
 import CommentsList from '../comments/CommentsList';
@@ -40,13 +39,13 @@ const Detail = () => {
         if (venue) {
             loadVenueComments(venue.id);
         }
-    }, [venue, loadVenueComments, loadVenueComments]);
+    }, [venue, loadVenueComments]);
 
     useEffect(() => {
         if (addCommentResponse) {
-            toast.show(addCommentResponse.message, COLOR_SCHEME.SUCCESS)
+            toast.show(addCommentResponse.message, 'success')
         }
-    }, [addCommentResponse]);
+    }, [addCommentResponse, toast]);
 
     const handleEditImagesClick = () => {
         //venueImages.loadImages();
