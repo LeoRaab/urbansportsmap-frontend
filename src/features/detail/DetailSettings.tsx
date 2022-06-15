@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import IconButton from '../../common/components/UI/buttons/IconButton';
+import IconButton from '../../common/components/form-elements/buttons/IconButton';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import useToast from '../../common/hooks/use-toast';
 import COLOR_SCHEME from '../../common/types/ColorScheme';

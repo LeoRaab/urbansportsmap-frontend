@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { XIcon } from "@heroicons/react/outline";
 import useToast from "../../../hooks/use-toast";
-import Button from "../../form-elements/Button";
+import Button from "../../form-elements/buttons/Button";
 import Portal from "../Portal";
 import { selectToast } from "./toastSlice";
 

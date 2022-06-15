@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../form-elements/Button';
+import Button from './Button';
 
 type PrimaryButtonProps = {
     text: string,

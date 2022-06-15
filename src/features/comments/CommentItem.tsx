@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import IconButton from '../../common/components/UI/buttons/IconButton';
+import IconButton from '../../common/components/form-elements/buttons/IconButton';
 import Card from '../../common/components/UI/Card';
 import useToast from '../../common/hooks/use-toast';
 import COLOR_SCHEME from '../../common/types/ColorScheme';

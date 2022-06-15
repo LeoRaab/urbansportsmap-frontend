@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import SportTypesList from '../../common/components/sportstypes-list/SportTypesList';
-import FabButton from '../../common/components/UI/buttons/FabButton';
+import FabButton from '../../common/components/form-elements/buttons/FabButton';
 import Icon from '../../common/components/UI/Icon';
 import ImageSwiper from '../../common/components/UI/ImageSwiper';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';

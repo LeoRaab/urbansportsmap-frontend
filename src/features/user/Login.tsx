@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Button from "../../common/components/form-elements/Button";
+import Button from "../../common/components/form-elements/buttons/Button";
 import Input from "../../common/components/form-elements/Input";
 import PageWrapper from "../../common/components/UI/PageWrapper";
 import useAuth from "../../common/hooks/use-auth";

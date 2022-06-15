@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import IconButton from './buttons/IconButton';
+import IconButton from '../form-elements/buttons/IconButton';
 import { ChevronLeftIcon, XIcon } from '@heroicons/react/outline';
 
 type PageHeaderProps = {

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Search from "../../common/components/search/Search";
-import FabButton from "../../common/components/UI/buttons/FabButton";
+import FabButton from "../../common/components/form-elements/buttons/FabButton";
 import Icon from "../../common/components/UI/Icon";
 import RangeSlider from "../../common/components/UI/RangeSlider";
 import { ICONS } from "../../common/constants/Icons";

@@ -6,7 +6,7 @@ import { useLazyGetUserQuery } from "./authApi";
 import { selectUserId } from "./authSlice";
 import UserInfo from "./UserInfo";
 import { RefreshIcon, TrashIcon } from "@heroicons/react/outline";
-import Button from "../../common/components/form-elements/Button";
+import Button from "../../common/components/form-elements/buttons/Button";
 
 const Profile = () => {
     const [getUser, {data: user, isLoading, isFetching}] = useLazyGetUserQuery();

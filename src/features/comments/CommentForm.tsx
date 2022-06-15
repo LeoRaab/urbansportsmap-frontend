@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../common/components/form-elements/Button";
+import Button from "../../common/components/form-elements/buttons/Button";
 import { useForm } from "../../common/hooks/use-form";
 import { VALIDATOR_MINLENGTH } from "../../common/util/form-validators";
 import Input from "../../common/components/form-elements/Input";

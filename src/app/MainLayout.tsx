@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Outlet } from "react-router-dom";
-import Button from "../common/components/form-elements/Button";
+import Button from "../common/components/form-elements/buttons/Button";
 import Menu from "../common/components/menu/Menu";
 import Dialog from "../common/components/UI/dialog/Dialog";
 import Toast from "../common/components/UI/toast/Toast";

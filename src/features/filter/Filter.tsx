@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '../../common/components/form-elements/Button';
+import Button from '../../common/components/form-elements/buttons/Button';
 import Chip from '../../common/components/UI/Chip';
 import { getSportTypeColor } from '../../common/util/get-sport-type-color';
 import { selectFilters, filterUnselected, filterSelected, filtersCleared } from './filterSlice';

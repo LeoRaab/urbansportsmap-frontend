@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Button from "../../common/components/form-elements/Button";
+import Button from "../../common/components/form-elements/buttons/Button";
 import useDialog from "../../common/hooks/use-dialog";
 import useToast from "../../common/hooks/use-toast";
 import ImageList from "./ImageList";

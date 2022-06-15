@@ -8,7 +8,7 @@ import ImageList from './ImageList';
 import { imageManagerActions } from './imageManagerSlice';
 import { useUploadImagesMutation } from './imagesApi';
 import { UploadIcon } from '@heroicons/react/outline';
-import Button from '../../common/components/form-elements/Button';
+import Button from '../../common/components/form-elements/buttons/Button';
 
 type ImageUploadProps = {
     venueId: string

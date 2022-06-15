@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useAuth from '../../hooks/use-auth';
 import { uiActions } from '../../../features/map/uiSlice';
 import { selectUserId } from '../../../features/user/authSlice';
-import Button from '../form-elements/Button';
+import Button from '../form-elements/buttons/Button';
 
 type MenuProps = {
     isShowing: boolean

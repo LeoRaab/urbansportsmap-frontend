@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import useDialog from "../../../hooks/use-dialog";
-import IconButton from "../buttons/IconButton";
+import IconButton from "../../form-elements/buttons/IconButton";
 import Modal from "../Modal";
 import { selectDialog } from "./dialogSlice";
 import {XIcon, CheckIcon} from "@heroicons/react/outline";

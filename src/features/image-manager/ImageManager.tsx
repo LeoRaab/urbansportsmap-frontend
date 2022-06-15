@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import Button from "../../common/components/form-elements/Button";
+import Button from "../../common/components/form-elements/buttons/Button";
 import Modal from "../../common/components/UI/Modal";
 import ImageGallery from "./ImageGallery";
 import { selectImageManager, imageManagerActions } from "./imageManagerSlice";
 import ImageUpload from "./ImageUpload";
 import { CameraIcon, XIcon, PhotographIcon, UploadIcon } from "@heroicons/react/outline";
-import IconButton from "../../common/components/UI/buttons/IconButton";
+import IconButton from "../../common/components/form-elements/buttons/IconButton";
 
 type ImageManagerProps = {
     venueId: string
