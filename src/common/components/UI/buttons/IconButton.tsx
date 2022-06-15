@@ -1,21 +1,23 @@
 import React from 'react';
 import Icon from '../Icon';
 import { CustomIcon } from '../../../types/CustomIcon';
+import Button from '../../form-elements/Button';
 
 type PrimaryButtonProps = {
-    icon: CustomIcon,
-    text?: string,
-    color?: string | 'text-black'
-    handleOnClick: () => void
+    text: string,
+    icon: JSX.Element,    
+    onClick: () => void
 }
 
-const IconButton = ({ text, icon, color, handleOnClick }: PrimaryButtonProps) => {
+const IconButton = ({ text, icon, onClick }: PrimaryButtonProps) => {
 
     return (
-        <button className={"flex items-center w-fit " + color} onClick={handleOnClick}>
-            <Icon icon={icon} />
-            {text && <p className="ml-2">{text}</p>}
-        </button>
+        <Button color="transparent" type="button" onClick={onClick}>
+            <div className="flex items-center">
+                {icon}
+                <p>{text}</p>
+            </div>
+        </Button>
     )
 }
 

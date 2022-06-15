@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import IconButton from "../../common/components/UI/buttons/IconButton";
 import LoadingSpinner from "../../common/components/UI/LoadingSpinner";
 import PageWrapper from "../../common/components/UI/PageWrapper";
 import { ICONS } from "../../common/constants/Icons";
 import { useLazyGetUserQuery } from "./authApi";
 import { selectUserId } from "./authSlice";
 import UserInfo from "./UserInfo";
+import { RefreshIcon, TrashIcon } from "@heroicons/react/outline";
+import Button from "../../common/components/form-elements/Button";
 
 const Profile = () => {
     const [getUser, {data: user, isLoading, isFetching}] = useLazyGetUserQuery();
@@ -35,10 +36,18 @@ const Profile = () => {
             </div>
 
             <div className="flex flex-col mt-4">
-                <IconButton text={'Passwort zurücksetzen'} icon={ICONS.REFRESH} handleOnClick={handleResetPassword}/>
-                <div className="text-red-400">
-                    <IconButton icon={ICONS.TRASH} text={'Profil löschen'} handleOnClick={handleDeleteAccount}/>
-                </div>
+                <Button color="white" type="button" onClick={handleResetPassword}>
+                    <div className="flex items-center">
+                        <RefreshIcon className="h-6 w-6"/>
+                        <p>Passwort zurücksetzen</p>
+                    </div>
+                </Button>
+                <Button color="white" type="button" onClick={handleDeleteAccount}>
+                    <div className="flex items-center">
+                        <TrashIcon className="h-6 w-6 text-red-400"/>
+                        <p>Profil löschen</p>
+                    </div>
+                </Button>
             </div>
 
             {(isLoading || isFetching) && 

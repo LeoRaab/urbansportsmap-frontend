@@ -1,16 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import IconButton from '../../common/components/UI/buttons/IconButton';
-import PrimaryButton from '../../common/components/UI/buttons/PrimaryButton';
-import SecondaryButton from '../../common/components/UI/buttons/SecondaryButton';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
-import { ICONS } from '../../common/constants/Icons';
 import useToast from '../../common/hooks/use-toast';
 import COLOR_SCHEME from '../../common/types/ColorScheme';
 import VenueImage from '../../common/types/VenueImage';
 import ImageList from './ImageList';
 import { imageManagerActions } from './imageManagerSlice';
 import { useUploadImagesMutation } from './imagesApi';
+import { UploadIcon } from '@heroicons/react/outline';
+import Button from '../../common/components/form-elements/Button';
 
 type ImageUploadProps = {
     venueId: string
@@ -91,15 +89,24 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
             </div>
             <div className="mt-4">
                 <input ref={filePickerRef} id="images" type="file" className="hidden" accept=".jpg,.jpeg,.png" onChange={handleImagesSelected} multiple />
-                <IconButton text={'Bilder auswählen'} icon={ICONS.UPLOAD} handleOnClick={handleSelectImagesClick} />
+                <Button color='white' type='button' onClick={handleSelectImagesClick}>
+                    <div className="flex items-center">
+                        <UploadIcon/>
+                        <p>Bilder ausw&auml;hlen</p>
+                    </div>
+                </Button>
             </div>
 
             <div className="flex justify-between my-8">
                 <div className="w-5/12">
-                    <SecondaryButton text={'zurück'} handleOnClick={() => dispatch(imageManagerActions.show())} />
+                    <Button color="secondary" type="button" onClick={() => dispatch(imageManagerActions.show())}>
+                        zurück
+                    </Button>
                 </div>
                 <div className="w-5/12">
-                    <PrimaryButton text={'hochladen'} handleOnClick={handleUploadImagesClick} />
+                    <Button color="primary" type="button" onClick={handleUploadImagesClick}>
+                        hochladen
+                    </Button>
                 </div>
             </div>
 

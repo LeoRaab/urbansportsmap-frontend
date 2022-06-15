@@ -1,13 +1,12 @@
 import React from 'react';
 import MenuItem from './MenuItem';
-import SecondaryButton from '../UI/buttons/SecondaryButton';
 import { useNavigate } from 'react-router-dom';
-import PrimaryButton from '../UI/buttons/PrimaryButton';
 import { ICONS } from '../../constants/Icons';
 import { useDispatch, useSelector } from 'react-redux';
 import useAuth from '../../hooks/use-auth';
 import { uiActions } from '../../../features/map/uiSlice';
 import { selectUserId } from '../../../features/user/authSlice';
+import Button from '../form-elements/Button';
 
 type MenuProps = {
     isShowing: boolean
@@ -76,18 +75,24 @@ const Menu = ({ isShowing }: MenuProps) => {
                     {!userId &&
                         <>
                             <div className="m-2 w-1/2">
-                                <SecondaryButton text={'Log in'} handleOnClick={handleLoginClick} />
+                                <Button color="secondary" type="button" onClick={handleLoginClick}>
+                                    Log in
+                                </Button>
                             </div>
 
                             <div className="m-2 w-1/2">
-                                <PrimaryButton text={'Sign up'} handleOnClick={handleSignupClick} />
+                                <Button color="primary" type="button" onClick={handleSignupClick}>
+                                    Sign up
+                                </Button>
                             </div>
                         </>
                     }
                     {userId &&
                         <>
                             <div className="m-2 w-1/2">
-                                <SecondaryButton text={'Log out'} handleOnClick={handleLogoutClick} />
+                                <Button color="secondary" type="button" onClick={handleLogoutClick}>
+                                    Log out
+                                </Button>
                             </div>
                         </>
                     }

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '../../common/components/UI/buttons/IconButton';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
-import { ICONS } from '../../common/constants/Icons';
 import useToast from '../../common/hooks/use-toast';
 import COLOR_SCHEME from '../../common/types/ColorScheme';
 import Venue from '../../common/types/Venue';
 import { useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } from '../favorites/favoritesApi';
 import ImageManager from '../image-manager/ImageManager';
 import { selectImageManager, imageManagerActions } from '../image-manager/imageManagerSlice';
+import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
+import { HeartIcon, PhotographIcon, AnnotationIcon } from '@heroicons/react/outline';
 
 type DetailSettingsProps = {
     venue: Venue,
@@ -55,17 +56,15 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
         <>
             <div className="flex flex-col gap-y-4 mt-8">
                 {isFavorite &&
-                    <IconButton text={'von Favoriten entfernen'} icon={ICONS.HEART_FILLED}
-                        handleOnClick={handleFavoriteClick} />
+                    <IconButton text={'von Favoriten entfernen'} icon={<HeartIconSolid />} onClick={handleFavoriteClick} />
                 }
 
                 {!isFavorite &&
-                    <IconButton text={'zu Favoriten hinzufügen'} icon={ICONS.HEART}
-                        handleOnClick={handleFavoriteClick} />
+                    <IconButton text={'zu Favoriten hinzufügen'} icon={<HeartIcon />} onClick={handleFavoriteClick} />
                 }
 
-                <IconButton text={'Bilder bearbeiten'} icon={ICONS.GALLERY} handleOnClick={() => dispatch(imageManagerActions.show())} />
-                <IconButton text={'Kommentar schreiben'} icon={ICONS.COMMENT} handleOnClick={onCommentClick} />
+                <IconButton text={'Bilder bearbeiten'} icon={<PhotographIcon />} onClick={() => dispatch(imageManagerActions.show())} />
+                <IconButton text={'Kommentar schreiben'} icon={<AnnotationIcon />} onClick={onCommentClick} />
             </div>
 
             {imageManager.isVisible &&

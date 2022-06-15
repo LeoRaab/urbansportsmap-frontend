@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import SecondaryButton from "../../common/components/UI/buttons/SecondaryButton";
+import Button from "../../common/components/form-elements/Button";
 import useDialog from "../../common/hooks/use-dialog";
 import useToast from "../../common/hooks/use-toast";
-import COLOR_SCHEME from "../../common/types/ColorScheme";
 import ImageList from "./ImageList";
 import { imageManagerActions } from "./imageManagerSlice";
 import { useGetImagesByVenueAndUserQuery, useDeleteImageMutation } from "./imagesApi";
@@ -22,9 +21,9 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
 
     useEffect(() => {
         if (deleteResponse) {
-            toast.show(deleteResponse.message, COLOR_SCHEME.SUCCESS);
+            toast.show(deleteResponse.message, 'success');
         }
-    }, [deleteResponse]);
+    }, [deleteResponse, toast]);
 
     const handleUploadedThumbnailClick = async (id: number) => {
         const isAccepted = await dialog.open('Willst du das Bild wirklich löschen?');
@@ -60,7 +59,9 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
 
             <div className="flex justify-center my-8">
                 <div className="w-5/12">
-                    <SecondaryButton text={'zurück'} handleOnClick={() => dispatch(imageManagerActions.show())} />
+                    <Button color="secondary" type="button" onClick={() => dispatch(imageManagerActions.show())}>
+                        zurück
+                    </Button>
                 </div>
             </div>
         </>

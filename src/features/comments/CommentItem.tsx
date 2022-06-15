@@ -9,7 +9,7 @@ import VenueComment from '../../common/types/VenueComment';
 import { selectUserId } from '../user/authSlice';
 import CommentForm from './CommentForm';
 import { useUpdateCommentMutation, useRemoveCommentMutation } from './commentsApi';
-
+import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
 
 type CommentItemProps = {
     comment: VenueComment
@@ -60,8 +60,8 @@ const CommentItem = ({ comment }: CommentItemProps) => {
                     <p className="whitespace-pre-line">{comment.comment}</p>
                     {(comment.author.id === userId) &&
                         <div className="flex justify-between border-t border-t-slate-200 mt-4">
-                            <IconButton text={'löschen'} icon={ICONS.TRASH} handleOnClick={handleDeleteCommentClick} />
-                            <IconButton text={'editieren'} icon={ICONS.EDIT} handleOnClick={handleEditClick} />
+                            <IconButton text={'löschen'} icon={<TrashIcon />} onClick={handleDeleteCommentClick} />
+                            <IconButton text={'editieren'} icon={<PencilAltIcon />} onClick={handleEditClick} />
                         </div>
                     }
                 </Card>
