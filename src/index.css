@@ -31,7 +31,7 @@ button.secondary {
 }
 
 button.transparent {
-     @apply bg-transparent;
+     @apply bg-transparent border-0 shadow-none font-normal text-sm;
 }
 
 button.white {

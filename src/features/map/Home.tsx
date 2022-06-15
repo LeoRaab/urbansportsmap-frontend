@@ -16,8 +16,8 @@ const Home = () => {
     const ui = useSelector(selectUi);
 
     return (
-        <div className="w-2/5 h-full">
-            <div className="fixed top-5 flex justify-center w-full z-800">
+        <div className="h-full">
+            <div className="fixed top-6 flex justify-center w-full z-800">
                 <Search />
             </div>
 

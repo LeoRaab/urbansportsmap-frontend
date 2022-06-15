@@ -19,7 +19,7 @@ const SportTypesList = ({sportTypes}: SportTypesProps) => {
     })
 
     return (
-        <div className="flex flex-wrap gap-x-2 gap-y-4 justify-start w-full">
+        <div className="flex">
             {sportTypesListItems}
         </div>
     )

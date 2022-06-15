@@ -49,7 +49,7 @@ const Teaser = ({ venueId }: TeaserProps) => {
                     <div className="fixed bottom-6 right-2 z-800">
                         <FabButton backgroundColor="bg-green-200"
                             onFabButtonClick={() => navigate('/detail/' + venue?.id)}>
-                            <InformationCircleIcon />
+                            <InformationCircleIcon className="h-6 w-6"/>
                         </FabButton>
                     </div>
                 </>

@@ -18,12 +18,13 @@ const Chip = ({text, bgColor, fontColor, isClickable, id, onChipClick}: ChipProp
     }
 
     return (
-        <button className={'flex justify-between items-center rounded-sm py-2 px-4 shadow ' + bgColor}
-                onClick={handleChipClick}
-                disabled={!isClickable}>
-            <p className={'text-sm font-semibold ' + (fontColor ? fontColor : 'text-slate-600')}>{text}</p>
-
-        </button>
+        <div className="w-fit">
+            <button className={'flex justify-between items-center rounded-sm py-2 px-4 shadow ' + bgColor}
+                    onClick={handleChipClick}
+                    disabled={!isClickable}>
+                <p className={'text-sm font-semibold ' + (fontColor ? fontColor : 'text-slate-600')}>{text}</p>
+            </button>
+        </div>
     )
 }
 

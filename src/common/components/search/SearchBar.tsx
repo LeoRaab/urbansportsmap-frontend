@@ -41,7 +41,7 @@ const SearchBar = ({onSearchBarChange, isLoading, isFetching}: SearchBarProps) =
 
             {searchTerm.length > 0 &&
                 <svg
-                    className="h-5 w-5 absolute right-3 top-1/2 -mt-2.5 text-slate-400 group-focus-within:text-slate-400"
+                    className="h-5 w-5 absolute right-3 top-1/2 -mt-2.5 text-slate-400 group-focus-within:text-slate-400 cursor-pointer"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                     onClick={handleClearSearchBar}>

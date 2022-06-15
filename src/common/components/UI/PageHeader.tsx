@@ -17,11 +17,13 @@ const PageHeader = ({ text }: PageHeaderProps) => {
 
     return (
         <>
-            <div className={'sticky top-0 z-800 flex items-center w-full gap-x-6 px-4 py-8 bg-white border-b border-b-slate-200'}>
-                <IconButton text="" icon={<ChevronLeftIcon />} onClick={handleBackButtonClick} />
+            <div className={'sticky top-0 z-800 flex items-center w-full px-4 py-8 bg-white border-b border-b-slate-200'}>
+                <div className="w-12 mr-8">
+                    <IconButton text="" icon={<ChevronLeftIcon />} onClick={handleBackButtonClick} />
+                </div>
                 <h2 className="text-2xl">{text}</h2>
-                <div className="absolute flex justify-center right-5">
-                    <IconButton text="" icon={<XIcon />} onClick={handleBackButtonClick} />
+                <div className="hidden lg-flex absolute justify-center right-5">
+                    <IconButton text="" icon={<XIcon className="h-6 w-6"/>} onClick={handleBackButtonClick} />
                 </div>
             </div>
         </>

@@ -12,36 +12,40 @@ const Filter = () => {
 
     return (
         <>
-            <div className="flex flex-wrap gap-x-2 gap-y-4 px-4 justify-start w-full">
+            <div className="flex flex-wrap items-center">
 
                 {filters.selectedFilters.length > 0 &&
                     filters.selectedFilters.map((filter, key) =>
-
-                        <Chip key={key}
+                        <div className="mb-2 mr-2" key={key}>                            
+                            <Chip
                               text={filter}
                               bgColor={getSportTypeColor(filter)}
                               isClickable={true}
                               id={key}
                               onChipClick={() => dispatch(filterUnselected(key))}/>
+                        </div>
                     )
                 }
 
                 {filters.unselectedFilters.length > 0 &&
                     filters.unselectedFilters.map((filter, key) =>
-
-                        <Chip key={key}
+                        <div className="mb-2 mr-2" key={key}>    
+                            <Chip key={key}
                               text={filter}
                               bgColor={'bg-slate-200'}
                               isClickable={true}
                               id={key}
                               onChipClick={() => dispatch(filterSelected(key))}/>
+                        </div>
                     )
                 }
 
                 {filters.selectedFilters.length > 0 &&
-                    <Button color="transparent" type="button" onClick={() => dispatch(filtersCleared())}>
-                        Filter löschen
-                    </Button>
+                    <div className="mb-2 mr-2">
+                        <Button color="transparent" type="button" onClick={() => dispatch(filtersCleared())}>
+                            Filter löschen
+                        </Button>
+                    </div>
                 }
             </div>
         </>
