@@ -1,12 +1,20 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { toastActions } from "../components/UI/toast/toastSlice";
-import COLOR_SCHEME from "../types/ColorScheme";
 import useTimer from "./use-timer";
 
 const useToast = () => {
     const dispatch = useDispatch();
     const timer = useTimer();
+
+    const show = (message: string, type: 'success' | 'error') => {
+        dispatch(toastActions.show({ message, type }));
+        timer.start(5000, 100);
+    }
+
+    const close = useCallback(() => {
+        dispatch(toastActions.hide());
+    }, [dispatch]);
 
     useEffect(() => {
         const currentWidth = timer.remainingTime / 5000 * 100;
@@ -15,22 +23,13 @@ const useToast = () => {
         if (timer.remainingTime === 0) {
             dispatch(toastActions.hide());
         }
-    }, [timer.remainingTime]);
+    }, [timer.remainingTime, dispatch]);
 
     useEffect(() => {
         return () => {
             close();
         }
-    }, []);
-
-    const show = (message: string, type: 'success' | 'error') => {
-        dispatch(toastActions.show({ message, type }));
-        timer.start(5000, 100);
-    }
-
-    const close = () => {
-        dispatch(toastActions.hide());
-    }
+    }, [close]);
 
     return { show, close }
 
