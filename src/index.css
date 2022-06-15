@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-     --primary-bg-color: bg-green-200;
-}
-
 .success {
      @apply bg-green-400;
 }
@@ -27,7 +23,7 @@ button {
 }
 
 button.primary {
-     @apply var(--primary-bg-color) hover:bg-green-100;
+     @apply bg-green-200 hover:bg-green-100;
 }
 
 button.secondary {
