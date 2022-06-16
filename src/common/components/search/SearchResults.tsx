@@ -1,7 +1,7 @@
 import React from 'react';
 import {GeocodeWebEntity} from '../../types/WebEntities';
 import {useDispatch} from 'react-redux';
-import { uiActions } from '../../../features/map/uiSlice';
+import { uiActions } from '../UI/uiSlice';
 
 type SearchResultsProps = {
     searchResults?: GeocodeWebEntity[]

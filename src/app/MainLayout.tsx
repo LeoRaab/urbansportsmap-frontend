@@ -7,7 +7,7 @@ import Dialog from "../common/components/UI/dialog/Dialog";
 import Toast from "../common/components/UI/toast/Toast";
 import { mapCenterChanged } from "../features/map/mapSlice";
 import MapWrapper from "../features/map/MapWrapper";
-import { selectUi, uiActions } from "../features/map/uiSlice";
+import { selectUi, uiActions } from "../common/components/UI/uiSlice";
 import { MenuIcon, XIcon} from "@heroicons/react/outline";
 
 const MainLayout = () => {

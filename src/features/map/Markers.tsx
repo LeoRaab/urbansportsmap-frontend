@@ -8,7 +8,7 @@ import { hasVenueSportType } from '../../common/util/has-venue-sport-type';
 import { markerIconFactory } from '../../common/util/marker-icon-factory';
 import { selectFilters } from '../filter/filterSlice';
 import { selectMap } from './mapSlice';
-import { uiActions } from './uiSlice';
+import { uiActions } from '../../common/components/UI/uiSlice';
 import { useGetVenuesQuery } from './venuesApi';
 
 type MarkersProps = {

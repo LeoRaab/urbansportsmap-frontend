@@ -5,7 +5,7 @@ import Circle from './Circle';
 import {useDispatch, useSelector} from 'react-redux';
 import { LocationMarker } from '../../common/constants/marker-icon-images';
 import { selectMap, mapCenterChanged } from './mapSlice';
-import { uiActions } from './uiSlice';
+import { uiActions } from '../../common/components/UI/uiSlice';
 
 type MapProps = {
     map?: L.Map

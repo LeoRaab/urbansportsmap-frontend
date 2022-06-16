@@ -6,7 +6,7 @@ import Filter from "../filter/Filter";
 import MapOverlay from "./MapOverlay";
 import { venueRadiusChanged } from "./mapSlice";
 import Teaser from "./Teaser";
-import { selectUi, uiActions } from "./uiSlice";
+import { selectUi, uiActions } from "../../common/components/UI/uiSlice";
 import { AdjustmentsIcon } from "@heroicons/react/outline";
 
 const Home = () => {

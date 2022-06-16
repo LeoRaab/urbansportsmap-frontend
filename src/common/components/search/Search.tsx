@@ -3,7 +3,7 @@ import SearchResults from './SearchResults';
 import SearchBar from './SearchBar';
 import {useDispatch, useSelector} from 'react-redux';
 import { useLazyGetGeocodeQuery } from '../../../features/map/geocodeApi';
-import { selectUi, uiActions } from '../../../features/map/uiSlice';
+import { selectUi, uiActions } from '../UI/uiSlice';
 
 const Search = () => {
     const dispatch = useDispatch();

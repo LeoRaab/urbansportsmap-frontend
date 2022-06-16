@@ -8,7 +8,7 @@ import imageManagerSlice from '../features/image-manager/imageManagerSlice';
 import { imagesApi } from '../features/image-manager/imagesApi';
 import { geocodeApi } from '../features/map/geocodeApi';
 import mapSlice from '../features/map/mapSlice';
-import uiSlice from '../features/map/uiSlice';
+import uiSlice from '../common/components/UI/uiSlice';
 import { venuesApi } from '../features/map/venuesApi';
 import { authApi } from '../features/user/authApi';
 import authSlice from '../features/user/authSlice';
