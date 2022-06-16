@@ -7,12 +7,15 @@ import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import VenueTitle from '../../common/components/UI/VenueTitle';
 import { useLazyGetVenueByIdQuery } from './venuesApi';
 import { ChevronRightIcon } from '@heroicons/react/outline';
+import { useDispatch } from 'react-redux';
+import { uiActions } from '../../common/components/UI/uiSlice';
 
 type TeaserProps = {
     venueId: string;
 }
 
 const Teaser = ({ venueId }: TeaserProps) => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [trigger, {
         data: venue, isLoading, isFetching, isSuccess
@@ -22,7 +25,12 @@ const Teaser = ({ venueId }: TeaserProps) => {
         if (venueId && venueId !== '') {
             trigger(venueId);
         }
-    }, [venueId, trigger])
+    }, [venueId, trigger]);
+
+    const handleDetailClick = () => {
+        navigate('/detail/' + venueId);
+        dispatch(uiActions.allHidden);
+    }
 
     return (
         <div className="h-full relative">
@@ -48,7 +56,7 @@ const Teaser = ({ venueId }: TeaserProps) => {
 
                     <div className="fixed bottom-6 right-2 z-800">
                         <FabButton backgroundColor="bg-green-200"
-                            onFabButtonClick={() => navigate('/detail/' + venue?.id)}>
+                            onClick={handleDetailClick}>
                             <ChevronRightIcon className="h-6 w-6"/>
                         </FabButton>
                     </div>
