@@ -53,7 +53,7 @@ const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSett
 
     return (
         <>
-            <div className="flex flex-col mt-8">
+            <div className="flex flex-col mt-4">
                 {isFavorite &&
                     <IconButton text={'von Favoriten entfernen'} icon={<HeartIconSolid className="icon-size" />} onClick={handleFavoriteClick} />
                 }
