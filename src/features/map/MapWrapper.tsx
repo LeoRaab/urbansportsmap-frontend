@@ -1,13 +1,16 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import L from 'leaflet';
 import Map from './Map';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FabButton from '../../common/components/form-elements/buttons/FabButton';
-import { selectMap } from './mapSlice';
+import { mapCenterChanged, selectMap } from './mapSlice';
 import { LocationMarkerIcon } from '@heroicons/react/outline';
+import { useParams } from 'react-router-dom';
 
 const MapWrapper = () => {
+    const dispatch = useDispatch();
     const [map, setMap] = useState<L.Map>();
+    const params = useParams();
     const mapState = useSelector(selectMap);
 
     const mapRef = useCallback((mapElement: HTMLDivElement) => {
@@ -28,7 +31,14 @@ const MapWrapper = () => {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
         }
-    }, [map])
+    }, [map]);
+
+    useEffect(() => {
+        if (params.coordinates) {
+            const [lat, lng] = params.coordinates.split(',');
+            dispatch(mapCenterChanged({lat, lng}));
+        }
+    }, [dispatch, params.coordinates])
 
     const handleLocateClick = () => {
         /**
@@ -46,7 +56,7 @@ const MapWrapper = () => {
             <div className="relative">
                 <div className="fixed bottom-6 lg:top-3/4 right-2 z-800">
                     <FabButton backgroundColor="bg-amber-200"
-                               onFabButtonClick={handleLocateClick}>
+                               onClick={handleLocateClick}>
                         <LocationMarkerIcon className="icon-size" />
                     </FabButton>
                 </div>
