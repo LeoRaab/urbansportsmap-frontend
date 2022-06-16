@@ -60,7 +60,7 @@ const Login = () => {
                     label="Passwort"
                     validators={[VALIDATOR_MINLENGTH(10)]}
                     type="password"
-                    errorText="Das Passwort muss mindestens 8 Zeichen lang sein!"
+                    errorText="Das Passwort muss mindestens 10 Zeichen lang sein!"
                     onInput={inputHandler}
                 />
                 <div className="mt-8">

@@ -71,11 +71,10 @@ const Signup = () => {
                             id="password"
                             label="Passwort"
                             validators={[
-                                VALIDATOR_MINLENGTH(8),
-                                VALIDATOR_MAXLENGTH(25),
+                                VALIDATOR_MINLENGTH(10)
                             ]}
                             type="text"
-                            errorText="Gib bitte zwischen 8 und 25 Zeichen ein!"
+                            errorText="Gib bitte mindestens 10 Zeichen ein!"
                             onInput={inputHandler}
                         />
                     </form>
