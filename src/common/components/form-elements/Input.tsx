@@ -66,7 +66,7 @@ const Input = ({
 
     useEffect(() => {
         if (!isValid) {
-            setClassName('error');
+            setClassName('invalid');
         } else {
             setClassName('');
         }
@@ -114,7 +114,7 @@ const Input = ({
                 {label}
             </label>
             {formElement}
-            {!isValid && <p className="my-2 font-bold text-sm error">{errorText}</p>}
+            {!isValid && <p className="my-2 font-bold text-sm invalid">{errorText}</p>}
         </div>
     );
 };
