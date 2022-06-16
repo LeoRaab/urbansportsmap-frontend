@@ -36,7 +36,7 @@ import PageNotFound from '../common/components/PageNotFound';
 import useAuth from '../common/hooks/use-auth';
 import Detail from '../features/detail/Detail';
 import Favorites from '../features/favorites/Favorites';
-import Home from '../features/map/Home';
+import MapUI from '../features/map/MapUI';
 import { selectUserId } from '../features/user/authSlice';
 import Login from '../features/user/Login';
 import Profile from '../features/user/Profile';
@@ -61,7 +61,7 @@ const App = () => {
             <main className="h-screen">
                 <Routes>
                     <Route element={<MainLayout />}>
-                        <Route index element={<Home />} />
+                        <Route index element={<MapUI />} />
 
                         <Route element={<PageLayout />}>
                             <Route path="/detail/:venueId" element={<Detail />} />
