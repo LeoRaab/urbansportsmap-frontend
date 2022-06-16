@@ -3,14 +3,16 @@ import Button from './Button';
 
 type PrimaryButtonProps = {
     text: string,
-    icon: JSX.Element,    
-    onClick: () => void
+    icon: JSX.Element, 
+    href?: string
+    to?: string,
+    onClick?: () => void,
 }
 
-const IconButton = ({ text, icon, onClick }: PrimaryButtonProps) => {
+const IconButton = ({ text, icon, href, to, onClick }: PrimaryButtonProps) => {
 
     return (
-        <Button color="transparent" type="button" onClick={onClick}>
+        <Button color="transparent" type="button" href={href} to={to} onClick={onClick}>
             <div className="flex items-center">
                 {icon}
                 <p>{text}</p>
