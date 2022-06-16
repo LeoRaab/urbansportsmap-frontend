@@ -51,17 +51,17 @@ const Menu = ({ isShowing }: MenuProps) => {
 
                     <MenuItem destination={'/'}
                         text={'Home'}
-                        icon={<MapIcon />} />
+                        icon={<MapIcon className="icon-size" />} />
 
                     {userId &&
                         <>
                             <MenuItem destination={'/favorites'}
                                 text={'Favoriten'}
-                                icon={<HeartIcon />} />
+                                icon={<HeartIcon className="icon-size" />} />
 
                             <MenuItem destination={'/profile'}
                                 text={'Profile'}
-                                icon={<UserIcon />} />
+                                icon={<UserIcon className="icon-size" />} />
                         </>
                     }
                 </div>

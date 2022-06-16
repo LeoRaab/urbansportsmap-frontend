@@ -92,7 +92,7 @@ const Detail = () => {
             <div className="fixed bottom-6 right-2 z-800">
                 <FabButton backgroundColor="bg-green-200"
                     onFabButtonClick={() => navigate('/' + venue?.location.lat + ',' + venue?.location.lng)}>
-                    <MapIcon className="h-6 w-6" />
+                    <MapIcon className="icon-size" />
                 </FabButton>
             </div>
 

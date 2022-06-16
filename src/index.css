@@ -87,3 +87,7 @@ pwa-camera-modal-instance {
 .range-slider::-moz-focus-outer {
      border: 0;
 }
+
+.icon-size {
+     @apply h-6 w-6;
+}

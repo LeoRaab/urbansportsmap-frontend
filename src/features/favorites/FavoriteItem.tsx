@@ -26,11 +26,11 @@ const FavoriteItem = ({venue}: FavoriteItemProps) => {
                     <div className="flex flex-col">
                         <button className="shadow-md rounded mb-2 p-2 bg-slate-100"
                                 onClick={() => navigate('/' + venue?.location.lat + ',' + venue?.location.lng)}>
-                            <MapIcon className="h-6 w-6" />
+                            <MapIcon className="icon-size" />
                         </button>
                         <button className="shadow-md rounded mt-2 p-2 bg-slate-100"
                                 onClick={() => navigate('/detail/' + venue?.id)}>
-                            <ChevronRightIcon className="h-6 w-6" />
+                            <ChevronRightIcon className="icon-size" />
                         </button>
                     </div>
                 </div>
