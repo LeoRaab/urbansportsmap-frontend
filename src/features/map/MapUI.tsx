@@ -22,7 +22,7 @@ const MapUI = () => {
 
             <div className="fixed bottom-24 lg:top-1/2 right-2 z-800">
                 <FabButton backgroundColor="bg-green-200"
-                    onFabButtonClick={() => dispatch(uiActions.filterShown())}>
+                    onClick={() => dispatch(uiActions.filterShown())}>
                     <AdjustmentsIcon className="icon-size" />
                 </FabButton>
             </div>
