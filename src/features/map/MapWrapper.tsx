@@ -3,9 +3,8 @@ import L from 'leaflet';
 import Map from './Map';
 import { useSelector } from 'react-redux';
 import FabButton from '../../common/components/form-elements/buttons/FabButton';
-import { ICONS } from '../../common/constants/Icons';
 import { selectMap } from './mapSlice';
-import Icon from '../../common/components/UI/Icon';
+import { LocationMarkerIcon } from '@heroicons/react/outline';
 
 const MapWrapper = () => {
     const [map, setMap] = useState<L.Map>();
@@ -48,7 +47,7 @@ const MapWrapper = () => {
                 <div className="fixed bottom-6 lg:top-3/4 right-2 z-800">
                     <FabButton backgroundColor="bg-amber-200"
                                onFabButtonClick={handleLocateClick}>
-                        <Icon icon={ICONS.LOCATION}/>
+                        <LocationMarkerIcon className="h-6 w-6" />
                     </FabButton>
                 </div>
             </div>

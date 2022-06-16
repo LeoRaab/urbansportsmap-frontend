@@ -1,12 +1,13 @@
 import React from 'react';
-import MenuItem from './MenuItem';
 import { useNavigate } from 'react-router-dom';
-import { ICONS } from '../../constants/Icons';
 import { useDispatch, useSelector } from 'react-redux';
 import useAuth from '../../hooks/use-auth';
 import { uiActions } from '../../../features/map/uiSlice';
 import { selectUserId } from '../../../features/user/authSlice';
+import MenuItem from './MenuItem';
 import Button from '../form-elements/buttons/Button';
+import { MapIcon, UserIcon } from '@heroicons/react/outline';
+import { HeartIcon } from '@heroicons/react/solid';
 
 type MenuProps = {
     isShowing: boolean
@@ -50,24 +51,19 @@ const Menu = ({ isShowing }: MenuProps) => {
 
                     <MenuItem destination={'/'}
                         text={'Home'}
-                        icon={ICONS.MAP} />
+                        icon={<MapIcon />} />
 
                     {userId &&
                         <>
                             <MenuItem destination={'/favorites'}
                                 text={'Favoriten'}
-                                icon={ICONS.HEART_FILLED} />
+                                icon={<HeartIcon />} />
 
                             <MenuItem destination={'/profile'}
                                 text={'Profile'}
-                                icon={ICONS.USER} />
-
-                            <MenuItem destination={'/settings'}
-                                text={'Settings'}
-                                icon={ICONS.SETTINGS} />
+                                icon={<UserIcon />} />
                         </>
                     }
-
                 </div>
 
 

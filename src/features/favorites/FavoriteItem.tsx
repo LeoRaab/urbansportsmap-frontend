@@ -2,9 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SportTypesList from '../../common/components/sportstypes-list/SportTypesList';
 import Card from '../../common/components/UI/Card';
-import Icon from '../../common/components/UI/Icon';
-import { ICONS } from '../../common/constants/Icons';
 import Venue from '../../common/types/Venue';
+import { MapIcon, ChevronRightIcon } from "@heroicons/react/outline";
 
 type FavoriteItemProps = {
     venue?: Venue;
@@ -27,11 +26,11 @@ const FavoriteItem = ({venue}: FavoriteItemProps) => {
                     <div className="flex flex-col">
                         <button className="shadow-md rounded mb-2 p-2 bg-slate-100"
                                 onClick={() => navigate('/' + venue?.location.lat + ',' + venue?.location.lng)}>
-                            <Icon icon={ICONS.MAP}/>
+                            <MapIcon className="h-6 w-6" />
                         </button>
                         <button className="shadow-md rounded mt-2 p-2 bg-slate-100"
                                 onClick={() => navigate('/detail/' + venue?.id)}>
-                            <Icon icon={ICONS.INFO}/>
+                            <ChevronRightIcon className="h-6 w-6" />
                         </button>
                     </div>
                 </div>

@@ -1,14 +1,12 @@
-import {NavLink} from 'react-router-dom';
 import React from 'react';
-import Icon from '../UI/Icon';
-import {CustomIcon} from '../../types/CustomIcon';
+import {NavLink} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import { uiActions } from '../../../features/map/uiSlice';
 
 type MenuItemProps = {
     destination: string,
     text: string,
-    icon: CustomIcon
+    icon: JSX.Element
 }
 
 const MenuItem = ({destination, text, icon}: MenuItemProps) => {
@@ -17,7 +15,7 @@ const MenuItem = ({destination, text, icon}: MenuItemProps) => {
     return (
         <NavLink to={destination} onClick={() => dispatch(uiActions.menuHidden())}>
             <div className="flex items-center w-full border-slate-100 border-b px-4 py-8">
-                <Icon icon={icon}/>
+                {icon}
                 <p className="text-xl ml-8">{text}</p>
             </div>
         </NavLink>

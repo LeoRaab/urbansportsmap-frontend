@@ -1,6 +1,5 @@
-import Icon from "../../common/components/UI/Icon";
-import { ICONS } from "../../common/constants/Icons";
 import VenueImage from "../../common/types/VenueImage";
+import { XIcon } from "@heroicons/react/outline";
 
 type ThumbnailProps = {
     image: VenueImage,
@@ -13,7 +12,7 @@ const Thumbnail = ({ image, id, onThumbnailClick }: ThumbnailProps) => {
         <div className="mr-1 mt-2 relative">
             {onThumbnailClick &&
                 <div className="absolute z-800 top-0 right-0 bg-white/90 rounded text-red-500 cursor-pointer" onClick={() => onThumbnailClick(id)}>
-                    <Icon icon={ICONS.CLOSE} />
+                    <XIcon className="h-6 w-6" />
                 </div>
             }
             <img src={image.url} alt={image.altText || image.url} className="w-40" />

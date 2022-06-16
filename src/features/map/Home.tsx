@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import Search from "../../common/components/search/Search";
 import FabButton from "../../common/components/form-elements/buttons/FabButton";
-import Icon from "../../common/components/UI/Icon";
 import RangeSlider from "../../common/components/UI/RangeSlider";
-import { ICONS } from "../../common/constants/Icons";
 import Filter from "../filter/Filter";
 import MapOverlay from "./MapOverlay";
 import { venueRadiusChanged } from "./mapSlice";
 import Teaser from "./Teaser";
 import { selectUi, uiActions } from "./uiSlice";
+import { AdjustmentsIcon } from "@heroicons/react/outline";
 
 const Home = () => {
 
@@ -24,7 +23,7 @@ const Home = () => {
             <div className="fixed bottom-24 lg:top-1/2 right-2 z-800">
                 <FabButton backgroundColor="bg-green-200"
                     onFabButtonClick={() => dispatch(uiActions.filterShown())}>
-                    <Icon icon={ICONS.FILTER} />
+                    <AdjustmentsIcon className="h-6 w-6" />
                 </FabButton>
             </div>
 
