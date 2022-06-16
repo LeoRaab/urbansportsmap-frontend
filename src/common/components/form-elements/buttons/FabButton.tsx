@@ -3,12 +3,12 @@ import React, {ReactNode} from 'react';
 type FabButtonProps = {
     backgroundColor: string,
     children: ReactNode,
-    onFabButtonClick: () => void;
+    onClick: () => void;
 }
 
-const FabButton = ({backgroundColor, children, onFabButtonClick}: FabButtonProps) => {
+const FabButton = ({backgroundColor, children, onClick}: FabButtonProps) => {
     return (
-        <button onClick={onFabButtonClick} className={backgroundColor + " rounded-full p-4 shadow-lg"}>
+        <button onClick={onClick} className={backgroundColor + " rounded-full p-4 shadow-lg"}>
             {children}
         </button>
     )
