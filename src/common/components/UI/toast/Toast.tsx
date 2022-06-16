@@ -17,7 +17,7 @@ const Toast = () => {
                         <p className='font-semibold'>{toastState.message}</p>
                         <div className="absolute flex justify-center right-2 z-1100">
                             <Button color="transparent" type="button" onClick={toast.close}>
-                                <XIcon />
+                                <XIcon className="icon-size"/>
                             </Button>
                         </div>
                     </div>

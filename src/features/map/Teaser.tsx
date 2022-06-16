@@ -6,7 +6,7 @@ import ImageSwiper from '../../common/components/UI/ImageSwiper';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import VenueTitle from '../../common/components/UI/VenueTitle';
 import { useLazyGetVenueByIdQuery } from './venuesApi';
-import { InformationCircleIcon } from '@heroicons/react/outline';
+import { ChevronRightIcon } from '@heroicons/react/outline';
 
 type TeaserProps = {
     venueId: string;
@@ -49,7 +49,7 @@ const Teaser = ({ venueId }: TeaserProps) => {
                     <div className="fixed bottom-6 right-2 z-800">
                         <FabButton backgroundColor="bg-green-200"
                             onFabButtonClick={() => navigate('/detail/' + venue?.id)}>
-                            <InformationCircleIcon className="h-6 w-6"/>
+                            <ChevronRightIcon className="h-6 w-6"/>
                         </FabButton>
                     </div>
                 </>

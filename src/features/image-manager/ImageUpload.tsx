@@ -9,6 +9,7 @@ import { imageManagerActions } from './imageManagerSlice';
 import { useUploadImagesMutation } from './imagesApi';
 import { UploadIcon } from '@heroicons/react/outline';
 import Button from '../../common/components/form-elements/buttons/Button';
+import IconButton from '../../common/components/form-elements/buttons/IconButton';
 
 type ImageUploadProps = {
     venueId: string
@@ -89,12 +90,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
             </div>
             <div className="mt-4">
                 <input ref={filePickerRef} id="images" type="file" className="hidden" accept=".jpg,.jpeg,.png" onChange={handleImagesSelected} multiple />
-                <Button color='white' type='button' onClick={handleSelectImagesClick}>
-                    <div className="flex items-center">
-                        <UploadIcon/>
-                        <p>Bilder ausw&auml;hlen</p>
-                    </div>
-                </Button>
+                <IconButton text="Bilder auswählen" icon={<UploadIcon className="icon-size"/>} onClick={handleSelectImagesClick} />
             </div>
 
             <div className="flex justify-between my-8">

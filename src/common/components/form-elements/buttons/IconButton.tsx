@@ -13,8 +13,10 @@ const IconButton = ({ text, icon, href, to, onClick }: PrimaryButtonProps) => {
 
     return (
         <Button color="transparent" type="button" href={href} to={to} onClick={onClick}>
-            <div className="flex items-center">
-                {icon}
+            <div className="flex items-center text-base">
+                <div className="mr-2">
+                    {icon}
+                </div>                
                 <p>{text}</p>
             </div>
         </Button>

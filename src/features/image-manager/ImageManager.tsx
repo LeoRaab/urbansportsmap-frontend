@@ -20,7 +20,7 @@ const ImageManager = ({ venueId }: ImageManagerProps) => {
         <Modal>
             <div className="p-4 w-11/12 bg-white rounded relative">
                 <div className="absolute flex justify-center right-4 top-4 z-1100">
-                    <IconButton text="" icon={<XIcon/>} onClick={() => dispatch(imageManagerActions.hide())}/>    
+                    <IconButton text="" icon={<XIcon className="icon-size"/>} onClick={() => dispatch(imageManagerActions.hide())}/>    
                 </div>
 
                 {imageManager.startScreen &&
@@ -28,11 +28,9 @@ const ImageManager = ({ venueId }: ImageManagerProps) => {
                         <h2 className="my-6 text-xl">Bilder bearbeiten</h2>
 
                         <div className="mt-4">
-                            <IconButton text="Bilder hochladen" icon={<UploadIcon/>} onClick={() => dispatch(imageManagerActions.selectImages())}/>
-                            <div className="my-3"></div>
-                            <IconButton text="Photo aufnehmen" icon={<CameraIcon/>} onClick={() => dispatch(imageManagerActions.show())}/>
-                            <div className="my-3"></div>
-                            <IconButton text="Bilder auswählen" icon={<PhotographIcon/>} onClick={() => dispatch(imageManagerActions.editImages())}/>
+                            <IconButton text="Bilder hochladen" icon={<UploadIcon className="icon-size"/>} onClick={() => dispatch(imageManagerActions.selectImages())}/>
+                            <IconButton text="Photo aufnehmen" icon={<CameraIcon className="icon-size"/>} onClick={() => dispatch(imageManagerActions.show())}/>
+                            <IconButton text="Bilder auswählen" icon={<PhotographIcon className="icon-size"/>} onClick={() => dispatch(imageManagerActions.editImages())}/>
                         </div>
 
                         <div className="flex justify-center my-8">

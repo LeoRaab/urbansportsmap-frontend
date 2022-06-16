@@ -16,10 +16,10 @@ const Dialog = () => {
                     <p className="my-2">{dialogState.message}</p>
                     <div className="flex justify-between my-4">
                         <div className="w-5/12">
-                            <IconButton text="Nein" icon={<XIcon />} onClick={dialog.onReject} />
+                            <IconButton text="Nein" icon={<XIcon className="icon-size"/>} onClick={dialog.onReject} />
                         </div>
-                        <div className="w-5/12 text-red-600">
-                            <IconButton text="Ja" icon={<CheckIcon />} onClick={dialog.onAccept} />
+                        <div className="w-5/12 text-red-400">
+                            <IconButton text="Ja" icon={<CheckIcon className="icon-size"/>} onClick={dialog.onAccept} />
                         </div>
                     </div>
                 </div>
