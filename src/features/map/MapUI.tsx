@@ -9,7 +9,7 @@ import Teaser from "./Teaser";
 import { selectUi, uiActions } from "../../common/components/UI/uiSlice";
 import { AdjustmentsIcon } from "@heroicons/react/outline";
 
-const Home = () => {
+const MapUI = () => {
 
     const dispatch = useDispatch();
     const ui = useSelector(selectUi);
@@ -45,4 +45,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default MapUI;
