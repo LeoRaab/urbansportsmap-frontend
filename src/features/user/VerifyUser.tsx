@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import GraphicMessage from "../../common/components/UI/GraphicMessage";
 import LoadingSpinner from "../../common/components/UI/LoadingSpinner";
 import PageWrapper from "../../common/components/UI/PageWrapper";
-import { ILLUSTRATIONS } from "../../common/constants/Illustrations";
+import { ILLUSTRATIONS } from "../../common/constants/illustrations";
 import { useLazyVerifyQuery } from "./authApi";
 
 const VerifyUser = () => {

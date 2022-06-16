@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Input from "../../common/components/form-elements/Input";
 import GraphicMessage from "../../common/components/UI/GraphicMessage";
 import PageWrapper from "../../common/components/UI/PageWrapper";
-import { ILLUSTRATIONS } from "../../common/constants/Illustrations";
+import { ILLUSTRATIONS } from "../../common/constants/illustrations";
 import { useForm } from "../../common/hooks/use-form";
 import { VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_EMAIL } from "../../common/util/form-validators";
 import { useSignupMutation } from "./authApi";

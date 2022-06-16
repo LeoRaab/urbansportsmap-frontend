@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import GraphicMessage from '../../common/components/UI/GraphicMessage';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import PageWrapper from '../../common/components/UI/PageWrapper';
-import { ILLUSTRATIONS } from '../../common/constants/Illustrations';
+import { ILLUSTRATIONS } from '../../common/constants/illustrations';
 import Venue from '../../common/types/Venue';
 import { hasVenueSportType } from '../../common/util/has-venue-sport-type';
 import Filter from '../filter/Filter';
