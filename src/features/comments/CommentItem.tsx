@@ -5,7 +5,7 @@ import Card from '../../common/components/UI/Card';
 import useToast from '../../common/hooks/use-toast';
 import COLOR_SCHEME from '../../common/types/ColorScheme';
 import VenueComment from '../../common/types/VenueComment';
-import { selectUserId } from '../user/authSlice';
+import { selectUserId } from '../user/userSlice';
 import CommentForm from './CommentForm';
 import { useUpdateCommentMutation, useRemoveCommentMutation } from './commentsApi';
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';

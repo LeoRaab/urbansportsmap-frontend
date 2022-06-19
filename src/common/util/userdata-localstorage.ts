@@ -1,11 +1,11 @@
-import { AuthState } from "../../features/user/authSlice";
+import { UserState } from "../../features/user/userSlice";
 
-export const getUserDataFromStorage = (): AuthState => {
+export const getUserDataFromStorage = (): UserState => {
     const userDataJSON = localStorage.getItem('userData');
 
     if (userDataJSON) {
         try {
-            const userData = JSON.parse(userDataJSON) as AuthState;              
+            const userData = JSON.parse(userDataJSON) as UserState;              
             
             if (userData.expirationDate && new Date(userData.expirationDate) <= new Date()) {
                 throw Error();
@@ -38,7 +38,7 @@ export const removeUserDataFromStorage = (): void => {
     localStorage.removeItem('userData');
 }
 
-export const setUserDataToStorage = (userData: AuthState): void => {
+export const setUserDataToStorage = (userData: UserState): void => {
     localStorage.setItem(
         'userData', 
         JSON.stringify(

@@ -37,7 +37,7 @@ import useAuth from '../common/hooks/use-auth';
 import Detail from '../features/detail/Detail';
 import Favorites from '../features/favorites/Favorites';
 import MapUI from '../features/map/MapUI';
-import { selectUserId } from '../features/user/authSlice';
+import { selectUserId } from '../features/user/userSlice';
 import Login from '../features/user/Login';
 import Profile from '../features/user/Profile';
 import Signup from '../features/user/Signup';

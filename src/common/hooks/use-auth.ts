@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLoginMutation } from "../../features/user/authApi";
-import { selectExpirationDate, AuthState, authActions } from "../../features/user/authSlice";
+import { useLoginMutation, selectExpirationDate, UserState, userActions } from "../../features/user/userSlice";
 import useLocalStorage from "./use-local-storage";
 
 const useAuth = () => {
@@ -9,7 +8,7 @@ const useAuth = () => {
     const [loginUser] = useLoginMutation();
     const sessionExpiration = useSelector(selectExpirationDate);
 
-    const { value: storedUserData, setValue: setStoredUserData, removeFromStorage: removeUserData } = useLocalStorage<AuthState>({ key: 'userData' });
+    const { value: storedUserData, setValue: setStoredUserData, removeFromStorage: removeUserData } = useLocalStorage<UserState>({ key: 'userData' });
 
     const login = async (email: string, password: string) => {
         try {
@@ -23,7 +22,7 @@ const useAuth = () => {
     }
 
     const logout = () => {
-        dispatch(authActions.removeCredentials());
+        dispatch(userActions.removeCredentials());
         removeUserData();
         setStoredUserData(null);
     }
@@ -31,12 +30,12 @@ const useAuth = () => {
     useEffect(() => {
         if (storedUserData && storedUserData.expirationDate) {
             if (new Date(storedUserData.expirationDate) >= new Date()) {
-                dispatch(authActions.setCredentials(storedUserData));
+                dispatch(userActions.setCredentials(storedUserData));
             } else {
                 logout();
             }
         }
-    }, [storedUserData]);
+    }, [storedUserData, dispatch, logout ]);
 
     useEffect(() => {
         if (sessionExpiration) {
@@ -47,7 +46,7 @@ const useAuth = () => {
                 logout();
             }, clearSessionIn)
         }
-    }, [sessionExpiration]);
+    }, [sessionExpiration, logout]);
 
     return { storedUserData, login, logout }
 }
