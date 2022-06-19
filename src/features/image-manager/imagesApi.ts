@@ -1,5 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { RootState } from '../../app/store';
+import apiSlice from '../../app/apiSlice';
 import VenueImage from '../../common/types/VenueImage';
 
 interface DBVenueImage {
@@ -22,19 +21,7 @@ const venueImagesFactory = (images: DBVenueImage[]): VenueImage[] => {
     })
 }
 
-export const imagesApi = createApi({
-    reducerPath: 'imagesApi',
-    baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5000/api/images/',
-        prepareHeaders: (headers, { getState }) => {
-            const token = (getState() as RootState).auth.token;
-            if (token) {
-                headers.set('Authorization', `Bearer ${token}`)
-            }
-            return headers
-        }
-    }),
-    tagTypes: ['Images'],
+export const imagesApi = apiSlice.enhanceEndpoints({addTagTypes: ['Images']}).injectEndpoints({
     endpoints: builder => ({
         getImagesByVenue: builder.query<VenueImage[], string>({
             query: (venueId) => ({ url: `/venue/${venueId}` }),

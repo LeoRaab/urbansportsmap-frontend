@@ -5,7 +5,6 @@ import { commentsApi } from '../features/comments/commentsApi';
 import { favoritesApi } from '../features/favorites/favoritesApi';
 import filterSlice from '../features/filter/filterSlice';
 import imageManagerSlice from '../features/image-manager/imageManagerSlice';
-import { imagesApi } from '../features/image-manager/imagesApi';
 import { geocodeApi } from '../features/map/geocodeApi';
 import mapSlice from '../features/map/mapSlice';
 import uiSlice from '../common/components/UI/uiSlice';
@@ -24,16 +23,14 @@ const store = configureStore({
         [apiSlice.reducerPath]: apiSlice.reducer,
         [geocodeApi.reducerPath]: geocodeApi.reducer,
         [favoritesApi.reducerPath]: favoritesApi.reducer,
-        [commentsApi.reducerPath]: commentsApi.reducer,
-        [imagesApi.reducerPath]: imagesApi.reducer,
+        [commentsApi.reducerPath]: commentsApi.reducer
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(
             apiSlice.middleware, 
             geocodeApi.middleware, 
             favoritesApi.middleware,
-            commentsApi.middleware,
-            imagesApi.middleware
+            commentsApi.middleware
         )
 });
 
