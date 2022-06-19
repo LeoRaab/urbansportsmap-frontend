@@ -2,20 +2,22 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation, selectExpirationDate, UserState, userActions } from "../../features/user/userSlice";
 import useLocalStorage from "./use-local-storage";
+import useToast from "./use-toast";
 
 const useAuth = () => {
     const dispatch = useDispatch();
-    const [loginUser] = useLoginMutation();
+    const [loginUser, {isLoading, isError, error}] = useLoginMutation();
     const sessionExpiration = useSelector(selectExpirationDate);
-
+    const toast = useToast();
     const { value: storedUserData, setValue: setStoredUserData, removeFromStorage: removeUserData } = useLocalStorage<UserState>({ key: 'userData' });
 
-    const login = async (email: string, password: string) => {
+    const login = async (email: string, password: string) => {        
         try {
-            const userResponse = await loginUser({ email, password }).unwrap();
-            const expirationDate = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();
+            const { token, userId, message } = await loginUser({ email, password }).unwrap();
+            const expirationDate = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();            
+            toast.show(message, 'success');
 
-            setStoredUserData({ ...userResponse, expirationDate });
+            setStoredUserData({ userId, token, expirationDate });
         } catch (e) {
             console.log(e);
         }
