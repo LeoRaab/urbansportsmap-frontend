@@ -15,7 +15,7 @@ const VerifyUser = () => {
         if (verifyString) {
             verifyUser(verifyString);
         }
-    }, [verifyString]);
+    }, [verifyString, verifyUser]);
 
     return (
         <>

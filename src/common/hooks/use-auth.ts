@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation, selectExpirationDate, UserState, userActions } from "../../features/user/userSlice";
 import useLocalStorage from "./use-local-storage";
@@ -21,11 +21,11 @@ const useAuth = () => {
         }
     }
 
-    const logout = () => {
+    const logout = useCallback(() => {
         dispatch(userActions.removeCredentials());
         removeUserData();
         setStoredUserData(null);
-    }
+    }, [dispatch, removeUserData, setStoredUserData]);
 
     useEffect(() => {
         if (storedUserData && storedUserData.expirationDate) {
