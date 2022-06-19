@@ -4,7 +4,7 @@ import GraphicMessage from "../../common/components/UI/GraphicMessage";
 import PageWrapper from "../../common/components/UI/PageWrapper";
 import { ILLUSTRATIONS } from "../../common/constants/illustrations";
 import { useForm } from "../../common/hooks/use-form";
-import { VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_EMAIL } from "../../common/util/form-validators";
+import { VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_EMAIL, VALIDATOR_CONFIRM_PASSWORD } from "../../common/util/form-validators";
 import { useSignupMutation } from "./userSlice";
 
 const Signup = () => {
@@ -13,14 +13,22 @@ const Signup = () => {
 
     const { formState, inputHandler } = useForm(
         {
+            name: {
+                value: '',
+                isValid: false
+            },
             email: {
-                value: "",
+                value: '',
                 isValid: false,
             },
             password: {
-                value: "",
+                value: '',
                 isValid: false,
             },
+            confirmPassword: {
+                value: '',
+                isValid: false
+            }
         },
         true
     );
@@ -69,12 +77,23 @@ const Signup = () => {
                         <Input
                             element="input"
                             id="password"
+                            type="password"
                             label="Passwort"
                             validators={[
                                 VALIDATOR_MINLENGTH(10)
-                            ]}
-                            type="text"
+                            ]}                            
                             errorText="Gib bitte mindestens 10 Zeichen ein!"
+                            onInput={inputHandler}
+                        />
+                         <Input
+                            element="input"
+                            id="confirmPassword"
+                            type="password"
+                            label="Passwort wiederholen"
+                            validators={[
+                                VALIDATOR_CONFIRM_PASSWORD(formState.inputs.password.value)
+                            ]}
+                            errorText="Die beiden Passwörter müssen übereinstimmen!"
                             onInput={inputHandler}
                         />
                     </form>
