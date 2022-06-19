@@ -7,7 +7,7 @@ import MapOverlay from "./MapOverlay";
 import { venueRadiusChanged } from "./mapSlice";
 import Teaser from "./Teaser";
 import { selectUi, uiActions } from "../../common/components/UI/uiSlice";
-import { AdjustmentsIcon } from "@heroicons/react/outline";
+import { AdjustmentsIcon, LocationMarkerIcon } from "@heroicons/react/outline";
 
 const MapUI = () => {
 
@@ -20,11 +20,20 @@ const MapUI = () => {
                 <Search />
             </div>
 
-            <div className="fixed bottom-24 lg:top-1/2 right-2 z-800">
-                <FabButton backgroundColor="bg-green-200"
-                    onClick={() => dispatch(uiActions.filterShown())}>
-                    <AdjustmentsIcon className="icon-size" />
-                </FabButton>
+            <div className="fixed flex flex-col lg:flex bottom-24 lg:top-6 right-2 lg:right-1/4 z-800">
+                <div className="">
+                    <FabButton backgroundColor="bg-green-200"
+                        onClick={() => dispatch(uiActions.filterShown())}>
+                        <AdjustmentsIcon className="icon-size" />
+                    </FabButton>
+                </div>
+
+                <div className="">
+                        <FabButton backgroundColor="bg-amber-200"
+                                onClick={() => console.log('alfs')}>
+                            <LocationMarkerIcon className="icon-size" />
+                        </FabButton>
+                    </div>
             </div>
 
             <MapOverlay isShowing={ui.isFilterShowing}

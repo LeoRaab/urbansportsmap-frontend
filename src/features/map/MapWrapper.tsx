@@ -52,15 +52,6 @@ const MapWrapper = () => {
             <div ref={mapRef} className="h-screen">
                 <Map map={map}/>
             </div>
-
-            <div className="relative">
-                <div className="fixed bottom-6 lg:top-3/4 right-2 z-800">
-                    <FabButton backgroundColor="bg-amber-200"
-                               onClick={handleLocateClick}>
-                        <LocationMarkerIcon className="icon-size" />
-                    </FabButton>
-                </div>
-            </div>
         </>
     )
 }
