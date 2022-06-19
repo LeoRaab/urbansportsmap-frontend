@@ -12,7 +12,7 @@ import CommentForm from '../comments/CommentForm';
 import { useLazyGetCommentsQuery, useAddCommentMutation } from '../comments/commentsApi';
 import CommentsList from '../comments/CommentsList';
 import { useLazyGetVenueByIdQuery } from '../map/venuesApi';
-import { selectUserId } from '../user/authSlice';
+import { selectUserId } from '../user/userSlice';
 import DetailSettings from './DetailSettings';
 import {MapIcon} from '@heroicons/react/outline';
 
