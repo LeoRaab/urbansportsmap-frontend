@@ -1,7 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
 import dialogSlice from '../common/components/UI/dialog/dialogSlice';
 import toastSlice from '../common/components/UI/toast/toastSlice';
-import { favoritesApi } from '../features/favorites/favoritesApi';
 import filterSlice from '../features/filter/filterSlice';
 import imageManagerSlice from '../features/image-manager/imageManagerSlice';
 import { geocodeApi } from '../features/map/geocodeApi';
@@ -20,14 +19,12 @@ const store = configureStore({
         dialog: dialogSlice,
         toast: toastSlice,
         [apiSlice.reducerPath]: apiSlice.reducer,
-        [geocodeApi.reducerPath]: geocodeApi.reducer,
-        [favoritesApi.reducerPath]: favoritesApi.reducer
+        [geocodeApi.reducerPath]: geocodeApi.reducer
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(
             apiSlice.middleware, 
-            geocodeApi.middleware, 
-            favoritesApi.middleware
+            geocodeApi.middleware
         )
 });
 

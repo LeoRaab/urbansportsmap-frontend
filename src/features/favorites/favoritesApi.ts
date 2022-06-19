@@ -1,20 +1,7 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react';
-import { RootState } from '../../app/store';
+import apiSlice from '../../app/apiSlice';
 import Venue from '../../common/types/Venue';
 
-export const favoritesApi = createApi({
-    reducerPath: 'favoritesApi',
-    baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5000/api/favorites/',
-        prepareHeaders: (headers, {getState}) => {
-            const token = (getState() as RootState).auth.token;
-            if (token) {
-                headers.set('Authorization', `Bearer ${token}`)
-            }
-            return headers
-        }
-    }),
-    tagTypes: ['Favorites'],
+export const favoritesApi = apiSlice.enhanceEndpoints({ addTagTypes: ['Favorites'] }).injectEndpoints({
     endpoints: builder => ({
         getFavorites: builder.query<Venue[], void>({
             query: () => '',
