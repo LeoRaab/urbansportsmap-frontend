@@ -5,7 +5,7 @@ import PageWrapper from "../../common/components/UI/PageWrapper";
 import { ILLUSTRATIONS } from "../../common/constants/illustrations";
 import { useForm } from "../../common/hooks/use-form";
 import { VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_EMAIL } from "../../common/util/form-validators";
-import { useSignupMutation } from "./authApi";
+import { useSignupMutation } from "./userSlice";
 
 const Signup = () => {
     const [signup, { isSuccess, error }] = useSignupMutation();

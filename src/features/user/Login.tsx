@@ -8,7 +8,7 @@ import useAuth from "../../common/hooks/use-auth";
 import { useForm } from "../../common/hooks/use-form";
 import useRedirectPath from "../../common/hooks/use-redirect-path";
 import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "../../common/util/form-validators";
-import { selectUserId } from "./authSlice";
+import { selectUserId } from "./userSlice";
 
 const Login = () => {
     const navigate = useNavigate();

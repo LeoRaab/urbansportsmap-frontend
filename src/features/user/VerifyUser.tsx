@@ -4,7 +4,7 @@ import GraphicMessage from "../../common/components/UI/GraphicMessage";
 import LoadingSpinner from "../../common/components/UI/LoadingSpinner";
 import PageWrapper from "../../common/components/UI/PageWrapper";
 import { ILLUSTRATIONS } from "../../common/constants/illustrations";
-import { useLazyVerifyQuery } from "./authApi";
+import { useLazyVerifyQuery } from "./userSlice";
 
 const VerifyUser = () => {
     const params = useParams();
