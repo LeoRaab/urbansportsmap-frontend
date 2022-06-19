@@ -1,6 +1,15 @@
-import { UploadImage } from '../types/Images';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { useState } from 'react';
+
+interface ImageInterface {
+    path: string
+}
+
+class UploadImage implements ImageInterface {
+    constructor(public path: string,
+                public format: string) {
+    }
+}
 
 const useCamera = () => {
 
