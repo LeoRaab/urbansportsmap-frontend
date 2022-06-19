@@ -18,9 +18,10 @@ export const toastSlice = createSlice({
     name: 'toast',
     initialState,
     reducers: {
-        show: (state, { payload: { message } }: PayloadAction<{ message: string, type: 'success' | 'error' }>) => {
+        show: (state, { payload: { message, type } }: PayloadAction<{ message: string, type: 'success' | 'error' }>) => {
             state.isVisible = true;
             state.message = message;
+            state.type = type;
             state.currentWidth = 100;
         },
         hide: state => {
