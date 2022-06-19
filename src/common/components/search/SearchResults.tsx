@@ -16,15 +16,11 @@ const SearchResults = ({searchResults}: SearchResultsProps) => {
         const lngData = event.currentTarget.getAttribute('data-lng');
 
         if (latData !== null && lngData !== null) {
-            const lat = parseFloat(latData);
-            const lng = parseFloat(lngData);
+            const coordinates = latData + ',' + lngData;
 
             dispatch(uiActions.searchResultsHidden());
             dispatch(
-                mapCenterChanged({
-                    lat,
-                    lng
-                })
+                mapCenterChanged({coordinates})
             );
         } else {
             console.log('Lat, lng from SearchResult is null!');
@@ -37,7 +33,7 @@ const SearchResults = ({searchResults}: SearchResultsProps) => {
                 searchResults.map((searchResult, key) =>
                     <div onClick={handleSearchResultClick}
                          key={key}
-                         data-lat={searchResult.coordinates[1]}
+                         data-coordinates={searchResult.coordinates[1]}
                          data-lng={searchResult.coordinates[0]}
                          className="border-b border-slate-200 p-2">
                         {searchResult.address}

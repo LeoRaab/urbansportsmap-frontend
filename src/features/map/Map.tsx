@@ -25,16 +25,14 @@ const Map = ({map}: MapProps) => {
             const handleMapClick = (event: LeafletMouseEvent) => {
                 map.setView(event.latlng);
                 dispatch(mapCenterChanged({
-                    lat: event.latlng.lat,
-                    lng: event.latlng.lng
+                    coordinates: event.latlng.toString()
                 }));
                 dispatch(uiActions.allHidden());
             }
 
             const handleDragEnd = () => {
                 dispatch(mapCenterChanged({
-                    lat: map.getCenter().lat,
-                    lng: map.getCenter().lng
+                    coordinates: map.getCenter().toString()
                 }));
             }
 
@@ -42,8 +40,7 @@ const Map = ({map}: MapProps) => {
                 locationMarkerLayer.clearLayers();
                 locationMarkerLayer.addLayer(new L.Marker(event.latlng, {icon: LocationMarker}));
                 dispatch(mapCenterChanged({
-                    lat: event.latlng.lat,
-                    lng: event.latlng.lng
+                    coordinates: event.latlng.toString()
                 }));
             }
 

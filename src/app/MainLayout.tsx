@@ -15,12 +15,8 @@ const MainLayout = () => {
     const dispatch = useDispatch();
     const params = useParams();
 
-    if (params.latLng) {
-        const latLng: string[] = params.latLng.split(',');
-        const lat = parseFloat(latLng[0]);
-        const lng = parseFloat(latLng[1]);
-
-        dispatch(mapCenterChanged({ lat, lng }));
+    if (params.coordinates) {
+        dispatch(mapCenterChanged({ coordinates: params.coordinates }));
     }
 
     const handleMenuButtonClick = () => {

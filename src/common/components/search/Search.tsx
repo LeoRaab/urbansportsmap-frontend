@@ -10,7 +10,7 @@ const Search = () => {
     const ui = useSelector(selectUi);
     const [searchTerm, setSearchTerm] = useState<string>('');
 
-    const [ trigger, { data: foundGeocodes, isLoading, isFetching}] = useLazyGetGeocodeQuery();
+    const [ search, { data: foundGeocodes, isLoading, isFetching}] = useLazyGetGeocodeQuery();
 
 
     const handleSearchBarChange = (searchTerm: string) => {
@@ -19,13 +19,13 @@ const Search = () => {
 
     useEffect(() => {
         if (searchTerm.length > 2) {
-            trigger(searchTerm);
+            search(searchTerm);
             dispatch(uiActions.searchResultsShown());
         } else {
             dispatch(uiActions.searchResultsHidden());
         }
 
-    }, [dispatch, searchTerm, trigger])
+    }, [dispatch, searchTerm, search])
 
     return (
         <>
