@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import { SPORT_TYPE, ALLOWED_SPORT_TYPES } from '../../common/types/SportType';
 
 interface FilterState {
@@ -17,14 +17,12 @@ export const filterSlice = createSlice({
     name: 'filter',
     initialState,
     reducers: {
-        filterSelected: (state, action) => {
-            const index = action.payload;
+        filterSelected: (state, {payload: {index}}: PayloadAction<{index: number}>) => {
             const filter = state.unselectedFilters[index];
             state.selectedFilters.push(filter);
             state.unselectedFilters.splice(index, 1);
         },
-        filterUnselected: (state, action) => {
-            const index = action.payload;
+        filterUnselected: (state, {payload: {index}}: PayloadAction<{index: number}>) => {
             const filter = state.selectedFilters[index];
             state.unselectedFilters.push(filter);
             state.selectedFilters.splice(index, 1);

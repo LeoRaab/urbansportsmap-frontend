@@ -22,7 +22,7 @@ const Filter = () => {
                               bgColor={getSportTypeColor(filter)}
                               isClickable={true}
                               id={key}
-                              onChipClick={() => dispatch(filterUnselected(key))}/>
+                              onChipClick={() => dispatch(filterUnselected({index: key}))}/>
                         </div>
                     )
                 }
@@ -35,7 +35,7 @@ const Filter = () => {
                               bgColor={'bg-slate-200'}
                               isClickable={true}
                               id={key}
-                              onChipClick={() => dispatch(filterSelected(key))}/>
+                              onChipClick={() => dispatch(filterSelected({index: key}))}/>
                         </div>
                     )
                 }
