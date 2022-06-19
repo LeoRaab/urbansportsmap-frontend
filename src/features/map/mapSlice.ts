@@ -1,5 +1,4 @@
 import {createSelector, createSlice} from '@reduxjs/toolkit';
-import L from 'leaflet';
 import apiSlice from '../../app/apiSlice';
 import { RootState } from '../../app/store';
 import Venue from '../../common/types/Venue';
@@ -51,7 +50,7 @@ export const mapSlice = createSlice({
 export const venuesApi = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getVenues: builder.query<Venue[], void>({
-            query: () => 'venues/',
+            query: () => 'venues',
             transformResponse: (responseData: any): Venue[] => {
                 return responseData.venues;
             }
@@ -64,6 +63,16 @@ export const venuesApi = apiSlice.injectEndpoints({
         })
     })
 })
+
+export const selectVenues = venuesApi.endpoints.getVenues.select();
+
+/* export const selectVenueInRadius = (state: RootState) => createSelector(
+    selectVenues,
+    venueResult => venueResult.data?.filter(venue => {
+        const distanceVenueToCenter = L.CRS.Earth.distance(venue.location, state.map.mapCenter);
+        return distanceVenueToCenter <= state.map.venueRadius;
+    })
+); */
 
 export const {
     useGetVenuesQuery,
