@@ -4,20 +4,20 @@ import Venue from '../../common/types/Venue';
 export const favoritesApi = apiSlice.enhanceEndpoints({ addTagTypes: ['Favorites'] }).injectEndpoints({
     endpoints: builder => ({
         getFavorites: builder.query<Venue[], void>({
-            query: () => '',
+            query: () => 'favorites',
             transformResponse: (responseData: any) => responseData.favorites,
             providesTags: ['Favorites']
         }),
         addFavorite: builder.mutation<{message: string}, string>({
             query: (venueId) => ({
-                url: venueId,
+                url: 'favorites/' + venueId,
                 method: 'POST'
             }),
             invalidatesTags: ['Favorites']
         }),
         removeFavorite: builder.mutation<{message: string}, string>({
             query: (venueId) => ({
-                url: venueId,
+                url: 'favorites' + venueId,
                 method: 'DELETE'
             }),
             invalidatesTags: ['Favorites']

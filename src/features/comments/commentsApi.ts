@@ -4,13 +4,13 @@ import VenueComment from '../../common/types/VenueComment';
 export const commentsApi = apiSlice.enhanceEndpoints({ addTagTypes: ['Comments']}).injectEndpoints({
     endpoints: builder => ({
         getComments: builder.query<VenueComment[], string>({
-            query: (venueId) => ({ url: `venue/${venueId}` }),
+            query: (venueId) => ({ url: `comments/venue/${venueId}` }),
             transformResponse: (responseData: any) => responseData.comments,
             providesTags: ['Comments']
         }),
         addComment: builder.mutation<{ message: string }, { venueId: string, comment: string }>({
             query: ({ venueId, comment }) => ({
-                url: venueId,
+                url: 'comments/' + venueId,
                 method: 'POST',
                 body: { comment }
             }),
@@ -18,7 +18,7 @@ export const commentsApi = apiSlice.enhanceEndpoints({ addTagTypes: ['Comments']
         }),
         updateComment: builder.mutation<{ message: string }, { commentId: string, comment: string }>({
             query: ({ commentId, comment }) => ({
-                url: commentId,
+                url: 'comments/' + commentId,
                 method: 'PATCH',
                 body: { comment }
             }),
@@ -26,7 +26,7 @@ export const commentsApi = apiSlice.enhanceEndpoints({ addTagTypes: ['Comments']
         }),
         removeComment: builder.mutation<{ message: string }, string>({
             query: (commentId) => ({
-                url: commentId,
+                url: 'comments/' + commentId,
                 method: 'DELETE'
             }),
             invalidatesTags: ['Comments']

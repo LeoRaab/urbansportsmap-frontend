@@ -24,23 +24,23 @@ const venueImagesFactory = (images: DBVenueImage[]): VenueImage[] => {
 export const imagesApi = apiSlice.enhanceEndpoints({addTagTypes: ['Images']}).injectEndpoints({
     endpoints: builder => ({
         getImagesByVenue: builder.query<VenueImage[], string>({
-            query: (venueId) => ({ url: `/venue/${venueId}` }),
+            query: (venueId) => ({ url: `images/venue/${venueId}` }),
             transformResponse: (responseData: {images: DBVenueImage[]}) => venueImagesFactory(responseData.images),
             providesTags: ['Images']
         }),
         getImagesByUser: builder.query<VenueImage[], void>({
-            query: () => ({ url: `/user` }),
+            query: () => ({ url: `images/user` }),
             transformResponse: (responseData: {images: DBVenueImage[]}) => venueImagesFactory(responseData.images),
             providesTags: ['Images']
         }),
         getImagesByVenueAndUser: builder.query<VenueImage[], string>({
-            query: (venueId) => ({ url: `/venue/${venueId}/user` }),
+            query: (venueId) => ({ url: `images/venue/${venueId}/user` }),
             transformResponse: (responseData: { images: DBVenueImage[] }) => venueImagesFactory(responseData.images),
             providesTags: ['Images']
         }),
         uploadImages: builder.mutation<{ message: string }, { venueId: string, uploadImages: FormData }>({
             query: ({ venueId, uploadImages }) => ({
-                url: venueId,
+                url: '/images' + venueId,
                 method: 'POST',
                 body: uploadImages
             }),
@@ -48,7 +48,7 @@ export const imagesApi = apiSlice.enhanceEndpoints({addTagTypes: ['Images']}).in
         }),
         deleteImage: builder.mutation<{ message: string }, string>({
             query: (imageId) => ({
-                url: imageId,
+                url: 'images/' + imageId,
                 method: 'DELETE'
             }),
             invalidatesTags: ['Images']
