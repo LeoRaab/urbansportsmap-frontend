@@ -9,7 +9,7 @@ import { markerIconFactory } from '../../common/util/marker-icon-factory';
 import { selectFilters } from '../filter/filterSlice';
 import { selectMap } from './mapSlice';
 import { uiActions } from '../../common/components/UI/uiSlice';
-import { useGetVenuesQuery } from './venuesApi';
+import { useGetVenuesQuery } from './mapSlice';
 
 type MarkersProps = {
     map?: L.Map

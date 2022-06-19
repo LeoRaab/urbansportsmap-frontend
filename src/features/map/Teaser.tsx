@@ -5,7 +5,7 @@ import FabButton from '../../common/components/form-elements/buttons/FabButton';
 import ImageSwiper from '../../common/components/UI/ImageSwiper';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import VenueTitle from '../../common/components/UI/VenueTitle';
-import { useLazyGetVenueByIdQuery } from './venuesApi';
+import { useLazyGetVenueByIdQuery } from './mapSlice';
 import { ChevronRightIcon } from '@heroicons/react/outline';
 import { useDispatch } from 'react-redux';
 import { uiActions } from '../../common/components/UI/uiSlice';

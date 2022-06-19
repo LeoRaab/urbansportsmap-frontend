@@ -11,7 +11,7 @@ import useToast from '../../common/hooks/use-toast';
 import CommentForm from '../comments/CommentForm';
 import { useLazyGetCommentsQuery, useAddCommentMutation } from '../comments/commentsApi';
 import CommentsList from '../comments/CommentsList';
-import { useLazyGetVenueByIdQuery } from '../map/venuesApi';
+import { useLazyGetVenueByIdQuery } from '../map/mapSlice';
 import { selectUserId } from '../user/userSlice';
 import DetailSettings from './DetailSettings';
 import {MapIcon} from '@heroicons/react/outline';

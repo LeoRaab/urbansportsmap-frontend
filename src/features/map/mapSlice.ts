@@ -1,4 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
+import apiSlice from '../../app/apiSlice';
+import { RootState } from '../../app/store';
+import Venue from '../../common/types/Venue';
 
 interface MapState {
     mapSettings: {
@@ -44,8 +47,31 @@ export const mapSlice = createSlice({
     }
 })
 
+export const venuesApi = apiSlice.injectEndpoints({
+    endpoints: builder => ({
+        getVenues: builder.query<Venue[], void>({
+            query: () => '',
+            transformResponse: (responseData: any): Venue[] => {
+                return responseData.venues;
+            }
+        }),
+        getVenueById: builder.query<Venue, string>( {
+            query: (venueId: string) => venueId,
+            transformResponse: (responseData: any) => {
+                return responseData.venue;
+            }
+        })
+    })
+})
+
+export const {
+    useGetVenuesQuery,
+    useGetVenueByIdQuery,
+    useLazyGetVenueByIdQuery
+} = venuesApi;
+
 export const {mapCenterChanged, venueRadiusChanged} = mapSlice.actions;
 
-export const selectMap = (state: any): MapState  => state.map;
+export const selectMap = (state: RootState): MapState  => state.map;
 
 export default mapSlice.reducer;
