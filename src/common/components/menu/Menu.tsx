@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import useAuth from '../../hooks/use-auth';
 import { uiActions } from '../UI/uiSlice';
-import { selectUserId } from '../../../features/user/authSlice';
+import { selectUserId } from '../../../features/user/userSlice';
 import MenuItem from './MenuItem';
 import Button from '../form-elements/buttons/Button';
 import { MapIcon, UserIcon } from '@heroicons/react/outline';
