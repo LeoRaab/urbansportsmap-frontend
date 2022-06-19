@@ -2,9 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import L from 'leaflet';
 import Map from './Map';
 import { useDispatch, useSelector } from 'react-redux';
-import FabButton from '../../common/components/form-elements/buttons/FabButton';
 import { mapCenterChanged, selectMap } from './mapSlice';
-import { LocationMarkerIcon } from '@heroicons/react/outline';
 import { useParams } from 'react-router-dom';
 
 const MapWrapper = () => {
@@ -35,8 +33,7 @@ const MapWrapper = () => {
 
     useEffect(() => {
         if (params.coordinates) {
-            const [lat, lng] = params.coordinates.split(',');
-            dispatch(mapCenterChanged({lat, lng}));
+            dispatch(mapCenterChanged({coordinates: params.coordinates}));
         }
     }, [dispatch, params.coordinates])
 

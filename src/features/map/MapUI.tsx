@@ -40,7 +40,7 @@ const MapUI = () => {
                 onCloseMapOverlay={() => dispatch(uiActions.filterHidden())}>
                 <div className="my-4 p-4">
                     <Filter />
-                    <RangeSlider onRangeChange={(rangeValue) => dispatch(venueRadiusChanged(rangeValue))} />
+                    <RangeSlider onRangeChange={(rangeValue) => dispatch(venueRadiusChanged({venueRadius: rangeValue}))} />
                 </div>
             </MapOverlay>
 
