@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import IconButton from '../../common/components/form-elements/buttons/IconButton';
 import Card from '../../common/components/UI/Card';
 import useToast from '../../common/hooks/use-toast';
-import COLOR_SCHEME from '../../common/types/ColorScheme';
 import VenueComment from '../../common/types/VenueComment';
 import { selectUserId } from '../user/userSlice';
 import CommentForm from './CommentForm';
@@ -24,13 +23,13 @@ const CommentItem = ({ comment }: CommentItemProps) => {
 
     useEffect(() => {
         if (updateResponse) {
-            toast.show(updateResponse.message, COLOR_SCHEME.SUCCESS);
+            toast.show(updateResponse.message, 'success');
         }
     }, [updateResponse, toast]);
 
     useEffect(() => {
         if (removeResponse) {
-            toast.show(removeResponse.message, COLOR_SCHEME.SUCCESS);
+            toast.show(removeResponse.message, 'success');
         }
     }, [removeResponse, toast]);
 

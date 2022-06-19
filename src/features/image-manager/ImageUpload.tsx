@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import useToast from '../../common/hooks/use-toast';
-import COLOR_SCHEME from '../../common/types/ColorScheme';
 import VenueImage from '../../common/types/VenueImage';
 import ImageList from './ImageList';
 import { imageManagerActions } from './imageManagerSlice';
@@ -39,7 +38,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
 
     useEffect(() => {
         if (uploadImageResponse) {
-            toast.show(uploadImageResponse.message, COLOR_SCHEME.SUCCESS)
+            toast.show(uploadImageResponse.message, 'success')
         }
     }, [uploadImageResponse, toast]);
 
