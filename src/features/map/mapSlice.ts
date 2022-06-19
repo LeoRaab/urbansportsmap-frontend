@@ -1,4 +1,4 @@
-import {createSelector, createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import apiSlice from '../../app/apiSlice';
 import { RootState } from '../../app/store';
 import Venue from '../../common/types/Venue';
@@ -35,14 +35,11 @@ export const mapSlice = createSlice({
     name: 'map',
     initialState,
     reducers: {
-        mapCenterChanged: (state, action) => {
-            state.mapCenter = {
-                lat: action.payload.lat,
-                lng: action.payload.lng
-            }
+        mapCenterChanged: (state, {payload: {lat, lng}}: PayloadAction<{lat: number, lng: number}>) => {
+            state.mapCenter = {lat,lng}
         },
-        venueRadiusChanged: (state, action) => {
-            state.venueRadius = action.payload;
+        venueRadiusChanged: (state, {payload: {venueRadius}}: PayloadAction<{venueRadius: number}>) => {
+            state.venueRadius = venueRadius;
         }
     }
 })
