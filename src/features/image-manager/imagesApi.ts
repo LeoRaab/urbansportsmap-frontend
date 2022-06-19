@@ -53,23 +53,6 @@ export const imagesApi = apiSlice.enhanceEndpoints({addTagTypes: ['Images']}).in
             }),
             invalidatesTags: ['Images']
         })
-        /*
-        updateComment: builder.mutation<{ message: string }, { commentId: string, comment: string }>({
-            query: ({ commentId, comment }) => ({
-                url: commentId,
-                method: 'PATCH',
-                body: { comment }
-            }),
-            invalidatesTags: ['Images']
-        }),
-        removeComment: builder.mutation<{ message: string }, string>({
-            query: (commentId) => ({
-                url: commentId,
-                method: 'DELETE'
-            }),
-            invalidatesTags: ['Images']
-        })
-        */
     })
 })
 
