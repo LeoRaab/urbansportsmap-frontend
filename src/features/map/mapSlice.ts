@@ -1,4 +1,5 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSelector, createSlice} from '@reduxjs/toolkit';
+import L from 'leaflet';
 import apiSlice from '../../app/apiSlice';
 import { RootState } from '../../app/store';
 import Venue from '../../common/types/Venue';
@@ -50,13 +51,13 @@ export const mapSlice = createSlice({
 export const venuesApi = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getVenues: builder.query<Venue[], void>({
-            query: () => '',
+            query: () => 'venues/',
             transformResponse: (responseData: any): Venue[] => {
                 return responseData.venues;
             }
         }),
         getVenueById: builder.query<Venue, string>( {
-            query: (venueId: string) => venueId,
+            query: (venueId: string) => 'venues/' + venueId,
             transformResponse: (responseData: any) => {
                 return responseData.venue;
             }
