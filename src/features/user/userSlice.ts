@@ -6,7 +6,7 @@ import { User, SignupUser } from '../../common/types/User';
 export interface UserResponse {
     userId: string,
     token: string,
-    message?: string
+    message: string
 }
 
 export interface LoginRequest {
