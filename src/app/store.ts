@@ -10,20 +10,20 @@ import { geocodeApi } from '../features/map/geocodeApi';
 import mapSlice from '../features/map/mapSlice';
 import uiSlice from '../common/components/UI/uiSlice';
 import { venuesApi } from '../features/map/venuesApi';
-import { authApi } from '../features/user/authApi';
-import authSlice from '../features/user/authSlice';
+import apiSlice from './apiSlice';
+import userSlice from '../features/user/userSlice';
 
 const store = configureStore({
     reducer: {
         filter: filterSlice,
         map: mapSlice,
         ui: uiSlice,
-        auth: authSlice,
+        user: userSlice,
         imageManager: imageManagerSlice,
         dialog: dialogSlice,
         toast: toastSlice,
+        [apiSlice.reducerPath]: apiSlice.reducer,
         [venuesApi.reducerPath]: venuesApi.reducer,
-        [authApi.reducerPath]: authApi.reducer,
         [geocodeApi.reducerPath]: geocodeApi.reducer,
         [favoritesApi.reducerPath]: favoritesApi.reducer,
         [commentsApi.reducerPath]: commentsApi.reducer,
@@ -31,11 +31,11 @@ const store = configureStore({
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(
+            apiSlice.middleware,
             venuesApi.middleware, 
             geocodeApi.middleware, 
             favoritesApi.middleware,
             commentsApi.middleware,
-            authApi.middleware,
             imagesApi.middleware
         )
 });
