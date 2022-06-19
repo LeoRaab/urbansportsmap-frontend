@@ -22,15 +22,13 @@ const store = configureStore({
         toast: toastSlice,
         [apiSlice.reducerPath]: apiSlice.reducer,
         [geocodeApi.reducerPath]: geocodeApi.reducer,
-        [favoritesApi.reducerPath]: favoritesApi.reducer,
-        [commentsApi.reducerPath]: commentsApi.reducer
+        [favoritesApi.reducerPath]: favoritesApi.reducer
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(
             apiSlice.middleware, 
             geocodeApi.middleware, 
-            favoritesApi.middleware,
-            commentsApi.middleware
+            favoritesApi.middleware
         )
 });
 

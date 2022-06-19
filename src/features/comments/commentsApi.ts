@@ -1,20 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { RootState } from '../../app/store';
+import apiSlice from '../../app/apiSlice';
 import VenueComment from '../../common/types/VenueComment';
 
-export const commentsApi = createApi({
-    reducerPath: 'commentsApi',
-    baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5000/api/comments/',
-        prepareHeaders: (headers, { getState }) => {
-            const token = (getState() as RootState).auth.token;
-            if (token) {
-                headers.set('Authorization', `Bearer ${token}`)
-            }
-            return headers
-        }
-    }),
-    tagTypes: ['Comments'],
+export const commentsApi = apiSlice.enhanceEndpoints({ addTagTypes: ['Comments']}).injectEndpoints({
     endpoints: builder => ({
         getComments: builder.query<VenueComment[], string>({
             query: (venueId) => ({ url: `venue/${venueId}` }),
