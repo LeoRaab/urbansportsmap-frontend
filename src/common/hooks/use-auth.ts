@@ -4,6 +4,13 @@ import { useLoginMutation, selectExpirationDate, UserState, userActions } from "
 import useLocalStorage from "./use-local-storage";
 import useToast from "./use-toast";
 
+interface HttpError {
+    data: {
+        message: string
+    },
+    status: number
+}
+
 const useAuth = () => {
     const dispatch = useDispatch();
     const [loginUser, {isLoading, isError, error}] = useLoginMutation();
@@ -19,7 +26,8 @@ const useAuth = () => {
 
             setStoredUserData({ userId, token, expirationDate });
         } catch (e) {
-            console.log(e);
+            const myError = e as HttpError;
+            toast.show(myError.data.message, 'error');
         }
     }
 
