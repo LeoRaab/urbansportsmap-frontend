@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react';
 import {FeatureCollection} from 'geojson';
-import { GeocodeWebEntity } from '../../common/types/WebEntities';
+import GeocodeWebEntity from '../../common/types/GeocodeWebEntity';
 
 export const geocodeApi = createApi({
     reducerPath: 'geocodeApi',
