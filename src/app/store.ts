@@ -1,7 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
 import dialogSlice from '../common/components/UI/dialog/dialogSlice';
 import toastSlice from '../common/components/UI/toast/toastSlice';
-import { commentsApi } from '../features/comments/commentsApi';
 import { favoritesApi } from '../features/favorites/favoritesApi';
 import filterSlice from '../features/filter/filterSlice';
 import imageManagerSlice from '../features/image-manager/imageManagerSlice';
