@@ -12,36 +12,32 @@ const Filter = () => {
 
     return (
         <>
-            <div className="flex flex-wrap items-center">
+            <div className="flex flex-wrap gap-y-2 items-center">
 
                 {filters.selectedFilters.length > 0 &&
-                    filters.selectedFilters.map((filter, key) =>
-                        <div className="mb-2 mr-2" key={key}>                            
-                            <Chip
+                    filters.selectedFilters.map((filter, key) =>                           
+                            <Chip key={key}
                               text={filter}
                               bgColor={getSportTypeColor(filter)}
                               isClickable={true}
                               id={key}
                               onChipClick={() => dispatch(filterUnselected({index: key}))}/>
-                        </div>
                     )
                 }
 
                 {filters.unselectedFilters.length > 0 &&
-                    filters.unselectedFilters.map((filter, key) =>
-                        <div className="mb-2 mr-2" key={key}>    
+                    filters.unselectedFilters.map((filter, key) =>    
                             <Chip key={key}
                               text={filter}
                               bgColor={'bg-slate-200'}
                               isClickable={true}
                               id={key}
                               onChipClick={() => dispatch(filterSelected({index: key}))}/>
-                        </div>
                     )
                 }
 
                 {filters.selectedFilters.length > 0 &&
-                    <div className="mb-2 mr-2">
+                    <div>
                         <Button color="transparent" type="button" onClick={() => dispatch(filtersCleared())}>
                             Filter löschen
                         </Button>

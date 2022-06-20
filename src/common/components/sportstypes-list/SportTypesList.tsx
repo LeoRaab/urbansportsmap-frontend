@@ -11,17 +11,15 @@ const SportTypesList = ({sportTypes}: SportTypesProps) => {
 
     const sportTypesListItems = sportTypes?.map((sportType, key) => {
 
-        return <div className="mt-2" key={key}>
-                    <Chip
+        return <Chip key={key}
                         bgColor={getSportTypeColor(sportType)}
                         text={sportType}
                         fontColor={'text-white'}
                         isClickable={false}/>
-                </div>
     })
 
     return (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap gap-y-2">
             {sportTypesListItems}
         </div>
     )
