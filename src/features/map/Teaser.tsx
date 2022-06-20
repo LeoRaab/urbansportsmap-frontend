@@ -7,15 +7,12 @@ import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import VenueTitle from '../../common/components/UI/VenueTitle';
 import { useLazyGetVenueByIdQuery } from './mapSlice';
 import { ChevronRightIcon } from '@heroicons/react/outline';
-import { useDispatch } from 'react-redux';
-import { uiActions } from '../../common/components/UI/uiSlice';
 
 type TeaserProps = {
     venueId: string;
 }
 
 const Teaser = ({ venueId }: TeaserProps) => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [trigger, {
         data: venue, isLoading, isFetching, isSuccess
@@ -29,7 +26,6 @@ const Teaser = ({ venueId }: TeaserProps) => {
 
     const handleDetailClick = () => {
         navigate('/detail/' + venueId);
-        dispatch(uiActions.allHidden);
     }
 
     return (
@@ -39,20 +35,17 @@ const Teaser = ({ venueId }: TeaserProps) => {
             }
 
             {isSuccess &&
-                <>
-                    <div className="flex flex-col justify-center px-4 lg:px-8">
-                        <VenueTitle venue={venue} />
-                    </div>
+                <div className="px-4 lg:px-8">
+                    <VenueTitle venue={venue} />
+
 
                     {venue &&
-                        <div className="h-1/2 mt-4">
+                        <div className="my-2">
                             <ImageSwiper venueId={venueId} />
                         </div>
                     }
 
-                    <div className="my-8 px-4 lg:px-8">
-                        <SportTypesList sportTypes={venue?.sportTypes} />
-                    </div>
+                    <SportTypesList sportTypes={venue?.sportTypes} />
 
                     <div className="fixed bottom-6 right-2 z-800">
                         <FabButton backgroundColor="bg-green-200"
@@ -60,7 +53,7 @@ const Teaser = ({ venueId }: TeaserProps) => {
                             <ChevronRightIcon className="h-6 w-6"/>
                         </FabButton>
                     </div>
-                </>
+                </div>
             }
         </div>
     )

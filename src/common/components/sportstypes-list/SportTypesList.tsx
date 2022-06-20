@@ -1,5 +1,5 @@
-import Chip from '../UI/Chip';
 import React from 'react';
+import Chip from '../UI/Chip';
 import {SPORT_TYPE} from '../../types/SportType';
 import {getSportTypeColor} from '../../util/get-sport-type-color';
 
@@ -11,15 +11,17 @@ const SportTypesList = ({sportTypes}: SportTypesProps) => {
 
     const sportTypesListItems = sportTypes?.map((sportType, key) => {
 
-        return <Chip key={key}
-                     bgColor={getSportTypeColor(sportType)}
-                     text={sportType}
-                     fontColor={'text-white'}
-                     isClickable={false}/>
+        return <div className="mt-2" key={key}>
+                    <Chip
+                        bgColor={getSportTypeColor(sportType)}
+                        text={sportType}
+                        fontColor={'text-white'}
+                        isClickable={false}/>
+                </div>
     })
 
     return (
-        <div className="flex">
+        <div className="flex flex-wrap">
             {sportTypesListItems}
         </div>
     )

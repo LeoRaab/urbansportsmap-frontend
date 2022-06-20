@@ -69,7 +69,7 @@ const Detail = () => {
                 <VenueTitle venue={venue} />
             </div>
 
-            <div className="mt-6 mb-2">
+            <div className="my-2">
                 <SportTypesList sportTypes={venue?.sportTypes} />
             </div>
 
@@ -89,19 +89,19 @@ const Detail = () => {
                 </div>
             }
 
-            <div className="fixed bottom-6 right-2 z-800">
-                <FabButton backgroundColor="bg-green-200"
-                    onClick={() => navigate('/' + venue?.location.lat + ',' + venue?.location.lng)}>
-                    <MapIcon className="icon-size" />
-                </FabButton>
-            </div>
-
             {(venueComments && venueComments.length > 0) &&
                 <div className="mt-8">
                     <h2 className="text-2xl mb-4">Kommentare</h2>
                     <CommentsList comments={venueComments} />
                 </div>
             }
+
+            <div className="fixed bottom-6 right-2 z-800">
+                <FabButton backgroundColor="bg-green-200"
+                    onClick={() => navigate('/' + venue?.location.lat + ',' + venue?.location.lng)}>
+                    <MapIcon className="icon-size" />
+                </FabButton>
+            </div>
 
             {(isLoading || isFetching) &&
                 <LoadingSpinner />
