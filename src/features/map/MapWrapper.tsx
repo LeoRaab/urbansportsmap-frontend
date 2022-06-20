@@ -3,9 +3,12 @@ import L from 'leaflet';
 import Map from './Map';
 import { useSelector } from 'react-redux';
 import { selectMap } from './mapSlice';
+import { LocationMarkerIcon } from '@heroicons/react/outline';
+import FabButton from '../../common/components/form-elements/buttons/FabButton';
 
 const MapWrapper = () => {
     const [map, setMap] = useState<L.Map>();
+
     const mapState = useSelector(selectMap);
 
     const mapRef = useCallback((mapElement: HTMLDivElement) => {
@@ -39,6 +42,13 @@ const MapWrapper = () => {
         <>
             <div ref={mapRef} className="h-screen">
                 <Map map={map}/>
+            </div>
+
+            <div className="fixed bottom-8 lg:top-6 right-2 lg:right-1/4 z-800">
+                        <FabButton backgroundColor="bg-amber-200"
+                                onClick={handleLocateClick}>
+                            <LocationMarkerIcon className="icon-size" />
+                        </FabButton>
             </div>
         </>
     )
