@@ -22,17 +22,19 @@ const Map = ({map}: MapProps) => {
 
             //have to set mapCenter manually instead of using getCenter()
             //getCenter() returns Position before click -> that's not the new center we want
-            const handleMapClick = (event: LeafletMouseEvent) => {
+            const handleMapClick = (event: LeafletMouseEvent) => {                
                 map.setView(event.latlng);
                 dispatch(mapCenterChanged({
-                    coordinates: event.latlng.toString()
+                    lat: event.latlng.lat,
+                    lng: event.latlng.lng
                 }));
                 dispatch(uiActions.allHidden());
             }
 
             const handleDragEnd = () => {
                 dispatch(mapCenterChanged({
-                    coordinates: map.getCenter().toString()
+                    lat: map.getCenter().lat,
+                    lng: map.getCenter().lng
                 }));
             }
 
@@ -40,7 +42,8 @@ const Map = ({map}: MapProps) => {
                 locationMarkerLayer.clearLayers();
                 locationMarkerLayer.addLayer(new L.Marker(event.latlng, {icon: LocationMarker}));
                 dispatch(mapCenterChanged({
-                    coordinates: event.latlng.toString()
+                    lat: event.latlng.lat,
+                    lng: event.latlng.lng
                 }));
             }
 

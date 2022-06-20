@@ -35,16 +35,8 @@ export const mapSlice = createSlice({
     name: 'map',
     initialState,
     reducers: {
-        mapCenterChanged: (state, {payload: {coordinates}}: PayloadAction<{coordinates: string}>) => {            
-            try {
-                const [latString, lngString] = coordinates.split(',');
-                const lat = parseFloat(latString);                
-                const lng = parseFloat(lngString);
-                state.mapCenter = {lat,lng}
-            } catch(e) {
-                console.log(e);
-                state.mapCenter = {...initialState.mapCenter};   
-            }
+        mapCenterChanged: (state, {payload: {lat, lng}}: PayloadAction<{lat: number, lng: number}>) => {            
+            state.mapCenter = {lat,lng}
         },
         venueRadiusChanged: (state, {payload: {venueRadius}}: PayloadAction<{venueRadius: number}>) => {
             state.venueRadius = venueRadius;

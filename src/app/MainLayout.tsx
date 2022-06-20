@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Outlet } from "react-router-dom";
 import Button from "../common/components/form-elements/buttons/Button";
@@ -15,10 +15,19 @@ const MainLayout = () => {
     const dispatch = useDispatch();
     const params = useParams();
 
-    if (params.coordinates) {
-        dispatch(mapCenterChanged({ coordinates: params.coordinates }));
-    }
-
+    useEffect(() => {
+        if (params.coordinates) {
+            try {
+                const [latString, lngString] = params.coordinates.split(',');
+                const lat = parseFloat(latString);                
+                const lng = parseFloat(lngString);
+                dispatch(mapCenterChanged({lat, lng}))
+            } catch(e) {
+                console.log(e);
+            }
+        }
+    }, [dispatch, params.coordinates]);
+    
     const handleMenuButtonClick = () => {
         dispatch(uiActions.menuToggle());
     }

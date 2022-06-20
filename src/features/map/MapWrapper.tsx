@@ -1,14 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import L from 'leaflet';
 import Map from './Map';
-import { useDispatch, useSelector } from 'react-redux';
-import { mapCenterChanged, selectMap } from './mapSlice';
-import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectMap } from './mapSlice';
 
 const MapWrapper = () => {
-    const dispatch = useDispatch();
     const [map, setMap] = useState<L.Map>();
-    const params = useParams();
     const mapState = useSelector(selectMap);
 
     const mapRef = useCallback((mapElement: HTMLDivElement) => {
@@ -30,12 +27,6 @@ const MapWrapper = () => {
             }).addTo(map);
         }
     }, [map]);
-
-    useEffect(() => {
-        if (params.coordinates) {
-            dispatch(mapCenterChanged({coordinates: params.coordinates}));
-        }
-    }, [dispatch, params.coordinates])
 
     const handleLocateClick = () => {
         /**
