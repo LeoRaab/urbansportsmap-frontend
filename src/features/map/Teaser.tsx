@@ -29,33 +29,34 @@ const Teaser = ({ venueId }: TeaserProps) => {
     }
 
     return (
-        <div className="h-full relative">
+        <>
+            <div className="h-full relative">
+                {isSuccess &&
+                    <div className="px-4 lg:px-8 lg:my-16">
+                        <VenueTitle venue={venue} />
+
+                        {venue &&
+                            <div className="my-2">
+                                <ImageSwiper venueId={venueId} />
+                            </div>
+                        }
+
+                        <SportTypesList sportTypes={venue?.sportTypes} />
+
+                        <div className="fixed bottom-6 right-2 z-800">
+                            <FabButton backgroundColor="bg-green-200"
+                                onClick={handleDetailClick}>
+                                <ChevronRightIcon className="h-6 w-6"/>
+                            </FabButton>
+                        </div>
+                    </div>
+                }
+            </div>
+
             {(isLoading || isFetching) &&
                 <LoadingSpinner />
             }
-
-            {isSuccess &&
-                <div className="px-4 lg:px-8">
-                    <VenueTitle venue={venue} />
-
-
-                    {venue &&
-                        <div className="my-2">
-                            <ImageSwiper venueId={venueId} />
-                        </div>
-                    }
-
-                    <SportTypesList sportTypes={venue?.sportTypes} />
-
-                    <div className="fixed bottom-6 right-2 z-800">
-                        <FabButton backgroundColor="bg-green-200"
-                            onClick={handleDetailClick}>
-                            <ChevronRightIcon className="h-6 w-6"/>
-                        </FabButton>
-                    </div>
-                </div>
-            }
-        </div>
+        </>
     )
 }
 

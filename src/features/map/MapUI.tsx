@@ -20,7 +20,7 @@ const MapUI = () => {
                 <Search />
             </div>
 
-            <div className="fixed bottom-24 lg:top-6 right-2 lg:right-1/4 z-800">
+            <div className="fixed bottom-24 right-2 z-800">
                 <FabButton backgroundColor="bg-green-200"
                         onClick={() => dispatch(uiActions.filterShown())}>
                         <AdjustmentsIcon className="icon-size" />
@@ -37,9 +37,7 @@ const MapUI = () => {
 
             <MapOverlay isShowing={ui.isTeaserShowing}
                 onCloseMapOverlay={() => dispatch(uiActions.teaserHidden())}>
-                <div className="my-4">
-                    <Teaser venueId={ui.teaserVenueId} />
-                </div>
+                <Teaser venueId={ui.teaserVenueId} />
             </MapOverlay>
         </div>
     )

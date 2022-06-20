@@ -44,7 +44,7 @@ const MapWrapper = () => {
                 <Map map={map}/>
             </div>
 
-            <div className="fixed bottom-8 lg:top-6 right-2 lg:right-1/4 z-800">
+            <div className="fixed bottom-8 right-2 z-800">
                         <FabButton backgroundColor="bg-amber-200"
                                 onClick={handleLocateClick}>
                             <LocationMarkerIcon className="icon-size" />

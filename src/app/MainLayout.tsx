@@ -40,7 +40,7 @@ const MainLayout = () => {
         <>
             <div className="relative">
                 
-                <div className="fixed top-8 right-0 lg:right-1/4 lg:-mr-48 z-1080">
+                <div className="fixed top-8 right-0 z-1080">
                     <Button color="white" type="button" onClick={handleMenuButtonClick}>
                         {!ui.isMenuShowing && <MenuIcon className="h-5 w-5"/>}
                         {ui.isMenuShowing && <XIcon className="h-5 w-5"/>}                        
