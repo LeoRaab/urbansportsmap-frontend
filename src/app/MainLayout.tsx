@@ -8,13 +8,13 @@ import Toast from "../common/components/UI/toast/Toast";
 import MapWrapper from "../features/map/MapWrapper";
 import { selectUi, uiActions } from "../common/components/UI/uiSlice";
 import { MenuIcon, XIcon} from "@heroicons/react/outline";
-import useVenueParams from "../common/hooks/use-venue-params";
+import useVenueCoordinates from "../common/hooks/use-venue-coordinates";
 
 const MainLayout = () => {
     const ui = useSelector(selectUi);
     const dispatch = useDispatch();
     
-    useVenueParams();
+    useVenueCoordinates();
     
     const handleMenuButtonClick = () => {
         dispatch(uiActions.menuToggle());
