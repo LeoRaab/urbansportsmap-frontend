@@ -29,7 +29,6 @@ const ImageManager = ({ venueId }: ImageManagerProps) => {
 
                         <div className="mt-4">
                             <IconButton text="Bilder hochladen" icon={<UploadIcon className="icon-size"/>} onClick={() => dispatch(imageManagerActions.selectImages())}/>
-                            <IconButton text="Photo aufnehmen" icon={<CameraIcon className="icon-size"/>} onClick={() => dispatch(imageManagerActions.show())}/>
                             <IconButton text="Bilder auswählen" icon={<PhotographIcon className="icon-size"/>} onClick={() => dispatch(imageManagerActions.editImages())}/>
                         </div>
 
