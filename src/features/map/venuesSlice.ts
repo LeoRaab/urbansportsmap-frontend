@@ -15,21 +15,11 @@ export const venuesApi = apiSlice.injectEndpoints({
             transformResponse: (responseData: any): EntityState<Venue> => {
                 return venuesAdapter.setAll(initialState, responseData.venues);
             }
-        }),
-        getVenueById: builder.query<Venue, string>( {
-            query: (venueId: string) => 'venues/' + venueId,
-            transformResponse: (responseData: any) => {
-                return responseData.venue;
-            }
         })
     })
 });
 
-export const {
-    useGetVenuesQuery,
-    useGetVenueByIdQuery,
-    useLazyGetVenueByIdQuery
-} = venuesApi;
+export const {useGetVenuesQuery} = venuesApi;
 
 const selectVenues = venuesApi.endpoints.getVenues.select();
 const selectVenuesData = createSelector(
@@ -38,7 +28,6 @@ const selectVenuesData = createSelector(
 )
 export const { selectAll: selectAllVenues, selectById: selectVenueById } = 
 venuesAdapter.getSelectors((state: RootState) => selectVenuesData(state) ?? initialState);
-
 
 const selectMapCenter = (state: RootState) => state.map.mapCenter;
 const selectVenueRadius = (state: RootState) => state.map.venueRadius;
@@ -57,7 +46,6 @@ export const selectVisibleVenues = createSelector(
             if (selectedFilters.length > 0) {
                 return hasVenueSportType(venue, selectedFilters);
             }
-
             return true;
         })
 )
