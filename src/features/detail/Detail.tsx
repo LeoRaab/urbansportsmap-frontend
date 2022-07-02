@@ -4,14 +4,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import SportTypesList from '../../common/components/sportstypes-list/SportTypesList';
 import FabButton from '../../common/components/form-elements/buttons/FabButton';
 import ImageSwiper from '../../common/components/UI/ImageSwiper';
-import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import PageWrapper from '../../common/components/UI/PageWrapper';
 import VenueTitle from '../../common/components/UI/VenueTitle';
 import useToast from '../../common/hooks/use-toast';
 import CommentForm from '../comments/CommentForm';
 import { useLazyGetCommentsQuery, useAddCommentMutation } from '../comments/commentsApi';
 import CommentsList from '../comments/CommentsList';
-import { selectVenueById, useLazyGetVenueByIdQuery } from '../map/venuesSlice';
+import { selectVenueById } from '../map/venuesSlice';
 import { selectUserId } from '../user/userSlice';
 import DetailSettings from './DetailSettings';
 import {MapIcon} from '@heroicons/react/outline';
@@ -42,10 +41,6 @@ const Detail = () => {
             toast.show(addCommentResponse.message, 'success')
         }
     }, [addCommentResponse, toast]);
-
-    const handleEditImagesClick = () => {
-        //venueImages.loadImages();
-    }
 
     const handleAddCommentClick = () => {
         setShowCommentForm(true);
