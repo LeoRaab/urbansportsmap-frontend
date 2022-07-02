@@ -1,39 +1,23 @@
 import React, {useEffect, useRef} from 'react';
 import L, {LeafletMouseEvent} from 'leaflet';
 import { useSelector, useDispatch } from 'react-redux';
-import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
-import Venue from '../../common/types/Venue';
 import { VenueMarker } from '../../common/types/VenueMarker';
-import { hasVenueSportType } from '../../common/util/has-venue-sport-type';
 import { markerIconFactory } from '../../common/util/marker-icon-factory';
-import { selectFilters } from '../filter/filterSlice';
-import { selectMap } from './mapSlice';
 import { uiActions } from '../../common/components/UI/uiSlice';
-import { useGetVenuesQuery } from './mapSlice';
+import { selectVisibleVenues } from './venuesSlice';
 
 type MarkersProps = {
     map?: L.Map
 }
 
-const Markers = ({map}: MarkersProps) => {
-    const {data: venues, isLoading, isFetching, isError, error} = useGetVenuesQuery();
-    const markerLayer = useRef<L.LayerGroup>(new L.LayerGroup());
-    const filters = useSelector(selectFilters);
-    const mapState = useSelector(selectMap);
+const Markers = ({map}: MarkersProps) => {    
     const dispatch = useDispatch();
-
-    if (isError) {
-        console.log(error);
-    }
+    const venues = useSelector(selectVisibleVenues);
+    const markerLayer = useRef<L.LayerGroup>(new L.LayerGroup());
 
     useEffect(() => {
 
         if (map && venues) {
-
-            const isVenueInRadius = (venue: Venue): boolean => {
-                const distanceVenueToCenter = map.distance(venue.location, mapState.mapCenter);
-                return distanceVenueToCenter <= mapState.venueRadius;
-            }
 
             const handleMarkerClick = (event: LeafletMouseEvent) => {
                 dispatch(
@@ -42,16 +26,6 @@ const Markers = ({map}: MarkersProps) => {
             }
 
             const marker = venues
-                .filter(venue => {
-                    return isVenueInRadius(venue);
-                })
-                .filter(venue => {
-                    if (filters.selectedFilters.length > 0) {
-                        return hasVenueSportType(venue, filters.selectedFilters);
-                    }
-
-                    return true;
-                })
                 .map(venue => {
                     const markerIcon = markerIconFactory(venue.sportTypes);
                     const marker = new VenueMarker(venue.location, {venue: venue, icon: markerIcon});
@@ -65,14 +39,10 @@ const Markers = ({map}: MarkersProps) => {
             map.addLayer(markerLayer.current);
         }
 
-    }, [dispatch, filters, map, mapState.mapCenter, mapState.venueRadius, venues])
+    }, [dispatch, map, venues])
 
     return (
-        <>
-            {(isLoading || isFetching) &&
-                <LoadingSpinner/>
-            }
-        </>
+        <></>
     )
 }
 

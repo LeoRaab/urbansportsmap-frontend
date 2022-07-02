@@ -1,37 +1,32 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SportTypesList from '../../common/components/sportstypes-list/SportTypesList';
 import FabButton from '../../common/components/form-elements/buttons/FabButton';
 import ImageSwiper from '../../common/components/UI/ImageSwiper';
-import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import VenueTitle from '../../common/components/UI/VenueTitle';
-import { useLazyGetVenueByIdQuery } from './mapSlice';
+import { selectVenueById } from './venuesSlice';
 import { ChevronRightIcon } from '@heroicons/react/outline';
+import { RootState } from '../../app/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { uiActions } from '../../common/components/UI/uiSlice';
 
 type TeaserProps = {
     venueId: string;
 }
 
 const Teaser = ({ venueId }: TeaserProps) => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [trigger, {
-        data: venue, isLoading, isFetching, isSuccess
-    }] = useLazyGetVenueByIdQuery();
-
-    useEffect(() => {
-        if (venueId && venueId !== '') {
-            trigger(venueId);
-        }
-    }, [venueId, trigger]);
+    const venue = useSelector((state: RootState) => selectVenueById(state, venueId));
 
     const handleDetailClick = () => {
+        dispatch(uiActions.allHidden());
         navigate('/detail/' + venueId);
     }
 
     return (
         <>
             <div className="h-full relative">
-                {isSuccess &&
                     <div className="px-4 lg:px-8 lg:my-16">
                         <VenueTitle venue={venue} />
 
@@ -50,12 +45,8 @@ const Teaser = ({ venueId }: TeaserProps) => {
                             </FabButton>
                         </div>
                     </div>
-                }
+                
             </div>
-
-            {(isLoading || isFetching) &&
-                <LoadingSpinner />
-            }
         </>
     )
 }
