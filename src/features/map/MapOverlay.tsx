@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 import IconButton from '../../common/components/form-elements/buttons/IconButton';
 
