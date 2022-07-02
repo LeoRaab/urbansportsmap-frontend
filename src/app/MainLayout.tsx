@@ -1,32 +1,20 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Button from "../common/components/form-elements/buttons/Button";
 import Menu from "../common/components/menu/Menu";
 import Dialog from "../common/components/UI/dialog/Dialog";
 import Toast from "../common/components/UI/toast/Toast";
-import { mapCenterChanged } from "../features/map/mapSlice";
 import MapWrapper from "../features/map/MapWrapper";
 import { selectUi, uiActions } from "../common/components/UI/uiSlice";
 import { MenuIcon, XIcon} from "@heroicons/react/outline";
+import useVenueParams from "../common/hooks/use-venue-params";
 
 const MainLayout = () => {
     const ui = useSelector(selectUi);
     const dispatch = useDispatch();
-    const params = useParams();
-
-    useEffect(() => {
-        if (params.coordinates) {
-            try {
-                const [latString, lngString] = params.coordinates.split(',');
-                const lat = parseFloat(latString);                
-                const lng = parseFloat(lngString);
-                dispatch(mapCenterChanged({lat, lng}))
-            } catch(e) {
-                console.log(e);
-            }
-        }
-    }, [dispatch, params.coordinates]);
+    
+    useVenueParams();
     
     const handleMenuButtonClick = () => {
         dispatch(uiActions.menuToggle());
