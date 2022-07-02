@@ -74,7 +74,6 @@ const Detail = () => {
 
                     {(userId && venue?.id) &&
                         <DetailSettings venue={venue}
-                            onEditImagesClick={handleEditImagesClick}
                             onCommentClick={handleAddCommentClick} />
                     }
 

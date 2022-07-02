@@ -12,11 +12,10 @@ import { HeartIcon, PhotographIcon, AnnotationIcon } from '@heroicons/react/outl
 
 type DetailSettingsProps = {
     venue: Venue,
-    onEditImagesClick: () => void,
     onCommentClick: () => void
 }
 
-const DetailSettings = ({ venue, onCommentClick, onEditImagesClick }: DetailSettingsProps) => {
+const DetailSettings = ({ venue, onCommentClick }: DetailSettingsProps) => {
     const dispatch = useDispatch();
     const { data: favorites, isLoading, isFetching } = useGetFavoritesQuery();
     const [addFavorite, { data: addResponse }] = useAddFavoriteMutation();
