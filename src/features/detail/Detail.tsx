@@ -11,28 +11,25 @@ import useToast from '../../common/hooks/use-toast';
 import CommentForm from '../comments/CommentForm';
 import { useLazyGetCommentsQuery, useAddCommentMutation } from '../comments/commentsApi';
 import CommentsList from '../comments/CommentsList';
-import { useLazyGetVenueByIdQuery } from '../map/mapSlice';
+import { selectVenueById, useLazyGetVenueByIdQuery } from '../map/venuesSlice';
 import { selectUserId } from '../user/userSlice';
 import DetailSettings from './DetailSettings';
 import {MapIcon} from '@heroicons/react/outline';
+import { RootState } from '../../app/store';
+import GraphicMessage from '../../common/components/UI/GraphicMessage';
+import { ILLUSTRATIONS } from '../../common/constants/illustrations';
 
 const Detail = () => {
 
     const navigate = useNavigate();
     const params = useParams();
-    const [loadVenue, { data: venue, isLoading, isFetching }] = useLazyGetVenueByIdQuery();
+    const venue = useSelector((state: RootState) => selectVenueById(state, params.venueId!))
     const [loadVenueComments, { data: venueComments }] = useLazyGetCommentsQuery();
     const [addComment, { data: addCommentResponse }] = useAddCommentMutation();
     const toast = useToast();
     const userId = useSelector(selectUserId);
-
+    
     const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (params.venueId) {
-            loadVenue(params.venueId);
-        }
-    }, [params.venueId, loadVenue])
 
     useEffect(() => {
         if (venue) {
@@ -65,47 +62,52 @@ const Detail = () => {
 
     return (
         <PageWrapper title={'Detail'}>
-            <div className="mt-6">
-                <VenueTitle venue={venue} />
-            </div>
+            {venue && 
+                <>
+                    <div className="mt-6">
+                        <VenueTitle venue={venue} />
+                    </div>
 
-            <div className="my-2">
-                <SportTypesList sportTypes={venue?.sportTypes} />
-            </div>
+                    <div className="my-2">
+                        <SportTypesList sportTypes={venue?.sportTypes} />
+                    </div>
 
-            {(userId && venue?.id) &&
-                <DetailSettings venue={venue}
-                    onEditImagesClick={handleEditImagesClick}
-                    onCommentClick={handleAddCommentClick} />
+                    {(userId && venue?.id) &&
+                        <DetailSettings venue={venue}
+                            onEditImagesClick={handleEditImagesClick}
+                            onCommentClick={handleAddCommentClick} />
+                    }
+
+                    {showCommentForm &&
+                        <CommentForm onFormSubmit={handleFormSubmit} onFormCancel={handleFormCancel} />
+                    }
+
+                    {venue &&
+                        <div className="h-1/3 my-4">
+                            <ImageSwiper venueId={venue.id} />
+                        </div>
+                    }
+
+                    {(venueComments && venueComments.length > 0) &&
+                        <div className="mt-8">
+                            <h2 className="text-2xl mb-4">Kommentare</h2>
+                            <CommentsList comments={venueComments} />
+                        </div>
+                    }
+
+                    <div className="fixed bottom-6 right-2 z-800">
+                        <FabButton backgroundColor="bg-green-200"
+                            onClick={() => navigate('/' + venue?.location.lat + ',' + venue?.location.lng)}>
+                            <MapIcon className="icon-size" />
+                        </FabButton>
+                    </div>
+                </>
             }
 
-            {showCommentForm &&
-                <CommentForm onFormSubmit={handleFormSubmit} onFormCancel={handleFormCancel} />
+            {!venue && 
+                <GraphicMessage illustration={ILLUSTRATIONS.NOT_FOUND} text="Das angeforderte Venue existiert nicht." title="Nichts gefunden"/>
             }
 
-            {venue &&
-                <div className="h-1/3 my-4">
-                    <ImageSwiper venueId={venue.id} />
-                </div>
-            }
-
-            {(venueComments && venueComments.length > 0) &&
-                <div className="mt-8">
-                    <h2 className="text-2xl mb-4">Kommentare</h2>
-                    <CommentsList comments={venueComments} />
-                </div>
-            }
-
-            <div className="fixed bottom-6 right-2 z-800">
-                <FabButton backgroundColor="bg-green-200"
-                    onClick={() => navigate('/' + venue?.location.lat + ',' + venue?.location.lng)}>
-                    <MapIcon className="icon-size" />
-                </FabButton>
-            </div>
-
-            {(isLoading || isFetching) &&
-                <LoadingSpinner />
-            }
 
         </PageWrapper>
     )
