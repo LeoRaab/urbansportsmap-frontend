@@ -21,7 +21,7 @@ const DetailSettings = ({ venue, onCommentClick }: DetailSettingsProps) => {
     const [addFavorite, { data: addResponse }] = useAddFavoriteMutation();
     const [removeFavorite, { data: removeResponse }] = useRemoveFavoriteMutation();
     const imageManager = useSelector(selectImageManager);
-    const toast = useToast();
+    //const toast = useToast();
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
     useEffect(() => {
@@ -32,15 +32,15 @@ const DetailSettings = ({ venue, onCommentClick }: DetailSettingsProps) => {
 
     useEffect(() => {
         if (addResponse) {
-            toast.show(addResponse.message, 'success');
+            //toast.show(addResponse.message, 'success');
         }
-    }, [addResponse, toast]);
+    }, [addResponse]);
 
     useEffect(() => {
         if (removeResponse) {
-            toast.show(removeResponse.message, 'success');
+            //toast.show(removeResponse.message, 'success');
         }
-    }, [removeResponse, toast])
+    }, [removeResponse])
 
     const handleFavoriteClick = () => {
         if (!isFavorite) {

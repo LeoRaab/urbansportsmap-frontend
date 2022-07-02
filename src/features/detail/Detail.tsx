@@ -17,6 +17,7 @@ import {MapIcon} from '@heroicons/react/outline';
 import { RootState } from '../../app/store';
 import GraphicMessage from '../../common/components/UI/GraphicMessage';
 import { ILLUSTRATIONS } from '../../common/constants/illustrations';
+import Toast from '../../common/components/UI/toast/Toast';
 
 const Detail = () => {
 
@@ -25,7 +26,7 @@ const Detail = () => {
     const venue = useSelector((state: RootState) => selectVenueById(state, params.venueId!))
     const [loadVenueComments, { data: venueComments }] = useLazyGetCommentsQuery();
     const [addComment, { data: addCommentResponse }] = useAddCommentMutation();
-    const toast = useToast();
+    //const toast = useToast();
     const userId = useSelector(selectUserId);
     
     const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
@@ -38,9 +39,9 @@ const Detail = () => {
 
     useEffect(() => {
         if (addCommentResponse) {
-            toast.show(addCommentResponse.message, 'success')
+            //toast.show(addCommentResponse.message, 'success')
         }
-    }, [addCommentResponse, toast]);
+    }, [addCommentResponse]);
 
     const handleAddCommentClick = () => {
         setShowCommentForm(true);
@@ -101,8 +102,7 @@ const Detail = () => {
             {!venue && 
                 <GraphicMessage illustration={ILLUSTRATIONS.NOT_FOUND} text="Das angeforderte Venue existiert nicht." title="Nichts gefunden"/>
             }
-
-
+            
         </PageWrapper>
     )
 }

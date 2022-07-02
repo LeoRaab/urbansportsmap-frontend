@@ -5,11 +5,11 @@ import useTimer from "./use-timer";
 
 const useToast = () => {
     const dispatch = useDispatch();
-    const timer = useTimer();
+    const timer = useTimer(5000, 100);
 
     const show = (message: string, type: 'success' | 'error') => {
         dispatch(toastActions.show({ message, type }));
-        timer.start(5000, 100);
+        timer.start();
     }
 
     const close = useCallback(() => {
@@ -18,7 +18,7 @@ const useToast = () => {
 
     useEffect(() => {
         const currentWidth = timer.remainingTime / 5000 * 100;
-        dispatch(toastActions.updateCurrentWidth({ currentWidth }));
+        //dispatch(toastActions.updateCurrentWidth({ currentWidth }));
         
         if (timer.remainingTime === 0) {
             dispatch(toastActions.hide());

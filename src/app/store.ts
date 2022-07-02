@@ -8,6 +8,7 @@ import mapSlice from '../features/map/mapSlice';
 import uiSlice from '../common/components/UI/uiSlice';
 import apiSlice from './apiSlice';
 import userSlice from '../features/user/userSlice';
+import toastsSlice from '../common/components/UI/toast/toastsSlice';
 
 const store = configureStore({
     reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
         imageManager: imageManagerSlice,
         dialog: dialogSlice,
         toast: toastSlice,
+        toasts: toastsSlice,
         [apiSlice.reducerPath]: apiSlice.reducer,
         [geocodeApi.reducerPath]: geocodeApi.reducer
     },

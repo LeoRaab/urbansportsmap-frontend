@@ -16,14 +16,14 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
     const dispatch = useDispatch();
     const { data: userImages } = useGetImagesByVenueAndUserQuery(venueId);
     const [deleteImage, { data: deleteResponse }] = useDeleteImageMutation();
-    const toast = useToast();
+    //const toast = useToast();
     const dialog = useDialog();
 
     useEffect(() => {
         if (deleteResponse) {
-            toast.show(deleteResponse.message, 'success');
+            //toast.show(deleteResponse.message, 'success');
         }
-    }, [deleteResponse, toast]);
+    }, [deleteResponse]);
 
     const handleUploadedThumbnailClick = async (id: number) => {
         const isAccepted = await dialog.open('Willst du das Bild wirklich löschen?');

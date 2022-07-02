@@ -9,6 +9,7 @@ import MapWrapper from "../features/map/MapWrapper";
 import { selectUi, uiActions } from "../common/components/UI/uiSlice";
 import { MenuIcon, XIcon} from "@heroicons/react/outline";
 import useVenueCoordinates from "../common/hooks/use-venue-coordinates";
+import ToastsList from "../common/components/UI/toast/ToastsList";
 
 const MainLayout = () => {
     const ui = useSelector(selectUi);
@@ -43,9 +44,9 @@ const MainLayout = () => {
                     <MapWrapper />
                 </div>
             </div>
-
-            <Toast />
             
+            <ToastsList />
+
             <Dialog />
         </>
     )

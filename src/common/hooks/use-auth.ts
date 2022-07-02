@@ -15,19 +15,16 @@ const useAuth = () => {
     const dispatch = useDispatch();
     const [loginUser, {isLoading, isError, error}] = useLoginMutation();
     const sessionExpiration = useSelector(selectExpirationDate);
-    const toast = useToast();
     const { value: storedUserData, setValue: setStoredUserData, removeFromStorage: removeUserData } = useLocalStorage<UserState>({ key: 'userData' });
 
     const login = async (email: string, password: string) => {        
         try {
             const { token, userId, message } = await loginUser({ email, password }).unwrap();
             const expirationDate = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();            
-            toast.show(message, 'success');
 
             setStoredUserData({ userId, token, expirationDate });
         } catch (e) {
             const myError = e as HttpError;
-            toast.show(myError.data.message, 'error');
         }
     }
 

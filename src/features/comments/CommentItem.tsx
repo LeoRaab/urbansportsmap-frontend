@@ -17,21 +17,21 @@ const CommentItem = ({ comment }: CommentItemProps) => {
     const userId = useSelector(selectUserId);
     const [updateComment, { data: updateResponse }] = useUpdateCommentMutation();
     const [removeComment, { data: removeResponse }] = useRemoveCommentMutation();
-    const toast = useToast();
+    //const toast = useToast();
     const commentDate = new Date(comment.updatedAt).toLocaleDateString('de-DE');
     const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
 
     useEffect(() => {
         if (updateResponse) {
-            toast.show(updateResponse.message, 'success');
+            //toast.show(updateResponse.message, 'success');
         }
-    }, [updateResponse, toast]);
+    }, [updateResponse]);
 
     useEffect(() => {
         if (removeResponse) {
-            toast.show(removeResponse.message, 'success');
+            //toast.show(removeResponse.message, 'success');
         }
-    }, [removeResponse, toast]);
+    }, [removeResponse]);
 
     const handleEditClick = () => {
         setShowCommentForm(true);

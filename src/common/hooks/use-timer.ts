@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 
-const useTimer = () => {
-    const [duration, setDuration] = useState<number>(0);
-    const [tick, setTick] = useState<number>(0);
-    const [remainingTime, setRemainingTime] = useState<number>(0);
+const useTimer = (duration: number, tick: number) => {
+    const [remainingTime, setRemainingTime] = useState<number>(duration);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -23,9 +21,7 @@ const useTimer = () => {
         }
     }, [remainingTime]);
 
-    const start = (duration: number, tick: number) => {
-        setDuration(duration);
-        setTick(tick);
+    const start = () => {
         setRemainingTime(duration - tick);
     }
 

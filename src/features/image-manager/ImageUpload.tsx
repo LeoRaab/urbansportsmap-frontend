@@ -20,7 +20,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
     const [selectedPreviewImages, setSelectedPreviewImages] = useState<VenueImage[]>([]);
     const [uploadImages, { data: uploadImageResponse, isLoading, isSuccess, isError, error }] = useUploadImagesMutation();
-    const toast = useToast();
+    //const toast = useToast();
 
     useEffect(() => {
         setSelectedPreviewImages(selectedImages.map(image => {
@@ -38,9 +38,9 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
 
     useEffect(() => {
         if (uploadImageResponse) {
-            toast.show(uploadImageResponse.message, 'success')
+            //toast.show(uploadImageResponse.message, 'success')
         }
-    }, [uploadImageResponse, toast]);
+    }, [uploadImageResponse]);
 
     const handleSelectImagesClick = () => {
         filePickerRef.current?.click();

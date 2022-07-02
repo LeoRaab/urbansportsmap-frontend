@@ -1,17 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '../../../../app/store'
 
 interface ToastState {
     isVisible: boolean,
     message: string,
-    type: 'success' | 'error'
-    currentWidth: number
+    type: 'success' | 'error',
+    duration: number
 }
 
 const initialState: ToastState = {
-    isVisible: false,
-    message: '',
+    isVisible: true,
+    message: 'asdassgdfgsdgff',
     type: 'success',
-    currentWidth: 0
+    duration: 5000
 }
 
 export const toastSlice = createSlice({
@@ -22,21 +23,16 @@ export const toastSlice = createSlice({
             state.isVisible = true;
             state.message = message;
             state.type = type;
-            state.currentWidth = 100;
         },
         hide: state => {
             state.isVisible = false;
             state.message = '';
-            state.currentWidth = 0;
-        },
-        updateCurrentWidth: (state, { payload: { currentWidth } }: PayloadAction<{ currentWidth: number }>) => {
-            state.currentWidth = currentWidth;
         }
     }
 })
 
 export const toastActions = toastSlice.actions;
 
-export const selectToast = (state: any): ToastState => state.toast;
+export const selectToast = (state: RootState): ToastState => state.toast;
 
 export default toastSlice.reducer;
