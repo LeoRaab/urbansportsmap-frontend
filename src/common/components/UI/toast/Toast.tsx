@@ -15,7 +15,9 @@ type ToastProps = {
 const Toast = ({message, type, duration, id}: ToastProps) => {
     const dispatch = useDispatch();
     const timer = useTimer(duration, 100);
+    const [isVisible, setIsVisible] = useState<boolean>(true);
     const [currentWidth, setCurrentWidth] = useState<number>(100);
+    const isMounted = useRef<boolean>(false);
 
     useEffect(() => {
         timer.start();
@@ -24,27 +26,33 @@ const Toast = ({message, type, duration, id}: ToastProps) => {
     useEffect(() => {
         setCurrentWidth(timer.remainingTime / 5000 * 100);
         if (timer.remainingTime <= 0) {
-            removeToast();
+            setIsVisible(false);
         }
-    }, [timer.remainingTime])
+    }, [timer.remainingTime]);
 
-    const removeToast = () => {
-        dispatch(toastsActions.removeToast({toastId: id}))
-    }
+    useEffect(() => {
+        return () => {
+            if (isMounted.current) {
+                dispatch(toastsActions.removeToast({toastId: id}));
+            }
 
-    return (
+            isMounted.current = true;
+        }
+    }, []);
+
+    return isVisible ? (
         <div className={'rounded shadow p-4 mb-2 w-3/4 relative bg-opacity-90 ' + type}>
             <div className="flex">
                 <p className='text-sm font-semibold'>{message}</p>
                 <div className="absolute flex justify-center right-2 z-1100">
-                    <Button color="transparent" type="button" onClick={removeToast}>
+                    <Button color="transparent" type="button" onClick={() => setIsVisible(false)}>
                         <XIcon className="icon-size"/>
                     </Button>
                 </div>
             </div>
             <div className="rounded mt-2 border-b-8 border-white/10" style={{ 'width': currentWidth + '%' }} />
         </div>
-    )
+    ) : null
 }
 
 export default Toast;
