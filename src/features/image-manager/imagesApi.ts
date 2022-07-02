@@ -40,7 +40,7 @@ export const imagesApi = apiSlice.enhanceEndpoints({addTagTypes: ['Images']}).in
         }),
         uploadImages: builder.mutation<{ message: string }, { venueId: string, uploadImages: FormData }>({
             query: ({ venueId, uploadImages }) => ({
-                url: '/images' + venueId,
+                url: 'images/' + venueId,
                 method: 'POST',
                 body: uploadImages
             }),
