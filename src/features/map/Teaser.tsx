@@ -9,6 +9,8 @@ import { ChevronRightIcon } from '@heroicons/react/outline';
 import { RootState } from '../../app/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiActions } from '../../common/components/UI/uiSlice';
+import Button from '../../common/components/form-elements/buttons/Button';
+import IconButton from '../../common/components/form-elements/buttons/IconButton';
 
 type TeaserProps = {
     venueId: string;
@@ -38,11 +40,13 @@ const Teaser = ({ venueId }: TeaserProps) => {
 
                         <SportTypesList sportTypes={venue?.sportTypes} />
 
-                        <div className="absolute bottom-0 lg:bottom-auto right-2 z-800">
-                            <FabButton backgroundColor="bg-green-200"
-                                onClick={handleDetailClick}>
-                                <ChevronRightIcon className="h-6 w-6"/>
-                            </FabButton>
+                        <div className="mt-2 lg:mt-4 w-full flex justify-end">
+                            <div>
+                                <FabButton backgroundColor="bg-green-200"
+                                    onClick={handleDetailClick}>
+                                    <ChevronRightIcon className="h-6 w-6"/>
+                                </FabButton>
+                            </div>
                         </div>
                     </div>
                 
