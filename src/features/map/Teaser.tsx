@@ -38,7 +38,7 @@ const Teaser = ({ venueId }: TeaserProps) => {
 
                         <SportTypesList sportTypes={venue?.sportTypes} />
 
-                        <div className="fixed bottom-6 right-2 z-800">
+                        <div className="absolute bottom-0 lg:bottom-auto right-2 z-800">
                             <FabButton backgroundColor="bg-green-200"
                                 onClick={handleDetailClick}>
                                 <ChevronRightIcon className="h-6 w-6"/>
