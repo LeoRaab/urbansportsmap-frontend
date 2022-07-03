@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '../../common/components/form-elements/buttons/IconButton';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
-import useToast from '../../common/hooks/use-toast';
 import Venue from '../../common/types/Venue';
 import { useGetFavoritesQuery, useAddFavoriteMutation, useRemoveFavoriteMutation } from '../favorites/favoritesApi';
 import ImageManager from '../image-manager/ImageManager';
 import { selectImageManager, imageManagerActions } from '../image-manager/imageManagerSlice';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
 import { HeartIcon, PhotographIcon, AnnotationIcon } from '@heroicons/react/outline';
+import { toastsActions } from '../../common/components/UI/toast/toastsSlice';
 
 type DetailSettingsProps = {
     venue: Venue,
@@ -18,10 +18,9 @@ type DetailSettingsProps = {
 const DetailSettings = ({ venue, onCommentClick }: DetailSettingsProps) => {
     const dispatch = useDispatch();
     const { data: favorites, isLoading, isFetching } = useGetFavoritesQuery();
-    const [addFavorite, { data: addResponse }] = useAddFavoriteMutation();
-    const [removeFavorite, { data: removeResponse }] = useRemoveFavoriteMutation();
+    const [addFavorite, { data: addResponse, isError: isAddError, error: addError }] = useAddFavoriteMutation();
+    const [deleteFavorite, { data: deleteResponse, isError: isDeleteError, error: deleteError }] = useRemoveFavoriteMutation();
     const imageManager = useSelector(selectImageManager);
-    //const toast = useToast();
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
     useEffect(() => {
@@ -32,21 +31,29 @@ const DetailSettings = ({ venue, onCommentClick }: DetailSettingsProps) => {
 
     useEffect(() => {
         if (addResponse) {
-            //toast.show(addResponse.message, 'success');
+            dispatch(toastsActions.addToast({message: addResponse.message, type: 'success'}));
         }
-    }, [addResponse]);
+
+        if (isAddError) {
+            dispatch(toastsActions.addToast({message: 'addError.message', type: 'error'}));
+        }
+    }, [dispatch, addResponse, isAddError, addError]);
 
     useEffect(() => {
-        if (removeResponse) {
-            //toast.show(removeResponse.message, 'success');
+        if (deleteResponse) {
+            dispatch(toastsActions.addToast({message: deleteResponse.message, type: 'success'}));
         }
-    }, [removeResponse])
+
+        if (isDeleteError) {
+            dispatch(toastsActions.addToast({message: 'deleteError.message', type: 'error'}));
+        }
+    }, [dispatch, deleteResponse, isDeleteError, deleteError])
 
     const handleFavoriteClick = () => {
         if (!isFavorite) {
             addFavorite(venue.id);
         } else {
-            removeFavorite(venue.id);
+            deleteFavorite(venue.id);
         }
     }
 

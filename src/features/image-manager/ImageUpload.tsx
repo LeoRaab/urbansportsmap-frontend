@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
-import useToast from '../../common/hooks/use-toast';
 import VenueImage from '../../common/types/VenueImage';
 import ImageList from './ImageList';
 import { imageManagerActions } from './imageManagerSlice';
@@ -9,6 +8,7 @@ import { useUploadImagesMutation } from './imagesApi';
 import { UploadIcon } from '@heroicons/react/outline';
 import Button from '../../common/components/form-elements/buttons/Button';
 import IconButton from '../../common/components/form-elements/buttons/IconButton';
+import { toastsActions } from '../../common/components/UI/toast/toastsSlice';
 
 type ImageUploadProps = {
     venueId: string
@@ -20,7 +20,6 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
     const [selectedPreviewImages, setSelectedPreviewImages] = useState<VenueImage[]>([]);
     const [uploadImages, { data: uploadImageResponse, isLoading, isSuccess, isError, error }] = useUploadImagesMutation();
-    //const toast = useToast();
 
     useEffect(() => {
         setSelectedPreviewImages(selectedImages.map(image => {
@@ -38,9 +37,13 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
 
     useEffect(() => {
         if (uploadImageResponse) {
-            //toast.show(uploadImageResponse.message, 'success')
+            dispatch(toastsActions.addToast({message: uploadImageResponse.message, type: 'success'}));
         }
-    }, [uploadImageResponse]);
+
+        if (isError) {
+            dispatch(toastsActions.addToast({message: 'error.message', type: 'error'}));
+        }
+    }, [dispatch, uploadImageResponse, isError, error]);
 
     const handleSelectImagesClick = () => {
         filePickerRef.current?.click();
