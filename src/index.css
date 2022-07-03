@@ -38,6 +38,10 @@ button.white {
      @apply bg-white;
 }
 
+button.disabled {
+     @apply bg-transparent text-slate-400;
+}
+
 pwa-camera-modal-instance {
      z-index: 2000;
 }
