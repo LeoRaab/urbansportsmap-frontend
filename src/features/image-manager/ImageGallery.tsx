@@ -29,11 +29,11 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
         const isAccepted = await dialog.open('Willst du das Bild wirklich löschen?');
 
         if (isAccepted) {
-            handleDeleteImageClick(id);
+            handleDeleteImage(id);
         }
     }
 
-    const handleDeleteImageClick = (id: number) => {
+    const handleDeleteImage = (id: number) => {
         if (!userImages) {
             return;
         }
