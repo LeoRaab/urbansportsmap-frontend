@@ -21,6 +21,7 @@ const inputReducer = (state: typeof initialState, action: ACTIONTYPE) => {
                     action.payload.value,
                     action.payload.validators
                 ),
+                isTouched: true
             };
         case "TOUCH": {
             return {
@@ -38,7 +39,7 @@ type InputProps = {
     id: string;
     label: string;
     validators: Validator[];
-    onInput: (id: string, value: string, isValid: boolean) => void;
+    onInput: (id: string, value: string, isValid: boolean, isTouched: boolean) => void;
     errorText: string;
     type?: string;
     placeholder?: string;
@@ -57,12 +58,12 @@ const Input = ({
     rows,
 }: InputProps) => {
     const [inputState, dispatch] = useReducer(inputReducer, initialState);
-    const { value, isValid } = inputState;
+    const { value, isValid, isTouched } = inputState;
     const [className, setClassName] = useState<string>('');
 
     useEffect(() => {
-        onInput(id, value, isValid);
-    }, [id, value, isValid, onInput]);
+        onInput(id, value, isValid, isTouched);
+    }, [id, value, isValid, isTouched, onInput]);
 
     useEffect(() => {
         if (!isValid) {

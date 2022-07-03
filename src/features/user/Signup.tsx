@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Button from "../../common/components/form-elements/buttons/Button";
 import Input from "../../common/components/form-elements/Input";
 import GraphicMessage from "../../common/components/UI/GraphicMessage";
 import PageWrapper from "../../common/components/UI/PageWrapper";
@@ -27,11 +28,14 @@ const Signup = () => {
             },
             confirmPassword: {
                 value: '',
-                isValid: false
+                isValid: false,
+                dependsOn: 'password'
             }
         },
-        true
+        false
     );
+
+    console.log(formState);
 
     useEffect(() => {
         if (isSuccess) {
@@ -49,7 +53,7 @@ const Signup = () => {
     };
 
     return (
-        <PageWrapper title="Sign up">
+        <PageWrapper title="Sign&nbsp;up">
             <>
                 {!isMailSent && (
                     <form onSubmit={handleSubmit}>
@@ -96,6 +100,21 @@ const Signup = () => {
                             errorText="Die beiden Passwörter müssen übereinstimmen!"
                             onInput={inputHandler}
                         />
+
+                        <div className="flex justify-between my-8">
+                    
+                            <div className="w-2/5">
+                                <Button color="secondary" type="button" onClick={() => console.log('cancel')}>
+                                    Abbrechen
+                                </Button>
+                            </div>
+
+                            <div className="w-2/5">
+                                <Button color="primary" type="button" disabled={!formState.isValid} onClick={() => console.log('sign up')}>
+                                    Sign up
+                                </Button>
+                            </div>
+                        </div>               
                     </form>
                 )}
 
