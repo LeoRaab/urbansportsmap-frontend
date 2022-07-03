@@ -44,10 +44,6 @@ const MainLayout = () => {
                     <MapWrapper />
                 </div>
             </div>
-            
-            <ToastsList />
-
-            <Dialog />
         </>
     )
 }
