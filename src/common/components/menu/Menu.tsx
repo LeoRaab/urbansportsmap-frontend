@@ -39,7 +39,6 @@ const Menu = ({ isShowing }: MenuProps) => {
         logout();
         dispatch(uiActions.menuHidden());
         navigate('/');
-
     }
 
     return (
