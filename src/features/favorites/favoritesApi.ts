@@ -17,7 +17,7 @@ export const favoritesApi = apiSlice.enhanceEndpoints({ addTagTypes: ['Favorites
         }),
         removeFavorite: builder.mutation<{message: string}, string>({
             query: (venueId) => ({
-                url: 'favorites' + venueId,
+                url: 'favorites/' + venueId,
                 method: 'DELETE'
             }),
             invalidatesTags: ['Favorites']
