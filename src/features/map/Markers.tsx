@@ -5,8 +5,6 @@ import { VenueMarker } from '../../common/types/VenueMarker';
 import { markerIconFactory } from '../../common/util/marker-icon-factory';
 import { uiActions } from '../../common/components/UI/uiSlice';
 import { selectVisibleVenues } from './venuesSlice';
-import { toastActions } from '../../common/components/UI/toast/toastSlice';
-import { toastsActions } from '../../common/components/UI/toast/toastsSlice';
 
 type MarkersProps = {
     map?: L.Map
@@ -22,10 +20,9 @@ const Markers = ({map}: MarkersProps) => {
         if (map && venues) {
 
             const handleMarkerClick = (event: LeafletMouseEvent) => {
-                dispatch(toastsActions.addToast({message: event.target.options.venue.id, type: 'success'}))
-                //dispatch(
-                //    uiActions.teaserShown(event.target.options.venue.id)
-                //);
+                dispatch(
+                    uiActions.teaserShown(event.target.options.venue.id)
+                );
             }
 
             const marker = venues
