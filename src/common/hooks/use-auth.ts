@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation, selectExpirationDate, UserState, userActions } from "../../features/user/userSlice";
+import { toastsActions } from "../components/UI/toast/toastsSlice";
 import useLocalStorage from "./use-local-storage";
-import useToast from "./use-toast";
 
 interface HttpError {
     data: {
@@ -22,9 +22,11 @@ const useAuth = () => {
             const { token, userId, message } = await loginUser({ email, password }).unwrap();
             const expirationDate = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();            
 
+            dispatch(toastsActions.addToast({message: "Login erfolgreich!", type: "success"}));
             setStoredUserData({ userId, token, expirationDate });
         } catch (e) {
-            const myError = e as HttpError;
+            const loginError = e as HttpError;
+            dispatch(toastsActions.addToast({message: "Login fehlgeschlagen! " + loginError.data.message, type: "error"}));
         }
     }
 

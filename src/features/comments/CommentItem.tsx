@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '../../common/components/form-elements/buttons/IconButton';
 import Card from '../../common/components/UI/Card';
 import useToast from '../../common/hooks/use-toast';
@@ -8,30 +8,33 @@ import { selectUserId } from '../user/userSlice';
 import CommentForm from './CommentForm';
 import { useUpdateCommentMutation, useRemoveCommentMutation } from './commentsApi';
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
+import { toastsActions } from '../../common/components/UI/toast/toastsSlice';
+import useDialog from '../../common/hooks/use-dialog';
 
 type CommentItemProps = {
     comment: VenueComment
 }
 
 const CommentItem = ({ comment }: CommentItemProps) => {
+    const dispatch = useDispatch();
     const userId = useSelector(selectUserId);
     const [updateComment, { data: updateResponse }] = useUpdateCommentMutation();
-    const [removeComment, { data: removeResponse }] = useRemoveCommentMutation();
-    //const toast = useToast();
+    const [deleteComment, { data: deleteResponse }] = useRemoveCommentMutation();
     const commentDate = new Date(comment.updatedAt).toLocaleDateString('de-DE');
     const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
+    const dialog = useDialog();
 
     useEffect(() => {
         if (updateResponse) {
-            //toast.show(updateResponse.message, 'success');
+            dispatch(toastsActions.addToast({message: updateResponse.message, type: 'success'}));
         }
-    }, [updateResponse]);
+    }, [updateResponse, dispatch]);
 
     useEffect(() => {
-        if (removeResponse) {
-            //toast.show(removeResponse.message, 'success');
+        if (deleteResponse) {
+            dispatch(toastsActions.addToast({message: deleteResponse.message, type: 'success'}));
         }
-    }, [removeResponse]);
+    }, [deleteResponse, dispatch]);
 
     const handleEditClick = () => {
         setShowCommentForm(true);
@@ -46,8 +49,12 @@ const CommentItem = ({ comment }: CommentItemProps) => {
         setShowCommentForm(false);
     }
 
-    const handleDeleteCommentClick = () => {
-        removeComment(comment.id);
+    const handleDeleteCommentClick = async () => {
+        const isAccepted = await dialog.open('Willst du das Kommentar wirklich löschen?');
+
+        if (isAccepted) {
+            deleteComment(comment.id);
+        }
     }
 
     return (
@@ -57,9 +64,9 @@ const CommentItem = ({ comment }: CommentItemProps) => {
                     <p className="text-sm font-bold mb-4">{comment.author.name}, {commentDate}</p>
                     <p className="whitespace-pre-line">{comment.comment}</p>
                     {(comment.author.id === userId) &&
-                        <div className="flex justify-between border-t border-t-slate-200 mt-4">
-                            <IconButton text={'löschen'} icon={<TrashIcon />} onClick={handleDeleteCommentClick} />
-                            <IconButton text={'editieren'} icon={<PencilAltIcon />} onClick={handleEditClick} />
+                        <div className="flex justify-between border-t border-t-slate-200 pt-2 mt-4">
+                            <IconButton text={'löschen'} icon={<TrashIcon className="icon-size"/>} onClick={handleDeleteCommentClick} />
+                            <IconButton text={'editieren'} icon={<PencilAltIcon className="icon-size" />} onClick={handleEditClick} />
                         </div>
                     }
                 </Card>
