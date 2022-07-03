@@ -27,9 +27,9 @@ const ImageManager = ({ venueId }: ImageManagerProps) => {
                     <>
                         <h2 className="my-6 text-xl">Bilder bearbeiten</h2>
 
-                        <div className="mt-4">
+                        <div className="mt-4 flex flex-col gap-y-2">
                             <IconButton text="Bilder hochladen" icon={<UploadIcon className="icon-size"/>} onClick={() => dispatch(imageManagerActions.selectImages())}/>
-                            <IconButton text="Bilder auswählen" icon={<PhotographIcon className="icon-size"/>} onClick={() => dispatch(imageManagerActions.editImages())}/>
+                            <IconButton text="Bilder verwalten" icon={<PhotographIcon className="icon-size"/>} onClick={() => dispatch(imageManagerActions.editImages())}/>
                         </div>
 
                         <div className="flex justify-center my-8">
