@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from "../../common/components/form-elements/buttons/Button";
 import Input from "../../common/components/form-elements/Input";
 import GraphicMessage from "../../common/components/UI/GraphicMessage";
 import PageWrapper from "../../common/components/UI/PageWrapper";
+import { toastsActions } from "../../common/components/UI/toast/toastsSlice";
 import { ILLUSTRATIONS } from "../../common/constants/illustrations";
 import { useForm } from "../../common/hooks/use-form";
 import { VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_EMAIL, VALIDATOR_CONFIRM_PASSWORD } from "../../common/util/form-validators";
 import { useSignupMutation } from "./userSlice";
 
 const Signup = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [signup, { isSuccess, error }] = useSignupMutation();
     const [isMailSent, setIsMailSent] = useState<boolean>(false);
 
@@ -35,8 +40,6 @@ const Signup = () => {
         false
     );
 
-    console.log(formState);
-
     useEffect(() => {
         if (isSuccess) {
             setIsMailSent(true);
@@ -45,6 +48,12 @@ const Signup = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        if (formState.inputs.password.value !== formState.inputs.confirmPassword.value) {
+            dispatch(toastsActions.addToast({message: 'Die Passwörter müssen übereinstimmen!', type: 'error'}))
+            return;
+        }
+
         signup({
             email: formState.inputs.email.value,
             password: formState.inputs.password.value,
@@ -104,13 +113,13 @@ const Signup = () => {
                         <div className="flex justify-between my-8">
                     
                             <div className="w-2/5">
-                                <Button color="secondary" type="button" onClick={() => console.log('cancel')}>
+                                <Button color="secondary" type="button" onClick={() => navigate('/')}>
                                     Abbrechen
                                 </Button>
                             </div>
 
                             <div className="w-2/5">
-                                <Button color="primary" type="button" disabled={!formState.isValid} onClick={() => console.log('sign up')}>
+                                <Button color="primary" type="submit" disabled={!formState.isValid}>
                                     Sign up
                                 </Button>
                             </div>
