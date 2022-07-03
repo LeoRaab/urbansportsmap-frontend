@@ -20,6 +20,7 @@ const Button = ({
     disabled,
     children,
 }: ButtonProps) => {
+
     if (href) {
         return (
             <a className={color} href={href}>
@@ -38,7 +39,7 @@ const Button = ({
 
     return (
         <button
-            className={color}
+            className={disabled ? 'disabled' : color}
             type={type}
             onClick={onClick}
             disabled={disabled}
