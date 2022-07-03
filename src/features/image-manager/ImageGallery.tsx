@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../../common/components/form-elements/buttons/Button";
+import { toastsActions } from "../../common/components/UI/toast/toastsSlice";
 import useDialog from "../../common/hooks/use-dialog";
-import useToast from "../../common/hooks/use-toast";
 import ImageList from "./ImageList";
 import { imageManagerActions } from "./imageManagerSlice";
 import { useGetImagesByVenueAndUserQuery, useDeleteImageMutation } from "./imagesApi";
@@ -15,15 +15,18 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
 
     const dispatch = useDispatch();
     const { data: userImages } = useGetImagesByVenueAndUserQuery(venueId);
-    const [deleteImage, { data: deleteResponse }] = useDeleteImageMutation();
-    //const toast = useToast();
+    const [deleteImage, { data: deleteResponse, isError: isDeleteError, error: deleteError }] = useDeleteImageMutation();
     const dialog = useDialog();
 
     useEffect(() => {
         if (deleteResponse) {
-            //toast.show(deleteResponse.message, 'success');
+            dispatch(toastsActions.addToast({message: deleteResponse.message, type: 'success'}));
         }
-    }, [deleteResponse]);
+
+        if (isDeleteError) {
+            dispatch(toastsActions.addToast({message: 'deleteError', type: 'error'}));
+        }
+    }, [deleteResponse, isDeleteError, deleteError]);
 
     const handleUploadedThumbnailClick = async (id: number) => {
         const isAccepted = await dialog.open('Willst du das Bild wirklich löschen?');
@@ -47,7 +50,7 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
 
     return (
         <>
-            <h2 className="my-6 text-xl">Bilder auswählen</h2>
+            <h2 className="my-6 text-xl">Bilder verwalten</h2>
 
             {(!userImages || userImages.length === 0) &&
                 <p>Du hast noch keine Bilder hochgeladen</p>
