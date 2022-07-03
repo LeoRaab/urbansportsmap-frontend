@@ -15,20 +15,8 @@
  * TODO: Constant reducer naming
  */
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import PageNotFound from '../common/components/PageNotFound';
 import useAuth from '../common/hooks/use-auth';
-import Detail from '../features/detail/Detail';
-import Favorites from '../features/favorites/Favorites';
-import MapUI from '../features/map/MapUI';
-import Login from '../features/user/Login';
-import Profile from '../features/user/Profile';
-import Signup from '../features/user/Signup';
-import VerifyUser from '../features/user/VerifyUser';
-import MainLayout from './MainLayout';
-import PageLayout from './PageLayout';
 import { useGetVenuesQuery } from '../features/map/venuesSlice';
-import RequireAuth from '../features/user/RequireAuth';
 import LoadingSpinner from '../common/components/UI/LoadingSpinner';
 import { useDispatch } from 'react-redux';
 import { toastsActions } from '../common/components/UI/toast/toastsSlice';
