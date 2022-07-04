@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import Button from "../../common/components/form-elements/buttons/Button";
 import LoadingSpinner from "../../common/components/UI/LoadingSpinner";
 import { toastsActions } from "../../common/components/UI/toast/toastsSlice";
+import { STRINGS } from "../../common/constants/strings";
 import useDialog from "../../common/hooks/use-dialog";
 import ImageList from "./ImageList";
 import { imageManagerActions } from "./imageManagerSlice";
@@ -36,7 +37,7 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
     }, [dispatch, isLoadingError, loadingError])
 
     const handleUploadedThumbnailClick = async (id: number) => {
-        const isAccepted = await dialog.open('Willst du das Bild wirklich löschen?');
+        const isAccepted = await dialog.open(STRINGS.IMAGES_DELETE);
 
         if (isAccepted) {
             handleDeleteImage(id);
@@ -57,10 +58,10 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
 
     return (
         <>
-            <h2 className="my-6 text-xl">Bilder verwalten</h2>
+            <h2 className="my-6 text-xl">{STRINGS.IMAGES_MANAGE}</h2>
 
             {(!userImages || userImages.length === 0) &&
-                <p>Du hast noch keine Bilder hochgeladen</p>
+                <p>{STRINGS.IMAGES_NONE_UPLOADED}</p>
             }
 
             {(userImages && userImages.length > 0) &&
@@ -70,7 +71,7 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
             <div className="flex justify-center my-8">
                 <div className="w-5/12">
                     <Button color="secondary" type="button" onClick={() => dispatch(imageManagerActions.show())}>
-                        zurück
+                        {STRINGS.BUTTON_BACK}
                     </Button>
                 </div>
             </div>
