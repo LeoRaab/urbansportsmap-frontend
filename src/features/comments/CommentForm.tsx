@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../../common/components/form-elements/buttons/Button";
 import { useForm } from "../../common/hooks/use-form";
 import { VALIDATOR_MINLENGTH } from "../../common/util/form-validators";
@@ -16,10 +16,10 @@ const CommentForm = ({
     commentValue,
 }: CommentFormProps) => {
 
-    const { formState, inputHandler } = useForm(
+    const { formState, inputHandler, setFormData } = useForm(
         {
             comment: {
-                value: commentValue,
+                value: commentValue || '',
                 isValid: false,
             },
         },
@@ -32,6 +32,7 @@ const CommentForm = ({
     };
 
     return (
+        <>
         <form onSubmit={handleSubmit}>
             <Input
                 element="textarea"
@@ -40,6 +41,7 @@ const CommentForm = ({
                 validators={[VALIDATOR_MINLENGTH(3)]}
                 errorText="Gib bitte mindestens 3 Zeichen ein!"
                 onInput={inputHandler}
+                initialValue={commentValue}
             />
 
             <div className="flex justify-between mt-4">
@@ -63,6 +65,7 @@ const CommentForm = ({
                 </div>
             </div>
         </form>
+    </>
     );
 };
 

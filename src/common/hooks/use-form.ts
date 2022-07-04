@@ -43,7 +43,11 @@ const formReducer = (state: FormState, action: ACTIONTYPE) => {
                 },
                 isValid: formIsValid,
             };
-
+        case "SET_DATA":
+            return {
+                inputs: action.payload.inputs,
+                isValid: action.payload.isValid
+            }
         default:
             return state;
     }

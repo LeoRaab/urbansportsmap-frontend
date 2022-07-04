@@ -1,17 +1,17 @@
 import { useReducer, useEffect, useState } from "react";
 import { validate, Validator } from "../../util/form-validators";
 
-const initialState = {
-    value: "",
-    isValid: true,
-    isTouched: false,
-};
+type InputState = {
+    value: string,
+    isValid: boolean,
+    isTouched: boolean
+}
 
 type ACTIONTYPE =
     | { type: "CHANGE"; payload: { value: string; validators: Validator[] } }
     | { type: "TOUCH" };
 
-const inputReducer = (state: typeof initialState, action: ACTIONTYPE) => {
+const inputReducer = (state: InputState, action: ACTIONTYPE) => {
     switch (action.type) {
         case "CHANGE":
             return {
@@ -40,8 +40,9 @@ type InputProps = {
     label: string;
     validators: Validator[];
     onInput: (id: string, value: string, isValid: boolean, isTouched: boolean) => void;
-    errorText: string;
+    errorText: string;    
     type?: string;
+    initialValue?: string;
     placeholder?: string;
     rows?: number;
 };
@@ -54,13 +55,21 @@ const Input = ({
     errorText,
     onInput,
     type,
+    initialValue,
     placeholder,
-    rows,
+    rows
 }: InputProps) => {
+    const initialState = {
+        value: initialValue || '',
+        isValid: true,
+        isTouched: false,
+    };
     const [inputState, dispatch] = useReducer(inputReducer, initialState);
     const { value, isValid, isTouched } = inputState;
     const [className, setClassName] = useState<string>('');
 
+    console.log(value);
+    
     useEffect(() => {
         onInput(id, value, isValid, isTouched);
     }, [id, value, isValid, isTouched, onInput]);
@@ -98,6 +107,7 @@ const Input = ({
                 onChange={handleChange}
                 onBlur={handleTouch}
                 className={className}
+                value={value}
             />
         ) : (
             <textarea
@@ -106,6 +116,7 @@ const Input = ({
                 onChange={handleChange}
                 onBlur={handleTouch}
                 className={className}
+                value={value}
             />
         );
 
