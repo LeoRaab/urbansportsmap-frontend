@@ -19,13 +19,13 @@ export const imageManagerSlice = createSlice({
     name: 'imageManager',
     initialState,
     reducers: {
-        show: state => {
+        start: state => {
             state.isVisible = true;
             state.startScreen = true;
             state.selectImages = false;
             state.editImages = false;
         },
-        hide: state => {
+        close: state => {
             state.isVisible = false;
             state.startScreen = false;
             state.selectImages = false;
