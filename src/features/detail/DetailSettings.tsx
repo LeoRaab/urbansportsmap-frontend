@@ -9,6 +9,8 @@ import { selectImageManager, imageManagerActions } from '../image-manager/imageM
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
 import { HeartIcon, PhotographIcon, AnnotationIcon } from '@heroicons/react/outline';
 import { toastsActions } from '../../common/components/UI/toast/toastsSlice';
+import getErrorMessage from '../../common/util/get-error-message';
+import useToast from '../../common/hooks/use-toast';
 
 type DetailSettingsProps = {
     venue: Venue,
@@ -18,9 +20,10 @@ type DetailSettingsProps = {
 const DetailSettings = ({ venue, onCommentClick }: DetailSettingsProps) => {
     const dispatch = useDispatch();
     const { data: favorites, isLoading, isFetching } = useGetFavoritesQuery();
-    const [addFavorite, { data: addResponse, isError: isAddError, error: addError }] = useAddFavoriteMutation();
-    const [deleteFavorite, { data: deleteResponse, isError: isDeleteError, error: deleteError }] = useRemoveFavoriteMutation();
+    const [addFavorite, { data: addResponse, error: addError }] = useAddFavoriteMutation();
+    const [deleteFavorite, { data: deleteResponse, error: deleteError }] = useRemoveFavoriteMutation();
     const imageManager = useSelector(selectImageManager);
+    const toast = useToast();
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
     useEffect(() => {
@@ -31,23 +34,23 @@ const DetailSettings = ({ venue, onCommentClick }: DetailSettingsProps) => {
 
     useEffect(() => {
         if (addResponse) {
-            dispatch(toastsActions.addToast({message: addResponse.message, type: 'success'}));
+            toast.show(addResponse.message)('success');
         }
 
-        if (isAddError) {
-            dispatch(toastsActions.addToast({message: 'addError.message', type: 'error'}));
+        if (addError) {
+            toast.show(getErrorMessage(addError))('error');
         }
-    }, [dispatch, addResponse, isAddError, addError]);
+    }, [addResponse, addError]);
 
     useEffect(() => {
         if (deleteResponse) {
-            dispatch(toastsActions.addToast({message: deleteResponse.message, type: 'success'}));
+            toast.show(deleteResponse.message)('success');
         }
 
-        if (isDeleteError) {
-            dispatch(toastsActions.addToast({message: 'deleteError.message', type: 'error'}));
+        if (deleteError) {
+            toast.show(getErrorMessage(deleteError))('error');
         }
-    }, [dispatch, deleteResponse, isDeleteError, deleteError])
+    }, [deleteResponse, deleteError])
 
     const handleFavoriteClick = () => {
         if (!isFavorite) {
