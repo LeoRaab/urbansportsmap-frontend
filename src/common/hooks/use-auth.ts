@@ -5,23 +5,24 @@ import { toastsActions } from "../components/UI/toast/toastsSlice";
 import { STRINGS } from "../constants/strings";
 import getErrorMessage from "../util/get-error-message";
 import useLocalStorage from "./use-local-storage";
+import useToast from "./use-toast";
 
 const useAuth = () => {
     const dispatch = useDispatch();
     const [loginUser, {error}] = useLoginMutation();
     const sessionExpiration = useSelector(selectExpirationDate);
+    const toast = useToast();
     const { value: storedUserData, setValue: setStoredUserData, removeFromStorage: removeUserData } = useLocalStorage<UserState>({ key: 'userData' });
 
     const login = async (email: string, password: string) => {        
         try {
-            const { token, userId, message } = await loginUser({ email, password }).unwrap();
+            const { token, userId } = await loginUser({ email, password }).unwrap();
             const expirationDate = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();            
-
-            dispatch(toastsActions.addToast({message: STRINGS.LOGIN_SUCCESS, type: "success"}));
+            toast.show(STRINGS.LOGIN_SUCCESS)('success');
             setStoredUserData({ userId, token, expirationDate });
         } catch (e) {
             const errorMessage = error ? getErrorMessage(error) : STRINGS.LOGIN_FAIL;
-            dispatch(toastsActions.addToast({message: errorMessage, type: "error"}));
+            toast.show(errorMessage)('error');
         }
     }
 
