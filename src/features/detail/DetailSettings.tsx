@@ -8,7 +8,6 @@ import ImageManager from '../image-manager/ImageManager';
 import { selectImageManager, imageManagerActions } from '../image-manager/imageManagerSlice';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
 import { HeartIcon, PhotographIcon, AnnotationIcon } from '@heroicons/react/outline';
-import { toastsActions } from '../../common/components/UI/toast/toastsSlice';
 import getErrorMessage from '../../common/util/get-error-message';
 import useToast from '../../common/hooks/use-toast';
 
