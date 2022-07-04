@@ -2,18 +2,13 @@ import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation, selectExpirationDate, UserState, userActions } from "../../features/user/userSlice";
 import { toastsActions } from "../components/UI/toast/toastsSlice";
+import { STRINGS } from "../constants/strings";
+import getErrorMessage from "../util/get-error-message";
 import useLocalStorage from "./use-local-storage";
-
-interface HttpError {
-    data: {
-        message: string
-    },
-    status: number
-}
 
 const useAuth = () => {
     const dispatch = useDispatch();
-    const [loginUser, {isLoading, isError, error}] = useLoginMutation();
+    const [loginUser, {error}] = useLoginMutation();
     const sessionExpiration = useSelector(selectExpirationDate);
     const { value: storedUserData, setValue: setStoredUserData, removeFromStorage: removeUserData } = useLocalStorage<UserState>({ key: 'userData' });
 
@@ -22,11 +17,11 @@ const useAuth = () => {
             const { token, userId, message } = await loginUser({ email, password }).unwrap();
             const expirationDate = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();            
 
-            dispatch(toastsActions.addToast({message: "Login erfolgreich!", type: "success"}));
+            dispatch(toastsActions.addToast({message: STRINGS.LOGIN_SUCCESS, type: "success"}));
             setStoredUserData({ userId, token, expirationDate });
         } catch (e) {
-            const loginError = e as HttpError;
-            dispatch(toastsActions.addToast({message: "Login fehlgeschlagen! " + loginError.data.message, type: "error"}));
+            const errorMessage = error ? getErrorMessage(error) : STRINGS.LOGIN_FAIL;
+            dispatch(toastsActions.addToast({message: errorMessage, type: "error"}));
         }
     }
 
