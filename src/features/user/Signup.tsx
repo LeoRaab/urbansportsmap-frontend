@@ -33,8 +33,7 @@ const Signup = () => {
             },
             confirmPassword: {
                 value: '',
-                isValid: false,
-                dependsOn: 'password'
+                isValid: false
             }
         },
         false
