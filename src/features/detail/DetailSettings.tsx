@@ -10,6 +10,7 @@ import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid';
 import { HeartIcon, PhotographIcon, AnnotationIcon } from '@heroicons/react/outline';
 import getErrorMessage from '../../common/util/get-error-message';
 import useToast from '../../common/hooks/use-toast';
+import { STRINGS } from '../../common/constants/strings';
 
 type DetailSettingsProps = {
     venue: Venue,
@@ -63,15 +64,15 @@ const DetailSettings = ({ venue, onCommentClick }: DetailSettingsProps) => {
         <>
             <div className="flex flex-col gap-y-2 mt-4">
                 {isFavorite &&
-                    <IconButton text={'von Favoriten entfernen'} icon={<HeartIconSolid className="icon-size" />} onClick={handleFavoriteClick} />
+                    <IconButton text={STRINGS.FAVORITES_REMOVE} icon={<HeartIconSolid className="icon-size" />} onClick={handleFavoriteClick} />
                 }
 
                 {!isFavorite &&
-                    <IconButton text={'zu Favoriten hinzufügen'} icon={<HeartIcon className="icon-size" />} onClick={handleFavoriteClick} />
+                    <IconButton text={STRINGS.FAVORITES_ADD} icon={<HeartIcon className="icon-size" />} onClick={handleFavoriteClick} />
                 }
 
-                <IconButton text={'Bilder bearbeiten'} icon={<PhotographIcon className="icon-size" />} onClick={() => dispatch(imageManagerActions.show())} />
-                <IconButton text={'Kommentar schreiben'} icon={<AnnotationIcon className="icon-size" />} onClick={onCommentClick} />
+                <IconButton text={STRINGS.IMAGES_EDIT} icon={<PhotographIcon className="icon-size" />} onClick={() => dispatch(imageManagerActions.show())} />
+                <IconButton text={STRINGS.COMMENTS_ADD} icon={<AnnotationIcon className="icon-size" />} onClick={onCommentClick} />
             </div>
 
             {imageManager.isVisible &&
