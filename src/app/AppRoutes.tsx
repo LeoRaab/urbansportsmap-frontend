@@ -19,7 +19,7 @@ const AppRoutes = () => {
                     <Routes>
                         <Route element={<MainLayout />}>
                             <Route index element={<MapUI />} />
-                            <Route path='/:coordinates' element={<MapUI />} />
+                            <Route path='/venue/:coordinates' element={<MapUI />} />
                         
                             <Route element={<PageLayout />}>
                                 <Route path="/detail/:venueId" element={<Detail />} />
