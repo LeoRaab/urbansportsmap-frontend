@@ -16,15 +16,17 @@ import {MapIcon} from '@heroicons/react/outline';
 import { RootState } from '../../app/store';
 import GraphicMessage from '../../common/components/UI/GraphicMessage';
 import { ILLUSTRATIONS } from '../../common/constants/illustrations';
+import useToast from '../../common/hooks/use-toast';
+import getErrorMessage from '../../common/util/get-error-message';
 
 const Detail = () => {
 
     const navigate = useNavigate();
     const params = useParams();
     const venue = useSelector((state: RootState) => selectVenueById(state, params.venueId!))
-    const [loadVenueComments, { data: venueComments }] = useLazyGetCommentsQuery();
-    const [addComment, { data: addCommentResponse }] = useAddCommentMutation();
-    //const toast = useToast();
+    const [loadVenueComments, { data: venueComments, error: loadVenueCommentsError }] = useLazyGetCommentsQuery();
+    const [addComment, { data: addCommentResponse, error: addCommentError }] = useAddCommentMutation();
+    const toast = useToast();
     const userId = useSelector(selectUserId);
     
     const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
@@ -33,11 +35,19 @@ const Detail = () => {
         if (venue) {
             loadVenueComments(venue.id);
         }
+
+        if (loadVenueCommentsError) {
+            toast.show(getErrorMessage(loadVenueCommentsError))('error')
+        }
     }, [venue, loadVenueComments]);
 
     useEffect(() => {
         if (addCommentResponse) {
-            //toast.show(addCommentResponse.message, 'success')
+            toast.show(addCommentResponse.message)('success');
+        }
+
+        if (addCommentError) {
+            toast.show(getErrorMessage(addCommentError))('error')
         }
     }, [addCommentResponse]);
 
