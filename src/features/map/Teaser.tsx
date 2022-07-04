@@ -22,7 +22,7 @@ const Teaser = ({ venueId }: TeaserProps) => {
     const venue = useSelector((state: RootState) => selectVenueById(state, venueId));
 
     const handleDetailClick = () => {
-        dispatch(uiActions.allHidden());
+        dispatch(uiActions.hideAll());
         navigate('/detail/' + venueId);
     }
 

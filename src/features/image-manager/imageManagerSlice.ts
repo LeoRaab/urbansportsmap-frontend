@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from '../../app/store';
 
 interface ImageManagerState {
     isVisible: boolean,
@@ -50,6 +51,6 @@ export const imageManagerSlice = createSlice({
 
 export const imageManagerActions = imageManagerSlice.actions;
 
-export const selectImageManager = (state: any): ImageManagerState => state.imageManager;
+export const selectImageManager = (state: RootState): ImageManagerState => state.imageManager;
 
 export default imageManagerSlice.reducer;

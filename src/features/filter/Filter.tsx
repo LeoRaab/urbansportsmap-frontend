@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../common/components/form-elements/buttons/Button';
 import Chip from '../../common/components/UI/Chip';
 import { getSportTypeColor } from '../../common/util/get-sport-type-color';
-import { selectFilters, filterUnselected, filterSelected, filtersCleared } from './filterSlice';
+import { selectFilters, selectFilter, unselectFilter, clearFilters} from './filterSlice';
 
 const Filter = () => {
 
@@ -21,7 +21,7 @@ const Filter = () => {
                               bgColor={getSportTypeColor(filter)}
                               isClickable={true}
                               id={key}
-                              onChipClick={() => dispatch(filterUnselected({index: key}))}/>
+                              onChipClick={() => dispatch(unselectFilter({index: key}))}/>
                     )
                 }
 
@@ -32,13 +32,13 @@ const Filter = () => {
                               bgColor={'bg-slate-200'}
                               isClickable={true}
                               id={key}
-                              onChipClick={() => dispatch(filterSelected({index: key}))}/>
+                              onChipClick={() => dispatch(selectFilter({index: key}))}/>
                     )
                 }
 
                 {filters.selectedFilters.length > 0 &&
                     <div>
-                        <Button color="transparent" type="button" onClick={() => dispatch(filtersCleared())}>
+                        <Button color="transparent" type="button" onClick={() => dispatch(clearFilters())}>
                             Filter löschen
                         </Button>
                     </div>

@@ -26,18 +26,18 @@ const Menu = ({ isShowing }: MenuProps) => {
     }
 
     const handleLoginClick = () => {
-        dispatch(uiActions.menuHidden());
+        dispatch(uiActions.hideMenu());
         navigate('/login');
     }
 
     const handleSignupClick = () => {
-        dispatch(uiActions.menuHidden());
+        dispatch(uiActions.hideMenu());
         navigate('/signup');
     }
 
     const handleLogoutClick = () => {
         logout();
-        dispatch(uiActions.menuHidden());
+        dispatch(uiActions.hideMenu());
         navigate('/');
     }
 

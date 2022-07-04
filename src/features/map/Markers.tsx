@@ -21,7 +21,7 @@ const Markers = ({map}: MarkersProps) => {
 
             const handleMarkerClick = (event: LeafletMouseEvent) => {
                 dispatch(
-                    uiActions.teaserShown(event.target.options.venue.id)
+                    uiActions.showTeaser(event.target.options.venue.id)
                 );
             }
 

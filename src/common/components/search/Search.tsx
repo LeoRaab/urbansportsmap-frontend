@@ -20,9 +20,9 @@ const Search = () => {
     useEffect(() => {
         if (searchTerm.length > 2) {
             search(searchTerm);
-            dispatch(uiActions.searchResultsShown());
+            dispatch(uiActions.showSearchResults());
         } else {
-            dispatch(uiActions.searchResultsHidden());
+            dispatch(uiActions.hideSearchResults());
         }
 
     }, [dispatch, searchTerm, search])

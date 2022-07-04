@@ -15,11 +15,11 @@ const MainLayout = () => {
     useVenueCoordinates();
     
     const handleMenuButtonClick = () => {
-        dispatch(uiActions.menuToggle());
+        dispatch(uiActions.toggleMenu());
     }
 
     const handleMainClick = () => {
-        dispatch(uiActions.menuHidden());
+        dispatch(uiActions.hideMenu());
     }
 
     return (

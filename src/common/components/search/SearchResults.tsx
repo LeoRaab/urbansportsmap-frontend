@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import { mapCenterChanged } from '../../../features/map/mapSlice';
+import { changeMapCenter } from '../../../features/map/mapSlice';
 import GeocodeWebEntity from '../../types/GeocodeWebEntity';
 import { uiActions } from '../UI/uiSlice';
 
@@ -19,9 +19,9 @@ const SearchResults = ({searchResults}: SearchResultsProps) => {
             try {
                 const lat = parseFloat(latData);                
                 const lng = parseFloat(lngData);
-                dispatch(uiActions.searchResultsHidden());
+                dispatch(uiActions.hideSearchResults());
                 dispatch(
-                    mapCenterChanged({lat, lng})
+                    changeMapCenter({lat, lng})
                 );
             } catch(e) {
                 console.log(e);

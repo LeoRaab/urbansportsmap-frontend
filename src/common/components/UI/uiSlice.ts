@@ -4,6 +4,7 @@
  */
 
 import {createSlice} from '@reduxjs/toolkit'
+import { RootState } from '../../../app/store';
 
 interface UiState {
     teaserVenueId: string,
@@ -25,35 +26,35 @@ export const uiSlice = createSlice({
     name: 'ui',
     initialState,
     reducers: {
-        menuShown: state => {
+        showMenu: state => {
             state.isMenuShowing = true;
         },
-        menuToggle: state => {
+        toggleMenu: state => {
             state.isMenuShowing = !state.isMenuShowing;
         },
-        menuHidden: state => {
+        hideMenu: state => {
             state.isMenuShowing = false;
         },
-        filterShown: state => {
+        showFilter: state => {
             state.isFilterShowing = true;
         },
-        filterHidden: state => {
+        hideFilter: state => {
             state.isFilterShowing = false;
         },
-        searchResultsShown: state => {
+        showSearchResults: state => {
             state.isSearchResultsShowing = true;
         },
-        searchResultsHidden: state => {
+        hideSearchResults: state => {
             state.isSearchResultsShowing = false;
         },
-        teaserShown: (state, action) => {
+        showTeaser: (state, action) => {
             state.isTeaserShowing = true;
             state.teaserVenueId = action.payload;
         },
-        teaserHidden: state => {
+        hideTeaser: state => {
             state.isTeaserShowing = false;
         },
-        allHidden: state => {
+        hideAll: state => {
             state.isFilterShowing = false;
             state.isSearchResultsShowing = false;
             state.isTeaserShowing = false;
@@ -64,6 +65,6 @@ export const uiSlice = createSlice({
 
 export const uiActions = uiSlice.actions;
 
-export const selectUi = (state: any): UiState  => state.ui;
+export const selectUi = (state: RootState): UiState  => state.ui;
 
 export default uiSlice.reducer;

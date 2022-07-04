@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { mapCenterChanged } from "../../features/map/mapSlice";
+import { changeMapCenter } from "../../features/map/mapSlice";
 
 const useVenueCoordinates = () => {
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const useVenueCoordinates = () => {
                     throw Error('Coordinates from parameters, are not a number!');
                 }
                 
-                dispatch(mapCenterChanged({lat, lng}))
+                dispatch(changeMapCenter({lat, lng}))
             } catch(e) {
                 console.log(e);
             }

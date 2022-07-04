@@ -33,16 +33,16 @@ export const mapSlice = createSlice({
     name: 'map',
     initialState,
     reducers: {
-        mapCenterChanged: (state, {payload: {lat, lng}}: PayloadAction<{lat: number, lng: number}>) => {            
+        changeMapCenter: (state, {payload: {lat, lng}}: PayloadAction<{lat: number, lng: number}>) => {            
             state.mapCenter = {lat,lng}
         },
-        venueRadiusChanged: (state, {payload: {venueRadius}}: PayloadAction<{venueRadius: number}>) => {
+        changeVenueRadius: (state, {payload: {venueRadius}}: PayloadAction<{venueRadius: number}>) => {
             state.venueRadius = venueRadius;
         }
     }
 })
 
-export const {mapCenterChanged, venueRadiusChanged} = mapSlice.actions;
+export const {changeMapCenter, changeVenueRadius} = mapSlice.actions;
 
 export const selectMap = (state: RootState): MapState  => state.map;
 

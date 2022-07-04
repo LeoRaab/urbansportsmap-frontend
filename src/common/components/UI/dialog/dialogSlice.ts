@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '../../../../app/store';
 
 interface DialogState {
     isVisible: boolean,
@@ -27,6 +28,6 @@ export const dialogSlice = createSlice({
 
 export const dialogActions = dialogSlice.actions;
 
-export const selectDialog = (state: any): DialogState => state.dialog;
+export const selectDialog = (state: RootState): DialogState => state.dialog;
 
 export default dialogSlice.reducer;

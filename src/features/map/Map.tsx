@@ -4,7 +4,7 @@ import Markers from './Markers';
 import Circle from './Circle';
 import {useDispatch, useSelector} from 'react-redux';
 import { LocationMarker } from '../../common/constants/marker-icon-images';
-import { selectMap, mapCenterChanged } from './mapSlice';
+import { selectMap, changeMapCenter } from './mapSlice';
 import { uiActions } from '../../common/components/UI/uiSlice';
 
 type MapProps = {
@@ -21,18 +21,18 @@ const Map = ({map}: MapProps) => {
             const locationMarkerLayer = new L.LayerGroup();
 
             //have to set mapCenter manually instead of using getCenter()
-            //getCenter() returns Position before click -> that's not the new center we want
+            //getCenter() returns Position before click 
             const handleMapClick = (event: LeafletMouseEvent) => {                
                 map.setView(event.latlng);
-                dispatch(mapCenterChanged({
+                dispatch(changeMapCenter({
                     lat: event.latlng.lat,
                     lng: event.latlng.lng
                 }));
-                dispatch(uiActions.allHidden());
+                dispatch(uiActions.hideAll());
             }
 
             const handleDragEnd = () => {
-                dispatch(mapCenterChanged({
+                dispatch(changeMapCenter({
                     lat: map.getCenter().lat,
                     lng: map.getCenter().lng
                 }));
@@ -41,7 +41,7 @@ const Map = ({map}: MapProps) => {
             const handleLocationFound = (event: LocationEvent) => {
                 locationMarkerLayer.clearLayers();
                 locationMarkerLayer.addLayer(new L.Marker(event.latlng, {icon: LocationMarker}));
-                dispatch(mapCenterChanged({
+                dispatch(changeMapCenter({
                     lat: event.latlng.lat,
                     lng: event.latlng.lng
                 }));

@@ -13,7 +13,7 @@ const MenuItem = ({destination, text, icon}: MenuItemProps) => {
     const dispatch = useDispatch();
 
     return (
-        <NavLink to={destination} onClick={() => dispatch(uiActions.menuHidden())}>
+        <NavLink to={destination} onClick={() => dispatch(uiActions.hideMenu())}>
             <div className="flex items-center w-full border-slate-100 border-b px-4 py-8">
                 {icon}
                 <p className="text-xl ml-8">{text}</p>
