@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '../../common/components/form-elements/buttons/IconButton';
 import Card from '../../common/components/UI/Card';
-import useToast from '../../common/hooks/use-toast';
 import VenueComment from '../../common/types/VenueComment';
 import { selectUserId } from '../user/userSlice';
 import CommentForm from './CommentForm';

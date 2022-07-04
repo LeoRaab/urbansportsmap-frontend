@@ -1,6 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
 import dialogSlice from '../common/components/UI/dialog/dialogSlice';
-import toastSlice from '../common/components/UI/toast/toastSlice';
 import filterSlice from '../features/filter/filterSlice';
 import imageManagerSlice from '../features/image-manager/imageManagerSlice';
 import { geocodeApi } from '../features/map/geocodeApi';
@@ -18,7 +17,6 @@ const store = configureStore({
         user: userSlice,
         imageManager: imageManagerSlice,
         dialog: dialogSlice,
-        toast: toastSlice,
         toasts: toastsSlice,
         [apiSlice.reducerPath]: apiSlice.reducer,
         [geocodeApi.reducerPath]: geocodeApi.reducer
