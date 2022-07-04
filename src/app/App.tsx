@@ -3,37 +3,31 @@
  * TODO: Implement Report Image/Comment Feature
  * TODO: Check if username is already in use
  * TODO: Logging system
- * TODO: message constant
- * TODO: Message system --> use endpoints at rtk query for message handling
- * TODO: Timeout bei Ladevorgängen
  * TODO: Put urls in .env
- * TODO: Put LoadingSpinner in hook & reducer && check usage
- * TODO: When changing password confirmation password has to be invalid again!
  * TODO: Format with prettier
- * TODO: Refactor css
- * TODO: When editing comment textarea is empty
- * TODO: Constant reducer naming
+ * TODO: Locate Timeout
+ * TODO: Show loadingSpinner for every api action --> mutations too!!
+ * TODO: Passwort regex
  */
-
+import React, { useEffect } from 'react';
 import useAuth from '../common/hooks/use-auth';
 import { useGetVenuesQuery } from '../features/map/venuesSlice';
 import LoadingSpinner from '../common/components/UI/LoadingSpinner';
-import { useDispatch } from 'react-redux';
-import { toastsActions } from '../common/components/UI/toast/toastsSlice';
-import { useEffect } from 'react';
 import ToastsList from '../common/components/UI/toast/ToastsList';
 import Dialog from '../common/components/UI/dialog/Dialog';
 import AppRoutes from './AppRoutes';
+import useToast from '../common/hooks/use-toast';
+import { STRINGS } from '../common/constants/strings';
 
 const App = () => {
     
     const {isLoading, isFetching, isError} = useGetVenuesQuery();
-    const dispatch = useDispatch();
+    const toast = useToast();
     useAuth();
 
     useEffect(() => {
         if (isError) {
-            dispatch(toastsActions.addToast({message: "Venues konnten nicht geladen werden...", type: "error"}));
+            toast.show(STRINGS.ERROR_LOAD_VENUES)('error');
         }
     }, [isError])
 
@@ -46,8 +40,8 @@ const App = () => {
             <Dialog />
 
             {(isLoading || isFetching) &&
-                    <LoadingSpinner />
-                }
+                <LoadingSpinner />
+            }
         </>
     );
 }
