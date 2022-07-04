@@ -67,7 +67,7 @@ const Detail = () => {
     }
 
     return (
-        <PageWrapper title={STRINGS.PAGE_FAVORITES}>
+        <PageWrapper title={STRINGS.PAGE_DETAILS}>
             {venue && 
                 <>
                     <div className="mt-6">
