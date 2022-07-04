@@ -3,13 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 import Button from "../common/components/form-elements/buttons/Button";
 import Menu from "../common/components/menu/Menu";
-import Dialog from "../common/components/UI/dialog/Dialog";
-import Toast from "../common/components/UI/toast/Toast";
 import MapWrapper from "../features/map/MapWrapper";
 import { selectUi, uiActions } from "../common/components/UI/uiSlice";
 import { MenuIcon, XIcon} from "@heroicons/react/outline";
 import useVenueCoordinates from "../common/hooks/use-venue-coordinates";
-import ToastsList from "../common/components/UI/toast/ToastsList";
 
 const MainLayout = () => {
     const ui = useSelector(selectUi);
