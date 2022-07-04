@@ -6,7 +6,6 @@ import FabButton from '../../common/components/form-elements/buttons/FabButton';
 import ImageSwiper from '../../common/components/UI/ImageSwiper';
 import PageWrapper from '../../common/components/UI/PageWrapper';
 import VenueTitle from '../../common/components/UI/VenueTitle';
-import useToast from '../../common/hooks/use-toast';
 import CommentForm from '../comments/CommentForm';
 import { useLazyGetCommentsQuery, useAddCommentMutation } from '../comments/commentsApi';
 import CommentsList from '../comments/CommentsList';
@@ -17,7 +16,6 @@ import {MapIcon} from '@heroicons/react/outline';
 import { RootState } from '../../app/store';
 import GraphicMessage from '../../common/components/UI/GraphicMessage';
 import { ILLUSTRATIONS } from '../../common/constants/illustrations';
-import Toast from '../../common/components/UI/toast/Toast';
 
 const Detail = () => {
 
@@ -64,7 +62,7 @@ const Detail = () => {
                         <VenueTitle venue={venue} />
                     </div>
 
-                    <div className="my-2">
+                    <div className="mt-4">
                         <SportTypesList sportTypes={venue?.sportTypes} />
                     </div>
 
@@ -84,7 +82,7 @@ const Detail = () => {
                     }
 
                     {(venueComments && venueComments.length > 0) &&
-                        <div className="mt-8">
+                        <div className="mt-4">
                             <h2 className="text-2xl mb-4">Kommentare</h2>
                             <CommentsList comments={venueComments} />
                         </div>
