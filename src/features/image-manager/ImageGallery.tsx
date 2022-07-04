@@ -72,7 +72,7 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
 
             <div className="flex justify-center my-8">
                 <div className="w-5/12">
-                    <Button color="secondary" type="button" onClick={() => dispatch(imageManagerActions.show())}>
+                    <Button color="secondary" type="button" onClick={() => dispatch(imageManagerActions.close())}>
                         {STRINGS.BUTTON_BACK}
                     </Button>
                 </div>

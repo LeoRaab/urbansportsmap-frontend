@@ -9,6 +9,7 @@ import { UploadIcon } from '@heroicons/react/outline';
 import Button from '../../common/components/form-elements/buttons/Button';
 import IconButton from '../../common/components/form-elements/buttons/IconButton';
 import { toastsActions } from '../../common/components/UI/toast/toastsSlice';
+import useToast from '../../common/hooks/use-toast';
 
 type ImageUploadProps = {
     venueId: string
@@ -20,6 +21,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
     const [selectedPreviewImages, setSelectedPreviewImages] = useState<VenueImage[]>([]);
     const [uploadImages, { data: uploadImageResponse, isLoading, isSuccess, isError, error }] = useUploadImagesMutation();
+    const toast = useToast();
 
     useEffect(() => {
         setSelectedPreviewImages(selectedImages.map(image => {
@@ -31,7 +33,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
 
     useEffect(() => {
         if (isSuccess) {
-            dispatch(imageManagerActions.show());
+            dispatch(imageManagerActions.start());
         }
     }, [isSuccess, dispatch]);
 
@@ -97,7 +99,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
 
             <div className="flex justify-between my-8">
                 <div className="w-5/12">
-                    <Button color="secondary" type="button" onClick={() => dispatch(imageManagerActions.show())}>
+                    <Button color="secondary" type="button" onClick={() => dispatch(imageManagerActions.start())}>
                         zurück
                     </Button>
                 </div>
