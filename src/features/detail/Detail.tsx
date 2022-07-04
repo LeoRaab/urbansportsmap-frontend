@@ -18,14 +18,15 @@ import GraphicMessage from '../../common/components/UI/GraphicMessage';
 import { ILLUSTRATIONS } from '../../common/constants/illustrations';
 import useToast from '../../common/hooks/use-toast';
 import getErrorMessage from '../../common/util/get-error-message';
+import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 
 const Detail = () => {
 
     const navigate = useNavigate();
     const params = useParams();
     const venue = useSelector((state: RootState) => selectVenueById(state, params.venueId!))
-    const [loadVenueComments, { data: venueComments, error: loadVenueCommentsError }] = useLazyGetCommentsQuery();
-    const [addComment, { data: addCommentResponse, error: addCommentError }] = useAddCommentMutation();
+    const [loadVenueComments, { data: venueComments, isLoading: isLoadingVenueComments, isFetching: isFetchingVenueComments, error: loadVenueCommentsError }] = useLazyGetCommentsQuery();
+    const [addComment, { data: addCommentResponse, isLoading: isLoadingAddComment, error: addCommentError }] = useAddCommentMutation();
     const toast = useToast();
     const userId = useSelector(selectUserId);
     
@@ -109,6 +110,10 @@ const Detail = () => {
 
             {!venue && 
                 <GraphicMessage illustration={ILLUSTRATIONS.NOT_FOUND} text="Das angeforderte Venue existiert nicht." title="Nichts gefunden"/>
+            }
+
+            {(isLoadingVenueComments || isFetchingVenueComments || isLoadingAddComment) &&
+                <LoadingSpinner />
             }
             
         </PageWrapper>
