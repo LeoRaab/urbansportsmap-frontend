@@ -10,6 +10,7 @@ import Button from '../../common/components/form-elements/buttons/Button';
 import IconButton from '../../common/components/form-elements/buttons/IconButton';
 import { toastsActions } from '../../common/components/UI/toast/toastsSlice';
 import useToast from '../../common/hooks/use-toast';
+import getErrorMessage from '../../common/util/get-error-message';
 
 type ImageUploadProps = {
     venueId: string
@@ -20,7 +21,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
     const filePickerRef = useRef<HTMLInputElement>(null);
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
     const [selectedPreviewImages, setSelectedPreviewImages] = useState<VenueImage[]>([]);
-    const [uploadImages, { data: uploadImageResponse, isLoading, isSuccess, isError, error }] = useUploadImagesMutation();
+    const [uploadImages, { data: uploadImageResponse, isLoading, isSuccess, error }] = useUploadImagesMutation();
     const toast = useToast();
 
     useEffect(() => {
@@ -35,17 +36,17 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
         if (isSuccess) {
             dispatch(imageManagerActions.start());
         }
-    }, [isSuccess, dispatch]);
+    }, [isSuccess]);
 
     useEffect(() => {
         if (uploadImageResponse) {
-            dispatch(toastsActions.addToast({message: uploadImageResponse.message, type: 'success'}));
+            toast.show(uploadImageResponse.message)('success');
         }
 
-        if (isError) {
-            dispatch(toastsActions.addToast({message: 'error.message', type: 'error'}));
+        if (error) {
+            toast.show(getErrorMessage(error))('error');
         }
-    }, [dispatch, uploadImageResponse, isError, error]);
+    }, [uploadImageResponse, error]);
 
     const handleSelectImagesClick = () => {
         filePickerRef.current?.click();
@@ -111,7 +112,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
             </div>
 
 
-            {(isLoading && !isError && !isSuccess) && <LoadingSpinner />}
+            {(isLoading) && <LoadingSpinner />}
         </>
     )
 }

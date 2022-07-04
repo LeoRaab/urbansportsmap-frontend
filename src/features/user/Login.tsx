@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../common/components/form-elements/buttons/Button";
 import Input from "../../common/components/form-elements/Input";
 import PageWrapper from "../../common/components/UI/PageWrapper";
+import { STRINGS } from "../../common/constants/strings";
 import useAuth from "../../common/hooks/use-auth";
 import { useForm } from "../../common/hooks/use-form";
 import useRedirectPath from "../../common/hooks/use-redirect-path";
@@ -47,20 +48,20 @@ const Login = () => {
                 <Input
                     element="input"
                     id="email"
-                    label="E-Mail"
+                    label={STRINGS.INPUT_EMAIL_LABEL}
                     validators={[VALIDATOR_EMAIL()]}
                     type="text"
-                    errorText="Gib bitte eine richtige E-Mail Adresse ein!"
+                    errorText={STRINGS.INPUT_EMAIL_ERROR}
                     onInput={inputHandler}
                 />
 
                 <Input
                     element="input"
                     id="password"
-                    label="Passwort"
+                    label={STRINGS.INPUT_PASSWORD_LABEL}
                     validators={[VALIDATOR_MINLENGTH(10)]}
                     type="password"
-                    errorText="Das Passwort muss mindestens 10 Zeichen lang sein!"
+                    errorText={STRINGS.INPUT_PASSWORD_ERROR}
                     onInput={inputHandler}
                 />
                 <div className="mt-8">

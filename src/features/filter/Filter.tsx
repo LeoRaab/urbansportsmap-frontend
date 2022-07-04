@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../common/components/form-elements/buttons/Button';
 import Chip from '../../common/components/UI/Chip';
+import { STRINGS } from '../../common/constants/strings';
 import { getSportTypeColor } from '../../common/util/get-sport-type-color';
 import { selectFilters, selectFilter, unselectFilter, clearFilters} from './filterSlice';
 
@@ -39,7 +40,7 @@ const Filter = () => {
                 {filters.selectedFilters.length > 0 &&
                     <div className="text-red-400">
                         <Button color="transparent" type="button" onClick={() => dispatch(clearFilters())}>
-                            Filter löschen
+                            {STRINGS.FILTER_CLEAR}
                         </Button>
                     </div>
                 }

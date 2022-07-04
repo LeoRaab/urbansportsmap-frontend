@@ -71,7 +71,7 @@ const DetailSettings = ({ venue, onCommentClick }: DetailSettingsProps) => {
                     <IconButton text={STRINGS.FAVORITES_ADD} icon={<HeartIcon className="icon-size" />} onClick={handleFavoriteClick} />
                 }
 
-                <IconButton text={STRINGS.IMAGES_EDIT} icon={<PhotographIcon className="icon-size" />} onClick={() => dispatch(imageManagerActions.show())} />
+                <IconButton text={STRINGS.IMAGES_EDIT} icon={<PhotographIcon className="icon-size" />} onClick={() => dispatch(imageManagerActions.start())} />
                 <IconButton text={STRINGS.COMMENTS_ADD} icon={<AnnotationIcon className="icon-size" />} onClick={onCommentClick} />
             </div>
 

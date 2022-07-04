@@ -19,6 +19,7 @@ import { ILLUSTRATIONS } from '../../common/constants/illustrations';
 import useToast from '../../common/hooks/use-toast';
 import getErrorMessage from '../../common/util/get-error-message';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
+import { STRINGS } from '../../common/constants/strings';
 
 const Detail = () => {
 
@@ -66,7 +67,7 @@ const Detail = () => {
     }
 
     return (
-        <PageWrapper title={'Detail'}>
+        <PageWrapper title={STRINGS.PAGE_FAVORITES}>
             {venue && 
                 <>
                     <div className="mt-6">

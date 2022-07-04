@@ -8,6 +8,7 @@ import MenuItem from './MenuItem';
 import Button from '../form-elements/buttons/Button';
 import { MapIcon, UserIcon } from '@heroicons/react/outline';
 import { HeartIcon } from '@heroicons/react/solid';
+import { STRINGS } from '../../constants/strings';
 
 type MenuProps = {
     isShowing: boolean
@@ -49,17 +50,17 @@ const Menu = ({ isShowing }: MenuProps) => {
                 <div className="flex flex-col w-full">
 
                     <MenuItem destination={'/'}
-                        text={'Home'}
+                        text={STRINGS.PAGE_HOME}
                         icon={<MapIcon className="icon-size" />} />
 
                     {userId &&
                         <>
                             <MenuItem destination={'/favorites'}
-                                text={'Favoriten'}
+                                text={STRINGS.PAGE_FAVORITES}
                                 icon={<HeartIcon className="icon-size" />} />
 
                             <MenuItem destination={'/profile'}
-                                text={'Profile'}
+                                text={STRINGS.PAGE_PROFILE}
                                 icon={<UserIcon className="icon-size" />} />
                         </>
                     }
@@ -71,13 +72,13 @@ const Menu = ({ isShowing }: MenuProps) => {
                         <>
                             <div className="m-2 w-1/2">
                                 <Button color="secondary" type="button" onClick={handleLoginClick}>
-                                    Log in
+                                    {STRINGS.BUTTON_LOGIN}
                                 </Button>
                             </div>
 
                             <div className="m-2 w-1/2">
                                 <Button color="primary" type="button" onClick={handleSignupClick}>
-                                    Sign up
+                                    {STRINGS.BUTTON_SIGN_UP}
                                 </Button>
                             </div>
                         </>
@@ -86,7 +87,7 @@ const Menu = ({ isShowing }: MenuProps) => {
                         <>
                             <div className="m-2 w-1/2">
                                 <Button color="secondary" type="button" onClick={handleLogoutClick}>
-                                    Log out
+                                    {STRINGS.BUTTON_LOGOUT}
                                 </Button>
                             </div>
                         </>

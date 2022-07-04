@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Button from "../../common/components/form-elements/buttons/Button";
 import { useForm } from "../../common/hooks/use-form";
 import { VALIDATOR_MINLENGTH } from "../../common/util/form-validators";
 import Input from "../../common/components/form-elements/Input";
+import { STRINGS } from "../../common/constants/strings";
 
 type CommentFormProps = {
     onFormSubmit: (comment: string) => void;
@@ -37,9 +38,9 @@ const CommentForm = ({
             <Input
                 element="textarea"
                 id="comment"
-                label="Kommentar"
+                label={STRINGS.INPUT_COMMENT_LABEL}
                 validators={[VALIDATOR_MINLENGTH(3)]}
-                errorText="Gib bitte mindestens 3 Zeichen ein!"
+                errorText={STRINGS.INPUT_COMMENT_ERROR}
                 onInput={inputHandler}
                 initialValue={commentValue}
             />

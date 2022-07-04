@@ -7,6 +7,7 @@ import GraphicMessage from "../../common/components/UI/GraphicMessage";
 import PageWrapper from "../../common/components/UI/PageWrapper";
 import { toastsActions } from "../../common/components/UI/toast/toastsSlice";
 import { ILLUSTRATIONS } from "../../common/constants/illustrations";
+import { STRINGS } from "../../common/constants/strings";
 import { useForm } from "../../common/hooks/use-form";
 import { VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_EMAIL, VALIDATOR_CONFIRM_PASSWORD } from "../../common/util/form-validators";
 import { useSignupMutation } from "./userSlice";
@@ -68,44 +69,44 @@ const Signup = () => {
                         <Input
                             element="input"
                             id="name"
-                            label="Name"
+                            label={STRINGS.INPUT_NAME_LABEL}
                             validators={[
                                 VALIDATOR_MINLENGTH(3),
                                 VALIDATOR_MAXLENGTH(25),
                             ]}
                             type="text"
-                            errorText="Gib bitte zwischen 3 und 25 Zeichen ein!"
+                            errorText={STRINGS.INPUT_NAME_ERROR}
                             onInput={inputHandler}
                         />
                         <Input
                             element="input"
                             id="email"
-                            label="E-Mail"
+                            label={STRINGS.INPUT_EMAIL_LABEL}
                             validators={[VALIDATOR_EMAIL()]}
                             type="text"
-                            errorText="Gib bitte eine richtige E-Mail Adresse ein!"
+                            errorText={STRINGS.INPUT_EMAIL_ERROR}
                             onInput={inputHandler}
                         />
                         <Input
                             element="input"
                             id="password"
                             type="password"
-                            label="Passwort"
+                            label={STRINGS.INPUT_PASSWORD_LABEL}
                             validators={[
                                 VALIDATOR_MINLENGTH(10)
                             ]}                            
-                            errorText="Gib bitte mindestens 10 Zeichen ein!"
+                            errorText={STRINGS.INPUT_PASSWORD_ERROR}
                             onInput={inputHandler}
                         />
                          <Input
                             element="input"
                             id="confirmPassword"
                             type="password"
-                            label="Passwort wiederholen"
+                            label={STRINGS.INPUT_CONFIRM_PASSWORD_LABEL}
                             validators={[
                                 VALIDATOR_CONFIRM_PASSWORD(formState.inputs.password.value)
                             ]}
-                            errorText="Die beiden Passwörter müssen übereinstimmen!"
+                            errorText={STRINGS.INPUT_CONFIRM_PASSWORD_ERROR}
                             onInput={inputHandler}
                         />
 
@@ -129,10 +130,8 @@ const Signup = () => {
                 {isMailSent && (
                     <GraphicMessage
                         illustration={ILLUSTRATIONS.VERIFY_EMAIL}
-                        title={"Bestätige deine E-Mail Adresse"}
-                        text={
-                            "Du hast eine Mail bekommen, folge dem Link, um deine E-Mail Adresse zu bestätigen!"
-                        }
+                        title={STRINGS.EMAIL_CONFIRM_TITLE}
+                        text={STRINGS.EMAIL_CONFIRM_TEXT}
                     />
                 )}
             </>

@@ -32,9 +32,6 @@ const MapWrapper = () => {
     }, [map]);
 
     const handleLocateClick = () => {
-        /**
-         * TODO: Think about timeout!
-         */
         map!.locate({setView: true, maxZoom: 15});
     }
 

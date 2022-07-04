@@ -9,6 +9,7 @@ import { useUpdateCommentMutation, useRemoveCommentMutation } from './commentsAp
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
 import { toastsActions } from '../../common/components/UI/toast/toastsSlice';
 import useDialog from '../../common/hooks/use-dialog';
+import { STRINGS } from '../../common/constants/strings';
 
 type CommentItemProps = {
     comment: VenueComment
@@ -64,8 +65,8 @@ const CommentItem = ({ comment }: CommentItemProps) => {
                     <p className="whitespace-pre-line">{comment.comment}</p>
                     {(comment.author.id === userId) &&
                         <div className="flex justify-between border-t border-t-slate-200 pt-2 mt-4">
-                            <IconButton text={'löschen'} icon={<TrashIcon className="icon-size"/>} onClick={handleDeleteCommentClick} />
-                            <IconButton text={'editieren'} icon={<PencilAltIcon className="icon-size" />} onClick={handleEditClick} />
+                            <IconButton text={STRINGS.COMMENTS_DELETE} icon={<TrashIcon className="icon-size"/>} onClick={handleDeleteCommentClick} />
+                            <IconButton text={STRINGS.COMMENTS_EDIT} icon={<PencilAltIcon className="icon-size" />} onClick={handleEditClick} />
                         </div>
                     }
                 </Card>

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import { selectMap } from '../../../features/map/mapSlice';
+import { STRINGS } from '../../constants/strings';
 
 type RangeSliderProp = {
     onRangeChange: (rangeValue: number) => void,
@@ -19,7 +20,7 @@ const RangeSlider = ({onRangeChange}: RangeSliderProp) => {
     return (
         <div className="mt-4 px-4">
             <label className="block w-full text-right text-sm text-slate-400">
-                Suchradius: {new Intl.NumberFormat().format(rangeValue)} m
+                {STRINGS.VENUE_RADIUS}: {new Intl.NumberFormat().format(rangeValue)} m
             </label>
             <input type="range" list="tickmarks"
                    min={mapState.mapSettings.radiusMin}

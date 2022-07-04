@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { changeMapCenter } from "../../features/map/mapSlice";
+import { STRINGS } from "../constants/strings";
 
 const useVenueCoordinates = () => {
     const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const useVenueCoordinates = () => {
                 const lng = parseFloat(lngString);
 
                 if (isNaN(lat) || isNaN(lng)) {
-                    throw Error('Coordinates from parameters, are not a number!');
+                    throw Error(STRINGS.COORDINATES_ERROR);
                 }
                 
                 dispatch(changeMapCenter({lat, lng}))

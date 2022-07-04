@@ -4,6 +4,7 @@ import GraphicMessage from '../../common/components/UI/GraphicMessage';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import PageWrapper from '../../common/components/UI/PageWrapper';
 import { ILLUSTRATIONS } from '../../common/constants/illustrations';
+import { STRINGS } from '../../common/constants/strings';
 import Venue from '../../common/types/Venue';
 import { hasVenueSportType } from '../../common/util/has-venue-sport-type';
 import Filter from '../filter/Filter';
@@ -30,7 +31,7 @@ const Favorites = () => {
     }, [favoriteVenues, filters])
 
     return (
-        <PageWrapper title='Favoriten'>
+        <PageWrapper title={STRINGS.PAGE_FAVORITES}>
 
             {favoriteVenues && favoriteVenues.length > 0 &&
                 <>
