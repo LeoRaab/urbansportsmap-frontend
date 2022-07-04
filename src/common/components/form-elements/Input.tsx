@@ -67,8 +67,6 @@ const Input = ({
     const [inputState, dispatch] = useReducer(inputReducer, initialState);
     const { value, isValid, isTouched } = inputState;
     const [className, setClassName] = useState<string>('');
-
-    console.log(value);
     
     useEffect(() => {
         onInput(id, value, isValid, isTouched);
