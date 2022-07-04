@@ -37,7 +37,7 @@ const Filter = () => {
                 }
 
                 {filters.selectedFilters.length > 0 &&
-                    <div>
+                    <div className="text-red-400">
                         <Button color="transparent" type="button" onClick={() => dispatch(clearFilters())}>
                             Filter löschen
                         </Button>
