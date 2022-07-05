@@ -40,7 +40,7 @@ const DetailSettings = ({ venue, onCommentClick }: DetailSettingsProps) => {
         if (addError) {
             toast.show(getErrorMessage(addError))('error');
         }
-    }, [addResponse, addError]);
+    }, [addResponse, addError, toast]);
 
     useEffect(() => {
         if (deleteResponse) {
@@ -50,7 +50,7 @@ const DetailSettings = ({ venue, onCommentClick }: DetailSettingsProps) => {
         if (deleteError) {
             toast.show(getErrorMessage(deleteError))('error');
         }
-    }, [deleteResponse, deleteError])
+    }, [deleteResponse, deleteError, toast])
 
     const handleFavoriteClick = () => {
         if (!isFavorite) {

@@ -9,8 +9,6 @@ import { ChevronRightIcon } from '@heroicons/react/outline';
 import { RootState } from '../../app/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiActions } from '../../common/components/UI/uiSlice';
-import Button from '../../common/components/form-elements/buttons/Button';
-import IconButton from '../../common/components/form-elements/buttons/IconButton';
 
 type TeaserProps = {
     venueId: string;

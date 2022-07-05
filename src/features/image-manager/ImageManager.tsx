@@ -4,7 +4,7 @@ import Modal from "../../common/components/UI/Modal";
 import ImageGallery from "./ImageGallery";
 import { selectImageManager, imageManagerActions } from "./imageManagerSlice";
 import ImageUpload from "./ImageUpload";
-import { CameraIcon, XIcon, PhotographIcon, UploadIcon } from "@heroicons/react/outline";
+import { XIcon, PhotographIcon, UploadIcon } from "@heroicons/react/outline";
 import IconButton from "../../common/components/form-elements/buttons/IconButton";
 import { STRINGS } from "../../common/constants/strings";
 

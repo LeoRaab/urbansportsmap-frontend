@@ -29,7 +29,7 @@ const App = () => {
         if (isError) {
             toast.show(STRINGS.ERROR_LOAD_VENUES)('error');
         }
-    }, [isError])
+    }, [isError, toast])
 
     return (
         <>

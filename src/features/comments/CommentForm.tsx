@@ -17,7 +17,7 @@ const CommentForm = ({
     commentValue,
 }: CommentFormProps) => {
 
-    const { formState, inputHandler, setFormData } = useForm(
+    const { formState, inputHandler } = useForm(
         {
             comment: {
                 value: commentValue || '',

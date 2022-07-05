@@ -19,7 +19,7 @@ const useTimer = (duration: number, tick: number) => {
         return () => {
             clearInterval(timer);
         }
-    }, [remainingTime]);
+    }, [remainingTime, tick, duration]);
 
     const start = () => {
         setRemainingTime(duration - tick);

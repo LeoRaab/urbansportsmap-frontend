@@ -8,7 +8,6 @@ import { useUploadImagesMutation } from './imagesApi';
 import { UploadIcon } from '@heroicons/react/outline';
 import Button from '../../common/components/form-elements/buttons/Button';
 import IconButton from '../../common/components/form-elements/buttons/IconButton';
-import { toastsActions } from '../../common/components/UI/toast/toastsSlice';
 import useToast from '../../common/hooks/use-toast';
 import getErrorMessage from '../../common/util/get-error-message';
 
@@ -36,7 +35,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
         if (isSuccess) {
             dispatch(imageManagerActions.start());
         }
-    }, [isSuccess]);
+    }, [isSuccess, dispatch]);
 
     useEffect(() => {
         if (uploadImageResponse) {
@@ -46,7 +45,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
         if (error) {
             toast.show(getErrorMessage(error))('error');
         }
-    }, [uploadImageResponse, error]);
+    }, [uploadImageResponse, error, toast]);
 
     const handleSelectImagesClick = () => {
         filePickerRef.current?.click();

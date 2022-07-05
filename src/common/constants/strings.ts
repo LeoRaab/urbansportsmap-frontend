@@ -19,6 +19,7 @@ export const STRINGS = {
     EMAIL_CONFIRM_FAIL_TEXT: 'Leider konnte deine Email nicht verifiziert werden! Versuch es bitte erneut.',
     ERROR_LOAD_VENUES: 'Venues konnten nicht geladen werden...',
     ERROR_UNKNOWN: 'Ein unbekannter Fehler ist aufgetreten...',
+    ERROR_UNEQUAL_PASSWORDS: 'Die Passwörter müssen übereinstimmen!',
     FAVORITES_ADD: 'Zu Favoriten hinzufügen',
     FAVORITES_REMOVE: 'Von Favoriten entfernen',
     FILTER_CLEAR: 'Filter löschen',

@@ -15,7 +15,7 @@ const useLocalStorage = <T>({ key }: LocalStorageProps) => {
         } catch (e) {
             console.error(e);
         }
-    }, [])
+    }, [key])
 
     useEffect(() => {
         if (storedValue) {
@@ -37,7 +37,7 @@ const useLocalStorage = <T>({ key }: LocalStorageProps) => {
                 console.error(e);
             }
         }
-    }, [value]);
+    }, [value, key]);
 
     const removeFromStorage = () => {
         try {

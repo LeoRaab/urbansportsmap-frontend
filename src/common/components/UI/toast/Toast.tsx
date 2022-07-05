@@ -21,7 +21,7 @@ const Toast = ({message, type, duration, id}: ToastProps) => {
 
     useEffect(() => {
         timer.start();
-    }, []);
+    }, [timer]);
 
     useEffect(() => {
         setCurrentWidth(timer.remainingTime / 5000 * 100);
@@ -38,7 +38,7 @@ const Toast = ({message, type, duration, id}: ToastProps) => {
 
             isMounted.current = true;
         }
-    }, []);
+    }, [dispatch, id]);
 
     return isVisible ? (
         <div className={'rounded shadow p-4 mb-2 w-3/4 relative bg-opacity-90 ' + type}>

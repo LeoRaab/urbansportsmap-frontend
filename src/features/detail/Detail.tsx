@@ -41,7 +41,7 @@ const Detail = () => {
         if (loadVenueCommentsError) {
             toast.show(getErrorMessage(loadVenueCommentsError))('error')
         }
-    }, [venue, loadVenueComments]);
+    }, [venue, loadVenueComments, loadVenueCommentsError, toast]);
 
     useEffect(() => {
         if (addCommentResponse) {
@@ -51,7 +51,7 @@ const Detail = () => {
         if (addCommentError) {
             toast.show(getErrorMessage(addCommentError))('error')
         }
-    }, [addCommentResponse]);
+    }, [addCommentResponse, addCommentError, toast]);
 
     const handleAddCommentClick = () => {
         setShowCommentForm(true);

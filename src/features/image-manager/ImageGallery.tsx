@@ -30,13 +30,13 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
         if (deleteError) {
             toast.show(getErrorMessage(deleteError))('error');
         }
-    }, [deleteResponse, deleteError]);
+    }, [deleteResponse, deleteError, toast]);
 
     useEffect(() => {
         if (loadingError) {
             toast.show(getErrorMessage(loadingError))('error');
         }
-    }, [dispatch, loadingError])
+    }, [dispatch, loadingError, toast])
 
     const handleUploadedThumbnailClick = async (id: number) => {
         const isAccepted = await dialog.open(STRINGS.IMAGES_DELETE);
