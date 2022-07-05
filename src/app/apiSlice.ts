@@ -4,7 +4,7 @@ import { RootState } from "./store";
 const apiSlice = createApi({
     reducerPath: 'apiSlice',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5000/api/',
+        baseUrl: process.env.REACT_APP_HOST + '/api/',
         prepareHeaders: (headers, { getState }) => {
             const token = (getState() as RootState).user.token;
             if (token) {
