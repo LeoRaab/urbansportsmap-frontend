@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation, selectExpirationDate, UserState, userActions } from "../../features/user/userSlice";
-import { toastsActions } from "../components/UI/toast/toastsSlice";
 import { STRINGS } from "../constants/strings";
 import getErrorMessage from "../util/get-error-message";
 import useLocalStorage from "./use-local-storage";
