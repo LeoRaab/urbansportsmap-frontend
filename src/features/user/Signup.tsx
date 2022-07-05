@@ -14,7 +14,6 @@ import getErrorMessage from "../../common/util/get-error-message";
 import { useSignupMutation } from "./userSlice";
 
 const Signup = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [signup, { isSuccess, error }] = useSignupMutation();
     const [isMailSent, setIsMailSent] = useState<boolean>(false);
