@@ -19,7 +19,7 @@ const ImageManager = ({ venueId }: ImageManagerProps) => {
 
     return (
         <Modal>
-            <div className="p-4 w-11/12 bg-white rounded relative">
+            <div className="p-4 w-11/12 lg:w-2/5 bg-white rounded relative">
                 <div className="absolute flex justify-center right-4 top-4 z-1100">
                     <IconButton text="" icon={<XIcon className="icon-size"/>} onClick={() => dispatch(imageManagerActions.close())}/>    
                 </div>
