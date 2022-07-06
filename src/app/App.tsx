@@ -1,14 +1,3 @@
-/**
- * TODO: How to get fullscreen on browsers, its working when going to favorites and then back to map
- * TODO: Implement Report Image/Comment Feature
- * TODO: Check if username is already in use
- * TODO: Logging system
- * TODO: Put urls in .env
- * TODO: Format with prettier
- * TODO: Locate Timeout
- * TODO: Show loadingSpinner for every api action --> mutations too!!
- * TODO: Passwort regex
- */
 import React, { useEffect } from 'react';
 import useAuth from '../common/hooks/use-auth';
 import { useGetVenuesQuery } from '../features/map/venuesSlice';
