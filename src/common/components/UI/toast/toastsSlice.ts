@@ -34,7 +34,7 @@ export const toastsSlice = createSlice({
     }
 })
 
-export const toastsActions = toastsSlice.actions;
+export const {addToast, removeToast} = toastsSlice.actions;
 
 export const selectToasts = (state: RootState): ToastsState => state.toasts;
 

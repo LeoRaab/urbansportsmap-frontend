@@ -3,7 +3,7 @@ import Button from "../../form-elements/buttons/Button";
 import useTimer from "../../../hooks/use-timer";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { toastsActions } from "./toastsSlice";
+import { removeToast } from "./toastsSlice";
 
 type ToastProps = {
     message: string,
@@ -37,7 +37,7 @@ const Toast = ({message, type, duration, id}: ToastProps) => {
     useEffect(() => {
         return () => {
             if (isMounted.current) {
-                dispatch(toastsActions.removeToast({toastId: id}));
+                dispatch(removeToast({toastId: id}));
             }
 
             isMounted.current = true;
