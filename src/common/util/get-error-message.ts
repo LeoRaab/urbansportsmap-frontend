@@ -3,14 +3,13 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 import { STRINGS } from '../constants/strings';
 
 interface ErrorData {
-    message: string
+  message: string;
 }
 
 const getErrorMessage = (error: FetchBaseQueryError | SerializedError): string => {
   if ('status' in error) {
-
     if ('error' in error) {
-      return error.error
+      return error.error;
     }
 
     if ('data' in error) {
