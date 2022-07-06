@@ -1,20 +1,23 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/components/form-elements/buttons/Button';
 import Input from '../../common/components/form-elements/Input';
 import PageWrapper from '../../common/components/UI/PageWrapper';
+import { addToast } from '../../common/components/UI/toast/toastsSlice';
 import { STRINGS } from '../../common/constants/strings';
 import useAuth from '../../common/hooks/use-auth';
 import { useForm } from '../../common/hooks/use-form';
 import useRedirectPath from '../../common/hooks/use-redirect-path';
 import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from '../../common/util/form-validators';
+import getErrorMessage from '../../common/util/get-error-message';
 import { selectUserId } from './userSlice';
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const redirectPath = useRedirectPath();
-  const { login } = useAuth();
+  const { login, loginError } = useAuth();
   const userId = useSelector(selectUserId);
 
   const { formState, inputHandler } = useForm(
@@ -36,6 +39,12 @@ const Login = () => {
       navigate(redirectPath, { replace: true });
     }
   }, [userId, navigate, redirectPath]);
+
+  useEffect(() => {
+    if (loginError) {
+      dispatch(addToast({message: getErrorMessage(loginError), type: 'error'}))
+    }
+  }, [loginError, dispatch])
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

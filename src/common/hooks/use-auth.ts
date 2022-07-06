@@ -8,7 +8,7 @@ import useLocalStorage from './use-local-storage';
 
 const useAuth = () => {
   const dispatch = useDispatch();
-  const [loginUser, { error }] = useLoginMutation();
+  const [loginUser, { error: loginError }] = useLoginMutation();
   const sessionExpiration = useSelector(selectExpirationDate);
   const {
     value: storedUserData,
@@ -23,7 +23,7 @@ const useAuth = () => {
       dispatch(addToast({ message: STRINGS.LOGIN_SUCCESS, type: 'success' }));
       setStoredUserData({ userId, token, expirationDate });
     } catch (e) {
-      const errorMessage = error ? getErrorMessage(error) : STRINGS.LOGIN_FAIL;
+      const errorMessage = loginError ? getErrorMessage(loginError) : STRINGS.LOGIN_FAIL;
       dispatch({ message: errorMessage, type: 'error' });
     }
   };
@@ -55,7 +55,7 @@ const useAuth = () => {
     }
   }, [sessionExpiration, logout]);
 
-  return { storedUserData, login, logout };
+  return { storedUserData, login, logout, loginError };
 };
 
 export default useAuth;
