@@ -18,9 +18,13 @@ const Toast = ({message, type, duration, id}: ToastProps) => {
     const [isVisible, setIsVisible] = useState<boolean>(true);
     const [currentWidth, setCurrentWidth] = useState<number>(100);
     const isMounted = useRef<boolean>(false);
+    const isStarted = useRef<boolean>(false);
 
     useEffect(() => {
-        timer.start();
+        if (!isStarted.current) {
+            timer.start();
+            isStarted.current = true;
+        }
     }, [timer]);
 
     useEffect(() => {
