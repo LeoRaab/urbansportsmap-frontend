@@ -3,21 +3,13 @@ import VenueComment from '../../common/types/VenueComment';
 import CommentItem from './CommentItem';
 
 type CommentsListProps = {
-    comments?: VenueComment[]
-}
+  comments?: VenueComment[];
+};
 
-const CommentsList = ({comments}: CommentsListProps) => {
+const CommentsList = ({ comments }: CommentsListProps) => {
+  const venueCommentsListItems = comments?.map((comment, key) => <CommentItem key={key} comment={comment} />);
 
-    const venueCommentsListItems = comments?.map((comment, key) =>
-        <CommentItem key={key}
-                          comment={comment}/>
-    );
-
-    return (
-        <>
-            {venueCommentsListItems}
-        </>
-    )
-}
+  return <>{venueCommentsListItems}</>;
+};
 
 export default CommentsList;

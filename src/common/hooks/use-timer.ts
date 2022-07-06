@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const useTimer = (duration: number, tick: number) => {
-    const [remainingTime, setRemainingTime] = useState<number>(duration);
+  const [remainingTime, setRemainingTime] = useState<number>(duration);
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setRemainingTime(prevState => prevState -= tick);
-        }, tick);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRemainingTime((prevState) => (prevState -= tick));
+    }, tick);
 
-        setTimeout(() => {
-            clearInterval(timer);
-        }, duration);
+    setTimeout(() => {
+      clearInterval(timer);
+    }, duration);
 
-        if (remainingTime === 0) {
-            clearInterval(timer);
-        }
-
-        return () => {
-            clearInterval(timer);
-        }
-    }, [remainingTime, tick, duration]);
-
-    const start = () => {
-        setRemainingTime(duration - tick);
+    if (remainingTime === 0) {
+      clearInterval(timer);
     }
 
-    return { remainingTime, start }
-}
+    return () => {
+      clearInterval(timer);
+    };
+  }, [remainingTime, tick, duration]);
+
+  const start = () => {
+    setRemainingTime(duration - tick);
+  };
+
+  return { remainingTime, start };
+};
 
 export default useTimer;

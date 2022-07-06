@@ -1,5 +1,5 @@
-import React, {useEffect, useRef} from 'react';
-import L, {LeafletMouseEvent} from 'leaflet';
+import React, { useEffect, useRef } from 'react';
+import L, { LeafletMouseEvent } from 'leaflet';
 import { useSelector, useDispatch } from 'react-redux';
 import { VenueMarker } from '../../common/types/VenueMarker';
 import { markerIconFactory } from '../../common/util/marker-icon-factory';
@@ -7,43 +7,35 @@ import { uiActions } from '../../common/components/UI/uiSlice';
 import { selectVisibleVenues } from './venuesSlice';
 
 type MarkersProps = {
-    map?: L.Map
-}
+  map?: L.Map;
+};
 
-const Markers = ({map}: MarkersProps) => {    
-    const dispatch = useDispatch();
-    const venues = useSelector(selectVisibleVenues);
-    const markerLayer = useRef<L.LayerGroup>(new L.LayerGroup());
+const Markers = ({ map }: MarkersProps) => {
+  const dispatch = useDispatch();
+  const venues = useSelector(selectVisibleVenues);
+  const markerLayer = useRef<L.LayerGroup>(new L.LayerGroup());
 
-    useEffect(() => {
+  useEffect(() => {
+    if (map && venues) {
+      const handleMarkerClick = (event: LeafletMouseEvent) => {
+        dispatch(uiActions.showTeaser(event.target.options.venue.id));
+      };
 
-        if (map && venues) {
+      const marker = venues.map((venue) => {
+        const markerIcon = markerIconFactory(venue.sportTypes);
+        const marker = new VenueMarker(venue.location, { venue: venue, icon: markerIcon });
 
-            const handleMarkerClick = (event: LeafletMouseEvent) => {
-                dispatch(
-                    uiActions.showTeaser(event.target.options.venue.id)
-                );
-            }
+        marker.on('click', handleMarkerClick);
+        return marker;
+      });
 
-            const marker = venues
-                .map(venue => {
-                    const markerIcon = markerIconFactory(venue.sportTypes);
-                    const marker = new VenueMarker(venue.location, {venue: venue, icon: markerIcon});
+      map.removeLayer(markerLayer.current);
+      markerLayer.current = new L.LayerGroup(marker);
+      map.addLayer(markerLayer.current);
+    }
+  }, [dispatch, map, venues]);
 
-                    marker.on('click', handleMarkerClick);
-                    return marker;
-                });
-
-            map.removeLayer(markerLayer.current);
-            markerLayer.current = new L.LayerGroup(marker);
-            map.addLayer(markerLayer.current);
-        }
-
-    }, [dispatch, map, venues])
-
-    return (
-        <></>
-    )
-}
+  return <></>;
+};
 
 export default Markers;

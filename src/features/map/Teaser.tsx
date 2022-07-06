@@ -11,46 +11,44 @@ import { useDispatch, useSelector } from 'react-redux';
 import { uiActions } from '../../common/components/UI/uiSlice';
 
 type TeaserProps = {
-    venueId: string;
-}
+  venueId: string;
+};
 
 const Teaser = ({ venueId }: TeaserProps) => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const venue = useSelector((state: RootState) => selectVenueById(state, venueId));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const venue = useSelector((state: RootState) => selectVenueById(state, venueId));
 
-    const handleDetailClick = () => {
-        dispatch(uiActions.hideAll());
-        navigate('/detail/' + venueId);
-    }
+  const handleDetailClick = () => {
+    dispatch(uiActions.hideAll());
+    navigate('/detail/' + venueId);
+  };
 
-    return (
-        <>
-            <div className="h-full relative">
-                    <div className="px-4 lg:px-8 lg:my-16">
-                        <VenueTitle venue={venue} />
+  return (
+    <>
+      <div className="h-full relative">
+        <div className="px-4 lg:px-8 lg:my-16">
+          <VenueTitle venue={venue} />
 
-                        {venue &&
-                            <div className="my-2">
-                                <ImageSwiper venueId={venueId} />
-                            </div>
-                        }
-
-                        <SportTypesList sportTypes={venue?.sportTypes} />
-
-                        <div className="mt-2 lg:mt-4 w-full flex justify-end">
-                            <div>
-                                <FabButton backgroundColor="bg-green-200"
-                                    onClick={handleDetailClick}>
-                                    <ChevronRightIcon className="h-6 w-6"/>
-                                </FabButton>
-                            </div>
-                        </div>
-                    </div>
-                
+          {venue && (
+            <div className="my-2">
+              <ImageSwiper venueId={venueId} />
             </div>
-        </>
-    )
-}
+          )}
+
+          <SportTypesList sportTypes={venue?.sportTypes} />
+
+          <div className="mt-2 lg:mt-4 w-full flex justify-end">
+            <div>
+              <FabButton backgroundColor="bg-green-200" onClick={handleDetailClick}>
+                <ChevronRightIcon className="h-6 w-6" />
+              </FabButton>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Teaser;

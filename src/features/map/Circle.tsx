@@ -1,35 +1,32 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import L from 'leaflet';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectMap } from './mapSlice';
 
 type MarkerProps = {
-    map?: L.Map
-}
+  map?: L.Map;
+};
 
-const Circle = ({map}: MarkerProps) => {
-    const mapState = useSelector(selectMap);
-    const circleLayer = useRef<L.LayerGroup>(new L.LayerGroup());
+const Circle = ({ map }: MarkerProps) => {
+  const mapState = useSelector(selectMap);
+  const circleLayer = useRef<L.LayerGroup>(new L.LayerGroup());
 
-    if (map) {
-        map.addLayer(circleLayer.current);
-    }
+  if (map) {
+    map.addLayer(circleLayer.current);
+  }
 
-    circleLayer.current.clearLayers();
+  circleLayer.current.clearLayers();
 
-    const radiusCircle = new L.Circle(mapState.mapCenter,
-        {
-            color: mapState.mapSettings.radiusColor,
-            weight: 1,
-            opacity: 0.8,
-            radius: mapState.venueRadius
-        });
+  const radiusCircle = new L.Circle(mapState.mapCenter, {
+    color: mapState.mapSettings.radiusColor,
+    weight: 1,
+    opacity: 0.8,
+    radius: mapState.venueRadius,
+  });
 
-    circleLayer.current.addLayer(radiusCircle);
+  circleLayer.current.addLayer(radiusCircle);
 
-    return (
-        <></>
-    )
-}
+  return <></>;
+};
 
 export default Circle;

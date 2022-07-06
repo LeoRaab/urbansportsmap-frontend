@@ -10,30 +10,27 @@ import { STRINGS } from '../common/constants/strings';
 import { addToast } from '../common/components/UI/toast/toastsSlice';
 
 const App = () => {
-    
-    const dispatch = useDispatch();
-    const {isLoading, isFetching, isError} = useGetVenuesQuery();
-    useAuth();
+  const dispatch = useDispatch();
+  const { isLoading, isFetching, isError } = useGetVenuesQuery();
+  useAuth();
 
-    useEffect(() => {
-        if (isError) {
-            dispatch(addToast({message: STRINGS.ERROR_LOAD_VENUES, type: 'error'}));
-        }
-    }, [isError, dispatch])
+  useEffect(() => {
+    if (isError) {
+      dispatch(addToast({ message: STRINGS.ERROR_LOAD_VENUES, type: 'error' }));
+    }
+  }, [isError, dispatch]);
 
-    return (
-        <>
-            <AppRoutes />
+  return (
+    <>
+      <AppRoutes />
 
-            <ToastsList />
+      <ToastsList />
 
-            <Dialog />
+      <Dialog />
 
-            {(isLoading || isFetching) &&
-                <LoadingSpinner />
-            }
-        </>
-    );
-}
+      {(isLoading || isFetching) && <LoadingSpinner />}
+    </>
+  );
+};
 
 export default App;

@@ -3,95 +3,96 @@
 @tailwind utilities;
 
 .success {
-     @apply bg-green-400 text-green-200;
+  @apply bg-green-400 text-green-200;
 }
 
 .error {
-     @apply bg-red-400 text-white;
+  @apply bg-red-400 text-white;
 }
 
 .invalid {
-     @apply ring-red-400 focus:ring-red-400 text-red-400
+  @apply ring-red-400 focus:ring-red-400 text-red-400;
 }
 
-input, textarea {
-     @apply placeholder-slate-400 rounded-sm p-4 ring-1 ring-slate-200 shadow-sm appearance-none focus:ring-4 focus:text-black focus:ring-slate-200 focus:outline-none 
+input,
+textarea {
+  @apply placeholder-slate-400 rounded-sm p-4 ring-1 ring-slate-200 shadow-sm appearance-none focus:ring-4 focus:text-black focus:ring-slate-200 focus:outline-none;
 }
 
 button {
-     @apply rounded-sm shadow p-3 w-full font-bold;
+  @apply rounded-sm shadow p-3 w-full font-bold;
 }
 
 button.primary {
-     @apply bg-green-200 hover:bg-green-100;
+  @apply bg-green-200 hover:bg-green-100;
 }
 
 button.secondary {
-     @apply bg-slate-100 hover:bg-slate-200;
+  @apply bg-slate-100 hover:bg-slate-200;
 }
 
 button.transparent {
-     @apply bg-transparent p-0 border-0 shadow-none font-normal text-sm;
+  @apply bg-transparent p-0 border-0 shadow-none font-normal text-sm;
 }
 
 button.white {
-     @apply bg-white;
+  @apply bg-white;
 }
 
 button.disabled {
-     @apply bg-transparent text-slate-400;
+  @apply bg-transparent text-slate-400;
 }
 
 pwa-camera-modal-instance {
-     z-index: 2000;
+  z-index: 2000;
 }
 
 .z-800 {
-    z-index: 800;
+  z-index: 800;
 }
 
 .z-1000 {
-    z-index: 1000;
+  z-index: 1000;
 }
 
 .z-1050 {
-     z-index: 1050;
+  z-index: 1050;
 }
 
 .z-1080 {
-     z-index: 1080;
+  z-index: 1080;
 }
 
 .z-1100 {
-     z-index: 1100;
+  z-index: 1100;
 }
 
 .spinner-border {
-    border-top-color: transparent;
+  border-top-color: transparent;
 }
 
 .range-slider {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 .range-slider:focus {
-     outline: none;
+  outline: none;
 }
 .range-slider::-webkit-slider-runnable-track {
-     @apply bg-slate-100 w-full h-2.5 rounded-sm cursor-pointer;
+  @apply bg-slate-100 w-full h-2.5 rounded-sm cursor-pointer;
 }
 .range-slider::-moz-range-track {
-     @apply bg-slate-100 w-full h-2.5 rounded-sm cursor-pointer;
- }
-.range-slider::-webkit-slider-thumb {
-     @apply h-6 w-6 bg-white border-slate-200 rounded-full cursor-pointer drop-shadow-lg;
+  @apply bg-slate-100 w-full h-2.5 rounded-sm cursor-pointer;
 }
-.range-slider::-moz-range-thumb{
-     @apply h-6 w-6 bg-white border-slate-200 rounded-full cursor-pointer border-2 drop-shadow-lg;
+.range-slider::-webkit-slider-thumb {
+  @apply h-6 w-6 bg-white border-slate-200 rounded-full cursor-pointer drop-shadow-lg;
+}
+.range-slider::-moz-range-thumb {
+  @apply h-6 w-6 bg-white border-slate-200 rounded-full cursor-pointer border-2 drop-shadow-lg;
 }
 .range-slider::-moz-focus-outer {
-     border: 0;
+  border: 0;
 }
 
 .icon-size {
-     @apply h-6 w-6;
+  @apply h-6 w-6;
 }

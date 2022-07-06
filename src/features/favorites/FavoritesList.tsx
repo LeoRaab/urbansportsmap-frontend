@@ -2,21 +2,15 @@ import Venue from '../../common/types/Venue';
 import FavoriteItem from './FavoriteItem';
 
 type FavoritesListProps = {
-    favoriteVenues?: Venue[]
-}
+  favoriteVenues?: Venue[];
+};
 
-const FavoritesList = ({favoriteVenues}: FavoritesListProps) => {
+const FavoritesList = ({ favoriteVenues }: FavoritesListProps) => {
+  const favoritesListItems = favoriteVenues?.map((favoriteVenue, key) => (
+    <FavoriteItem key={key} venue={favoriteVenue} />
+  ));
 
-    const favoritesListItems = favoriteVenues?.map((favoriteVenue, key) =>
-        <FavoriteItem key={key}
-                      venue={favoriteVenue}/>
-    );
-
-    return (
-        <>
-            {favoritesListItems}
-        </>
-    )
-}
+  return <>{favoritesListItems}</>;
+};
 
 export default FavoritesList;

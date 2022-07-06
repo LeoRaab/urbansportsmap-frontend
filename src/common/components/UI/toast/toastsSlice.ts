@@ -1,40 +1,43 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../../../../app/store'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../../../../app/store';
 
 interface Toast {
-    message: string,
-    type: 'success' | 'error',
-    duration: number
+  message: string;
+  type: 'success' | 'error';
+  duration: number;
 }
 
 interface ToastsState {
-    toasts: Toast[]
+  toasts: Toast[];
 }
 
 const initialState: ToastsState = {
-    toasts: []
-}
+  toasts: [],
+};
 
 export const toastsSlice = createSlice({
-    name: 'toast',
-    initialState,
-    reducers: {
-        addToast: (state, { payload: { message, type } }: PayloadAction<{ message: string, type: 'success' | 'error' }>) => {
-            state.toasts.push({
-                message,
-                type,
-                duration: 5000
-            })
-        },
-        removeToast: (state, { payload: { toastId }}: PayloadAction<{toastId: number}>) => {
-            state.toasts = state.toasts.filter((toast, index) => {
-                return index !== toastId
-            })
-        }
-    }
-})
+  name: 'toast',
+  initialState,
+  reducers: {
+    addToast: (
+      state,
+      { payload: { message, type } }: PayloadAction<{ message: string; type: 'success' | 'error' }>,
+    ) => {
+      state.toasts.push({
+        message,
+        type,
+        duration: 5000,
+      });
+    },
+    removeToast: (state, { payload: { toastId } }: PayloadAction<{ toastId: number }>) => {
+      state.toasts = state.toasts.filter((toast, index) => {
+        return index !== toastId;
+      });
+    },
+  },
+});
 
-export const {addToast, removeToast} = toastsSlice.actions;
+export const { addToast, removeToast } = toastsSlice.actions;
 
 export const selectToasts = (state: RootState): ToastsState => state.toasts;
 

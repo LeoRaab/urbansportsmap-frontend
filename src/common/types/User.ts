@@ -1,11 +1,11 @@
 export interface SignupUser {
-    email: string,
-    password: string,
-    name: string
+  email: string;
+  password: string;
+  name: string;
 }
 
 export interface User {
-    id: string,
-    email: string,
-    name: string
+  id: string;
+  email: string;
+  name: string;
 }

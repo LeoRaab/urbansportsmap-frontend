@@ -4,25 +4,22 @@ import 'swiper/css';
 import { useGetImagesByVenueQuery } from '../../../features/image-manager/imagesApi';
 
 type ImageSwiperProps = {
-    venueId: string
-}
+  venueId: string;
+};
 
 const ImageSwiper = ({ venueId }: ImageSwiperProps) => {
+  const { data: images } = useGetImagesByVenueQuery(venueId);
 
-    const { data: images } = useGetImagesByVenueQuery(venueId);
-
-    return (
-        <Swiper
-            spaceBetween={0}
-            slidesPerView={1}
-        >
-            {images && images.map((image, key) =>
-                <SwiperSlide key={key}>
-                    <img src={image.url} alt={image.altText} />
-                </SwiperSlide>
-            )}
-        </Swiper>
-    );
-}
+  return (
+    <Swiper spaceBetween={0} slidesPerView={1}>
+      {images &&
+        images.map((image, key) => (
+          <SwiperSlide key={key}>
+            <img src={image.url} alt={image.altText} />
+          </SwiperSlide>
+        ))}
+    </Swiper>
+  );
+};
 
 export default ImageSwiper;

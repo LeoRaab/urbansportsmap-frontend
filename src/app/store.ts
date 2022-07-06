@@ -1,4 +1,4 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import dialogSlice from '../common/components/UI/dialog/dialogSlice';
 import filterSlice from '../features/filter/filterSlice';
 import imageManagerSlice from '../features/image-manager/imageManagerSlice';
@@ -10,24 +10,20 @@ import userSlice from '../features/user/userSlice';
 import toastsSlice from '../common/components/UI/toast/toastsSlice';
 
 const store = configureStore({
-    reducer: {
-        filter: filterSlice,
-        map: mapSlice,
-        ui: uiSlice,
-        user: userSlice,
-        imageManager: imageManagerSlice,
-        dialog: dialogSlice,
-        toasts: toastsSlice,
-        [apiSlice.reducerPath]: apiSlice.reducer,
-        [geocodeApi.reducerPath]: geocodeApi.reducer
-    },
-    middleware: getDefaultMiddleware =>
-        getDefaultMiddleware().concat(
-            apiSlice.middleware, 
-            geocodeApi.middleware
-        )
+  reducer: {
+    filter: filterSlice,
+    map: mapSlice,
+    ui: uiSlice,
+    user: userSlice,
+    imageManager: imageManagerSlice,
+    dialog: dialogSlice,
+    toasts: toastsSlice,
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    [geocodeApi.reducerPath]: geocodeApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware, geocodeApi.middleware),
 });
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 
 export default store;

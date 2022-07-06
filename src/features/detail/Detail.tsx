@@ -12,7 +12,7 @@ import CommentsList from '../comments/CommentsList';
 import { selectVenueById } from '../map/venuesSlice';
 import { selectUserId } from '../user/userSlice';
 import DetailSettings from './DetailSettings';
-import {MapIcon} from '@heroicons/react/outline';
+import { MapIcon } from '@heroicons/react/outline';
 import { RootState } from '../../app/store';
 import GraphicMessage from '../../common/components/UI/GraphicMessage';
 import { ILLUSTRATIONS } from '../../common/constants/illustrations';
@@ -22,104 +22,109 @@ import { STRINGS } from '../../common/constants/strings';
 import { addToast } from '../../common/components/UI/toast/toastsSlice';
 
 const Detail = () => {
+  const navigate = useNavigate();
+  const params = useParams();
+  const dispatch = useDispatch();
+  const venue = useSelector((state: RootState) => selectVenueById(state, params.venueId!));
+  const [
+    loadVenueComments,
+    {
+      data: venueComments,
+      isLoading: isLoadingVenueComments,
+      isFetching: isFetchingVenueComments,
+      error: loadVenueCommentsError,
+    },
+  ] = useLazyGetCommentsQuery();
+  const [addComment, { data: addCommentResponse, isLoading: isLoadingAddComment, error: addCommentError }] =
+    useAddCommentMutation();
+  const userId = useSelector(selectUserId);
 
-    const navigate = useNavigate();
-    const params = useParams();
-    const dispatch = useDispatch();
-    const venue = useSelector((state: RootState) => selectVenueById(state, params.venueId!))
-    const [loadVenueComments, { data: venueComments, isLoading: isLoadingVenueComments, isFetching: isFetchingVenueComments, error: loadVenueCommentsError }] = useLazyGetCommentsQuery();
-    const [addComment, { data: addCommentResponse, isLoading: isLoadingAddComment, error: addCommentError }] = useAddCommentMutation();
-    const userId = useSelector(selectUserId);
-    
-    const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
+  const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
 
-    useEffect(() => {
-        if (venue) {
-            loadVenueComments(venue.id);
-        }        
-    }, [venue, loadVenueComments]);
+  useEffect(() => {
+    if (venue) {
+      loadVenueComments(venue.id);
+    }
+  }, [venue, loadVenueComments]);
 
-    useEffect(() => {
-        if (addCommentResponse) {
-            dispatch(addToast({message: addCommentResponse.message, type: 'success'}));
-        }
-
-        if (addCommentError) {
-            dispatch(addToast({message: getErrorMessage(addCommentError), type: 'error'}));
-        }
-
-        if (loadVenueCommentsError) {
-            dispatch(addToast({message: getErrorMessage(loadVenueCommentsError), type: 'error'}));
-        }
-
-    }, [addCommentResponse, addCommentError, loadVenueCommentsError, dispatch]);
-
-    const handleAddCommentClick = () => {
-        setShowCommentForm(true);
+  useEffect(() => {
+    if (addCommentResponse) {
+      dispatch(addToast({ message: addCommentResponse.message, type: 'success' }));
     }
 
-    const handleFormSubmit = (comment: string) => {
-        addComment({ venueId: venue!.id, comment });
-        setShowCommentForm(false);
+    if (addCommentError) {
+      dispatch(addToast({ message: getErrorMessage(addCommentError), type: 'error' }));
     }
 
-    const handleFormCancel = () => {
-        setShowCommentForm(false);
+    if (loadVenueCommentsError) {
+      dispatch(addToast({ message: getErrorMessage(loadVenueCommentsError), type: 'error' }));
     }
+  }, [addCommentResponse, addCommentError, loadVenueCommentsError, dispatch]);
 
-    return (
-        <PageWrapper title={STRINGS.PAGE_DETAILS}>
-            {venue && 
-                <>
-                    <div className="mt-6">
-                        <VenueTitle venue={venue} />
-                    </div>
+  const handleAddCommentClick = () => {
+    setShowCommentForm(true);
+  };
 
-                    <div className="mt-4">
-                        <SportTypesList sportTypes={venue?.sportTypes} />
-                    </div>
+  const handleFormSubmit = (comment: string) => {
+    addComment({ venueId: venue!.id, comment });
+    setShowCommentForm(false);
+  };
 
-                    {(userId && venue?.id) &&
-                        <DetailSettings venue={venue}
-                            onCommentClick={handleAddCommentClick} />
-                    }
+  const handleFormCancel = () => {
+    setShowCommentForm(false);
+  };
 
-                    {showCommentForm &&
-                        <CommentForm onFormSubmit={handleFormSubmit} onFormCancel={handleFormCancel} />
-                    }
+  return (
+    <PageWrapper title={STRINGS.PAGE_DETAILS}>
+      {venue && (
+        <>
+          <div className="mt-6">
+            <VenueTitle venue={venue} />
+          </div>
 
-                    {venue &&
-                        <div className="h-1/3 my-4">
-                            <ImageSwiper venueId={venue.id} />
-                        </div>
-                    }
+          <div className="mt-4">
+            <SportTypesList sportTypes={venue?.sportTypes} />
+          </div>
 
-                    {(venueComments && venueComments.length > 0) &&
-                        <div className="mt-4">
-                            <h2 className="text-2xl mb-4">Kommentare</h2>
-                            <CommentsList comments={venueComments} />
-                        </div>
-                    }
+          {userId && venue?.id && <DetailSettings venue={venue} onCommentClick={handleAddCommentClick} />}
 
-                    <div className="fixed bottom-6 right-2 z-800">
-                        <FabButton backgroundColor="bg-green-200"
-                            onClick={() => navigate('/venue/' + venue?.location.lat + ',' + venue?.location.lng)}>
-                            <MapIcon className="icon-size" />
-                        </FabButton>
-                    </div>
-                </>
-            }
+          {showCommentForm && <CommentForm onFormSubmit={handleFormSubmit} onFormCancel={handleFormCancel} />}
 
-            {!venue && 
-                <GraphicMessage illustration={ILLUSTRATIONS.NOT_FOUND} text="Das angeforderte Venue existiert nicht." title="Nichts gefunden"/>
-            }
+          {venue && (
+            <div className="h-1/3 my-4">
+              <ImageSwiper venueId={venue.id} />
+            </div>
+          )}
 
-            {(isLoadingVenueComments || isFetchingVenueComments || isLoadingAddComment) &&
-                <LoadingSpinner />
-            }
-            
-        </PageWrapper>
-    )
-}
+          {venueComments && venueComments.length > 0 && (
+            <div className="mt-4">
+              <h2 className="text-2xl mb-4">Kommentare</h2>
+              <CommentsList comments={venueComments} />
+            </div>
+          )}
+
+          <div className="fixed bottom-6 right-2 z-800">
+            <FabButton
+              backgroundColor="bg-green-200"
+              onClick={() => navigate('/venue/' + venue?.location.lat + ',' + venue?.location.lng)}
+            >
+              <MapIcon className="icon-size" />
+            </FabButton>
+          </div>
+        </>
+      )}
+
+      {!venue && (
+        <GraphicMessage
+          illustration={ILLUSTRATIONS.NOT_FOUND}
+          text="Das angeforderte Venue existiert nicht."
+          title="Nichts gefunden"
+        />
+      )}
+
+      {(isLoadingVenueComments || isFetchingVenueComments || isLoadingAddComment) && <LoadingSpinner />}
+    </PageWrapper>
+  );
+};
 
 export default Detail;
