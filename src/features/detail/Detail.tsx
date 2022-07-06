@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import SportTypesList from '../../common/components/sportstypes-list/SportTypesList';
 import FabButton from '../../common/components/form-elements/buttons/FabButton';
@@ -16,19 +16,19 @@ import {MapIcon} from '@heroicons/react/outline';
 import { RootState } from '../../app/store';
 import GraphicMessage from '../../common/components/UI/GraphicMessage';
 import { ILLUSTRATIONS } from '../../common/constants/illustrations';
-import useToast from '../../common/hooks/use-toast';
 import getErrorMessage from '../../common/util/get-error-message';
 import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import { STRINGS } from '../../common/constants/strings';
+import { addToast } from '../../common/components/UI/toast/toastsSlice';
 
 const Detail = () => {
 
     const navigate = useNavigate();
     const params = useParams();
+    const dispatch = useDispatch();
     const venue = useSelector((state: RootState) => selectVenueById(state, params.venueId!))
     const [loadVenueComments, { data: venueComments, isLoading: isLoadingVenueComments, isFetching: isFetchingVenueComments, error: loadVenueCommentsError }] = useLazyGetCommentsQuery();
     const [addComment, { data: addCommentResponse, isLoading: isLoadingAddComment, error: addCommentError }] = useAddCommentMutation();
-    const toast = useToast();
     const userId = useSelector(selectUserId);
     
     const [showCommentForm, setShowCommentForm] = useState<boolean>(false);
@@ -41,18 +41,18 @@ const Detail = () => {
 
     useEffect(() => {
         if (addCommentResponse) {
-            toast.show(addCommentResponse.message)('success');
+            dispatch(addToast({message: addCommentResponse.message, type: 'success'}));
         }
 
         if (addCommentError) {
-            toast.show(getErrorMessage(addCommentError))('error')
+            dispatch(addToast({message: getErrorMessage(addCommentError), type: 'error'}));
         }
 
         if (loadVenueCommentsError) {
-            toast.show(getErrorMessage(loadVenueCommentsError))('error')
+            dispatch(addToast({message: getErrorMessage(loadVenueCommentsError), type: 'error'}));
         }
 
-    }, [addCommentResponse, addCommentError, loadVenueCommentsError, toast]);
+    }, [addCommentResponse, addCommentError, loadVenueCommentsError, dispatch]);
 
     const handleAddCommentClick = () => {
         setShowCommentForm(true);

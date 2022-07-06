@@ -1,22 +1,23 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../common/components/form-elements/buttons/Button";
 import Input from "../../common/components/form-elements/Input";
 import GraphicMessage from "../../common/components/UI/GraphicMessage";
 import PageWrapper from "../../common/components/UI/PageWrapper";
+import { addToast } from "../../common/components/UI/toast/toastsSlice";
 import { ILLUSTRATIONS } from "../../common/constants/illustrations";
 import { STRINGS } from "../../common/constants/strings";
 import { useForm } from "../../common/hooks/use-form";
-import useToast from "../../common/hooks/use-toast";
 import { VALIDATOR_MINLENGTH, VALIDATOR_MAXLENGTH, VALIDATOR_EMAIL, VALIDATOR_CONFIRM_PASSWORD } from "../../common/util/form-validators";
 import getErrorMessage from "../../common/util/get-error-message";
 import { useSignupMutation } from "./userSlice";
 
 const Signup = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [signup, { isSuccess, error }] = useSignupMutation();
     const [isMailSent, setIsMailSent] = useState<boolean>(false);
-    const toast = useToast();
 
     const { formState, inputHandler } = useForm(
         {
@@ -46,15 +47,15 @@ const Signup = () => {
         }
 
         if (error) {
-            toast.show(getErrorMessage(error))('error');
+            dispatch(addToast({message: getErrorMessage(error), type: 'error'}));
         }
-    }, [isSuccess, error, toast]);
+    }, [isSuccess, error, dispatch]);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (formState.inputs.password.value !== formState.inputs.confirmPassword.value) {
-            toast.show(STRINGS.ERROR_UNEQUAL_PASSWORDS)('error');
+            dispatch(addToast({message: STRINGS.ERROR_UNEQUAL_PASSWORDS, type: 'error'}));
             return;
         }
 

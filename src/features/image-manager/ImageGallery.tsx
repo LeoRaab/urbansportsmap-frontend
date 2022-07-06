@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Button from "../../common/components/form-elements/buttons/Button";
 import LoadingSpinner from "../../common/components/UI/LoadingSpinner";
+import { addToast } from "../../common/components/UI/toast/toastsSlice";
 import { STRINGS } from "../../common/constants/strings";
 import useDialog from "../../common/hooks/use-dialog";
-import useToast from "../../common/hooks/use-toast";
 import getErrorMessage from "../../common/util/get-error-message";
 import ImageList from "./ImageList";
 import { imageManagerActions } from "./imageManagerSlice";
@@ -20,23 +20,20 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
     const { data: userImages, isLoading, isFetching, error: loadingError } = useGetImagesByVenueAndUserQuery(venueId);
     const [deleteImage, { data: deleteResponse, isLoading: isLoadingDeleteImage, error: deleteError }] = useDeleteImageMutation();
     const dialog = useDialog();
-    const toast = useToast();
 
     useEffect(() => {
         if (deleteResponse) {
-            toast.show(deleteResponse.message)('success');
+            dispatch(addToast({message: deleteResponse.message, type: 'success'}));
         }
 
         if (deleteError) {
-            toast.show(getErrorMessage(deleteError))('error');
+            dispatch(addToast({message: getErrorMessage(deleteError), type: 'error'}));
         }
-    }, [deleteResponse, deleteError, toast]);
 
-    useEffect(() => {
         if (loadingError) {
-            toast.show(getErrorMessage(loadingError))('error');
+            dispatch(addToast({message: getErrorMessage(loadingError), type: 'error'}));
         }
-    }, [dispatch, loadingError, toast])
+    }, [deleteResponse, deleteError, loadingError, dispatch]);
 
     const handleUploadedThumbnailClick = async (id: number) => {
         const isAccepted = await dialog.open(STRINGS.IMAGES_DELETE);

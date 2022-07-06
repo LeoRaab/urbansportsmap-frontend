@@ -7,9 +7,9 @@ import { selectUserId } from '../user/userSlice';
 import CommentForm from './CommentForm';
 import { useUpdateCommentMutation, useRemoveCommentMutation } from './commentsApi';
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
-import { toastsActions } from '../../common/components/UI/toast/toastsSlice';
 import useDialog from '../../common/hooks/use-dialog';
 import { STRINGS } from '../../common/constants/strings';
+import { addToast } from '../../common/components/UI/toast/toastsSlice';
 
 type CommentItemProps = {
     comment: VenueComment
@@ -26,13 +26,13 @@ const CommentItem = ({ comment }: CommentItemProps) => {
 
     useEffect(() => {
         if (updateResponse) {
-            dispatch(toastsActions.addToast({message: updateResponse.message, type: 'success'}));
+            dispatch(addToast({message: updateResponse.message, type: 'success'}));
         }
     }, [updateResponse, dispatch]);
 
     useEffect(() => {
         if (deleteResponse) {
-            dispatch(toastsActions.addToast({message: deleteResponse.message, type: 'success'}));
+            dispatch(addToast({message: deleteResponse.message, type: 'success'}));
         }
     }, [deleteResponse, dispatch]);
 
