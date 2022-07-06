@@ -14,7 +14,7 @@ type GraphicMessageProps = {
 const GraphicMessage = ({ illustration, title, text, link }: GraphicMessageProps) => {
   return (
     <div className="flex flex-col justify-center items-center mt-8">
-      <img src={illustration} alt={text} className="w-full" />
+      <img src={illustration} alt={text} className="w-1/3" />
       <div className="px-2 mt-8 w-full">
         <h3 className="text-xl">{title}</h3>
         <p className="my-2">
