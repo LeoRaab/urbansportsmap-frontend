@@ -4,7 +4,7 @@ import LoadingSpinner from '../../common/components/UI/LoadingSpinner';
 import PageWrapper from '../../common/components/UI/PageWrapper';
 import { selectUserId, useLazyGetUserQuery } from './userSlice';
 import UserInfo from './UserInfo';
-import { RefreshIcon, TrashIcon } from '@heroicons/react/outline';
+import { TrashIcon } from '@heroicons/react/outline';
 import Button from '../../common/components/form-elements/buttons/Button';
 import { STRINGS } from '../../common/constants/strings';
 
