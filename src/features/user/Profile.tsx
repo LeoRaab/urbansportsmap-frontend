@@ -18,8 +18,6 @@ const Profile = () => {
     }
   }, [userId, getUser]);
 
-  const handleResetPassword = () => {};
-
   const handleDeleteAccount = () => {
     console.log('Account deleted');
   };
@@ -31,12 +29,6 @@ const Profile = () => {
       </div>
 
       <div className="flex flex-col mt-4">
-        <Button color="white" type="button" onClick={handleResetPassword}>
-          <div className="flex items-center">
-            <RefreshIcon className="h-6 w-6" />
-            <p>{STRINGS.PROFILE_RESET_PASSWORD}</p>
-          </div>
-        </Button>
         <Button color="white" type="button" onClick={handleDeleteAccount}>
           <div className="flex items-center">
             <TrashIcon className="h-6 w-6 text-red-400" />
