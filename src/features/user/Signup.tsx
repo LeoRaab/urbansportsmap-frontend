@@ -67,7 +67,7 @@ const Signup = () => {
     signup({
       email: formState.inputs.email.value,
       password: formState.inputs.password.value,
-      name: formState.inputs.password.value,
+      name: formState.inputs.name.value,
     });
   };
 
