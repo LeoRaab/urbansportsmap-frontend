@@ -52,7 +52,7 @@ const Detail = () => {
             toast.show(getErrorMessage(loadVenueCommentsError))('error')
         }
 
-    }, [addCommentResponse, addCommentResponse, addCommentError, loadVenueCommentsError, toast]);
+    }, [addCommentResponse, addCommentError, loadVenueCommentsError, toast]);
 
     const handleAddCommentClick = () => {
         setShowCommentForm(true);
