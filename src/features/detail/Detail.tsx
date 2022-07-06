@@ -36,14 +36,11 @@ const Detail = () => {
     useEffect(() => {
         if (venue) {
             loadVenueComments(venue.id);
-        }
-
-        if (loadVenueCommentsError) {
-            toast.show(getErrorMessage(loadVenueCommentsError))('error')
-        }
-    }, [venue, loadVenueComments, loadVenueCommentsError, toast]);
+        }        
+    }, [venue, loadVenueComments, loadVenueCommentsError]);
 
     useEffect(() => {
+
         if (addCommentResponse) {
             toast.show(addCommentResponse.message)('success');
         }
@@ -51,7 +48,12 @@ const Detail = () => {
         if (addCommentError) {
             toast.show(getErrorMessage(addCommentError))('error')
         }
-    }, [addCommentResponse, addCommentError, toast]);
+
+        if (loadVenueCommentsError) {
+            toast.show(getErrorMessage(loadVenueCommentsError))('error')
+        }
+
+    }, [addCommentResponse, addCommentResponse, addCommentError, toast]);
 
     const handleAddCommentClick = () => {
         setShowCommentForm(true);
