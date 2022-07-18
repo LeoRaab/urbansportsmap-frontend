@@ -1,4 +1,7 @@
 # Urban Sports Map
 
-This project shows you many public sport venues of Vienna. 
-You can filter the venues to find the venue that suits your needs, which you may then put to your favorites list, upload a photo of the venue or leave a comment to tell others about your favorite venue.
+This project shows many public sport venues of Vienna. 
+
+It is possible to filter the venues to find the venue that suits the users needs, 
+which then may be put to a favorites list.
+Users may upload photos or leave a comment to a venue.
