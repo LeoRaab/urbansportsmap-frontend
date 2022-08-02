@@ -19,7 +19,7 @@ const SearchResults = ({ searchResults }: SearchResultsProps) => {
       try {
         const lat = parseFloat(latData);
         const lng = parseFloat(lngData);
-        dispatch(uiActions.hideSearchResults());
+        dispatch(uiActions.hideAll());
         dispatch(changeMapCenter({ lat, lng }));
       } catch (e) {
         console.log(e);
