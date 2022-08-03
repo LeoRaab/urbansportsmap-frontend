@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 
-type PrimaryButtonProps = {
+type IconButtonProps = {
   text: string;
   icon: JSX.Element;
   href?: string;
@@ -9,7 +9,7 @@ type PrimaryButtonProps = {
   onClick?: () => void;
 };
 
-const IconButton = ({ text, icon, href, to, onClick }: PrimaryButtonProps) => {
+const IconButton = ({ text, icon, href, to, onClick }: IconButtonProps) => {
   return (
     <Button color="transparent" type="button" href={href} to={to} onClick={onClick}>
       <div className="flex items-center text-base">
