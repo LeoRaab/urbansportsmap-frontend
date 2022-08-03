@@ -19,8 +19,8 @@ const PageHeader = ({ text }: PageHeaderProps) => {
       <div
         className={'sticky top-0 z-800 flex items-center w-full px-4 py-8 mt-2 bg-white border-b border-b-slate-200'}
       >
-        <div className="flex">
-          <IconButton text="" icon={<ChevronLeftIcon className="icon-size" />} onClick={handleBackButtonClick} />
+        <div className="flex items-center">
+          <ChevronLeftIcon className="icon-size cursor-pointer" onClick={handleBackButtonClick}/>
           <h2 className="ml-4 text-2xl">{text}</h2>
         </div>
         <div className="hidden lg:inline-block absolute right-5">
