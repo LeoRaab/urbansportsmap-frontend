@@ -52,17 +52,17 @@ const ResetPassword = () => {
   }, [isErrorVerify]);
 
   useEffect(() => {
-    if (updateError) {
+    if (isErrorUpdate && updateError) {
       dispatch(addToast({ message: getErrorMessage(updateError), type: 'error' }));
     }
-  }, [updateError, dispatch]);
+  }, [updateError, isErrorUpdate, dispatch]);
 
   useEffect(() => {
     if (isSuccessUpdate) {
       dispatch(addToast({ message: STRINGS.RESET_PASSWORD_SUCCESS, type: 'success' }));
       navigate('/login');
     }
-  }, [isSuccessUpdate, dispatch]);
+  }, [isSuccessUpdate, dispatch, navigate]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

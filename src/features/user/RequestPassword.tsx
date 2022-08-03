@@ -8,9 +8,9 @@ import PageWrapper from '../../common/components/UI/PageWrapper';
 import { addToast } from '../../common/components/UI/toast/toastsSlice';
 import { STRINGS } from '../../common/constants/strings';
 import { useForm } from '../../common/hooks/use-form';
-import { VALIDATOR_CONFIRM_PASSWORD, VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from '../../common/util/form-validators';
+import { VALIDATOR_EMAIL } from '../../common/util/form-validators';
 import getErrorMessage from '../../common/util/get-error-message';
-import { useResetPasswordMutation, useUpdatePasswordMutation } from './userSlice';
+import { useResetPasswordMutation } from './userSlice';
 
 const RequestPassword = () => {
   const dispatch = useDispatch();

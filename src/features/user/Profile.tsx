@@ -49,7 +49,7 @@ const Profile = () => {
     if (isErrorDelete && deleteError) {
       dispatch(addToast({ message: getErrorMessage(deleteError), type: 'error' }));
     }
-  }, [dispatch, isSuccessDelete, isErrorDelete, deleteError]);
+  }, [dispatch, isSuccessDelete, isErrorDelete, deleteError, navigate, logout]);
 
   const handleResetPassword = () => {
     if (user) {
@@ -86,7 +86,7 @@ const Profile = () => {
         </Button>
       </div>
 
-      {(isLoadingUser || isFetchingUser || isLoadingReset) && <LoadingSpinner />}
+      {(isLoadingUser || isFetchingUser || isLoadingReset || isLoadingDelete) && <LoadingSpinner />}
     </PageWrapper>
   );
 };
