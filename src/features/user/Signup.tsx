@@ -116,13 +116,13 @@ const Signup = () => {
             <div className="flex justify-between my-8">
               <div className="w-2/5">
                 <Button color="secondary" type="button" onClick={() => navigate('/')}>
-                  Abbrechen
+                  { STRINGS.BUTTON_CANCEL }
                 </Button>
               </div>
 
               <div className="w-2/5">
                 <Button color="primary" type="submit" disabled={!formState.isValid}>
-                  Sign up
+                  { STRINGS.BUTTON_SIGN_UP }
                 </Button>
               </div>
             </div>

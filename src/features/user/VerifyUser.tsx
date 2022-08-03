@@ -20,7 +20,7 @@ const VerifyUser = () => {
 
   return (
     <>
-      <PageWrapper title="Sign up">
+      <PageWrapper title="Profil verifizieren">
         <>
           {isSuccess && (
             <GraphicMessage

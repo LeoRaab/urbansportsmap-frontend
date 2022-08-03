@@ -36,7 +36,7 @@ const ImageGallery = ({ venueId }: ImageGalleryProps) => {
   }, [deleteResponse, deleteError, loadingError, dispatch]);
 
   const handleUploadedThumbnailClick = async (id: number) => {
-    const isAccepted = await dialog.open(STRINGS.IMAGES_DELETE);
+    const isAccepted = await dialog.open(STRINGS.DIALOG_DELETE_IMAGE);
 
     if (isAccepted) {
       handleDeleteImage(id);
