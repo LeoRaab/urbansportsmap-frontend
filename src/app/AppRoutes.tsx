@@ -5,7 +5,9 @@ import Favorites from '../features/favorites/Favorites';
 import MapUI from '../features/map/MapUI';
 import Login from '../features/user/Login';
 import Profile from '../features/user/Profile';
+import RequestPassword from '../features/user/RequestPassword';
 import RequireAuth from '../features/user/RequireAuth';
+import ResetPassword from '../features/user/ResetPassword';
 import Signup from '../features/user/Signup';
 import VerifyUser from '../features/user/VerifyUser';
 import MainLayout from './MainLayout';
@@ -40,7 +42,9 @@ const AppRoutes = () => {
               />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/verify/:verifyString" element={<VerifyUser />} />
+              <Route path="/user/verify/:verifyString" element={<VerifyUser />} />
+              <Route path="/user/password/reset/:verifyString" element={<ResetPassword />} />
+              <Route path="/user/password/request" element={<RequestPassword />} />
               <Route path="/*" element={<PageNotFound />} />
             </Route>
           </Route>
