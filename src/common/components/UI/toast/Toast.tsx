@@ -45,7 +45,7 @@ const Toast = ({ message, type, duration, id }: ToastProps) => {
   }, [dispatch, id]);
 
   return isVisible ? (
-    <div className={'rounded shadow p-4 mb-2 w-3/4 relative bg-opacity-90 ' + type}>
+    <div className={'rounded shadow p-4 mb-2 w-3/4 lg:w-1/4 relative bg-opacity-90 ' + type}>
       <div className="flex">
         <p className="text-sm font-semibold">{message}</p>
         <div className="absolute flex justify-center right-2 z-1100">
