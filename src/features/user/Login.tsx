@@ -42,9 +42,9 @@ const Login = () => {
 
   useEffect(() => {
     if (loginError) {
-      dispatch(addToast({message: getErrorMessage(loginError), type: 'error'}))
+      dispatch(addToast({ message: getErrorMessage(loginError), type: 'error' }));
     }
-  }, [loginError, dispatch])
+  }, [loginError, dispatch]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -73,9 +73,16 @@ const Login = () => {
           errorText={STRINGS.INPUT_PASSWORD_ERROR}
           onInput={inputHandler}
         />
+
         <div className="mt-8">
           <Button color="primary" type="submit" disabled={!formState.isValid}>
-            Login
+            { STRINGS.BUTTON_LOGIN }
+          </Button>
+        </div>
+
+        <div className="mt-4">
+          <Button to="/user/password/request">
+            { STRINGS.PROFILE_RESET_PASSWORD }
           </Button>
         </div>
       </form>
