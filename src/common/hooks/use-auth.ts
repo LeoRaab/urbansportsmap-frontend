@@ -28,9 +28,9 @@ const useAuth = () => {
     }
   };
 
-  const logout = useCallback(() => {
-    dispatch(userActions.removeCredentials());
+  const logout = useCallback(() => {   
     removeUserData();
+    dispatch(userActions.removeCredentials());
     setStoredUserData(null);
   }, [dispatch, removeUserData, setStoredUserData]);
 
