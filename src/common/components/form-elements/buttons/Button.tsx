@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 type ButtonProps = {
-  color: 'primary' | 'secondary' | 'white' | 'transparent';
+  color?: 'primary' | 'secondary' | 'white' | 'transparent';
   href?: string;
   to?: string;
   type?: 'submit' | 'reset' | 'button' | undefined;
