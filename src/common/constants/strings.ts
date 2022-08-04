@@ -33,6 +33,7 @@ export const STRINGS = {
   IMAGES_NONE_UPLOADED: 'Du hast noch keine Bilder hochgeladen',
   IMAGES_MANAGE: 'Bilder verwalten',
   IMAGES_UPLOAD: 'Bilder hochladen',
+  IMAGES_MAX_SIZE: 'Bilder dürfen maximal 5 MB groß sein.',
   INPUT_COMMENT_LABEL: 'Kommentar',
   INPUT_COMMENT_ERROR: 'Gib bitte mindestens 3 Zeichen ein!',
   INPUT_CONFIRM_PASSWORD_LABEL: 'Passwort wiederholen',

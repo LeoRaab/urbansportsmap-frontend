@@ -10,6 +10,7 @@ import Button from '../../common/components/form-elements/buttons/Button';
 import IconButton from '../../common/components/form-elements/buttons/IconButton';
 import getErrorMessage from '../../common/util/get-error-message';
 import { addToast } from '../../common/components/UI/toast/toastsSlice';
+import { STRINGS } from '../../common/constants/strings';
 
 type ImageUploadProps = {
   venueId: string;
@@ -54,7 +55,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
 
   const handleImagesSelected: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     if (event.target.files !== null && event.target.files.length > 0) {
-      const pickedImages = [...event.target.files];
+      const pickedImages = [...event.target.files].filter((image) => image.size < 5242880);
 
       setSelectedImages((prevState) => [
         ...prevState,
@@ -106,6 +107,7 @@ const ImageUpload = ({ venueId }: ImageUploadProps) => {
           icon={<UploadIcon className="icon-size" />}
           onClick={handleSelectImagesClick}
         />
+        <p className="text-sm">{STRINGS.IMAGES_MAX_SIZE}</p>
       </div>
 
       <div className="flex justify-between my-8">
