@@ -82,7 +82,7 @@ const Login = () => {
 
         <div className="mt-4">
           <Button to="/user/password/request">
-            { STRINGS.PROFILE_RESET_PASSWORD }
+            { STRINGS.FORGOT_PASSWORD }
           </Button>
         </div>
       </form>

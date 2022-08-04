@@ -29,6 +29,7 @@ export const STRINGS = {
   FAVORITES_ADD: 'Zu Favoriten hinzufügen',
   FAVORITES_REMOVE: 'Von Favoriten entfernen',
   FILTER_CLEAR: 'Filter löschen',
+  FORGOT_PASSWORD: 'Passwort vergessen',
   IMAGES_EDIT: 'Bilder bearbeiten',
   IMAGES_NONE_UPLOADED: 'Du hast noch keine Bilder hochgeladen',
   IMAGES_MANAGE: 'Bilder verwalten',

@@ -45,7 +45,7 @@ const RequestPassword = () => {
 
   return (
     <>
-      <PageWrapper title="Passwort zurücksetzen">
+      <PageWrapper title="Passwort vergessen">
         <>
           <form onSubmit={handleSubmit}>
             <Input
